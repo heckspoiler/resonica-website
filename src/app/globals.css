@@ -1,0 +1,100 @@
+@font-face {
+    font-family: "GT America Black";
+    src: url("../../public/fonts/GT-America-Expanded-Black.woff2");
+    fallback: url("../../public/fonts/GT-America-Expanded-Black.woff");
+}
+
+@font-face {
+    font-family: "GT America Regular";
+    src: url("../../public/fonts/GT-America-Expanded-Regular.woff2");
+    fallback: url("../../public/fonts/GT-America-Expanded-Regular.woff");
+}
+
+@font-face {
+    font-family: "GT America Thin";
+    src: url("../../public/fonts/GT-America-Expanded-Thin.woff2");
+    fallback: url("../../public/fonts/GT-America-Expanded-Thin.woff");
+}
+
+:root {
+
+    --black: #2c2c2c;
+    --grey: #b2b2b2;
+    --red: #ea544f;
+    --title-font: "GT America Black";
+    --regular-font: "GT America Regular";
+    --thin-font: "GT America Thin"
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+h1 {
+    font-family: var(--title-font)
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+    color: var(--black);
+}
+
+p {
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 768px) and (max-width: 1120px) {}
