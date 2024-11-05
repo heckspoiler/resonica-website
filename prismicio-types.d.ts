@@ -166,7 +166,67 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = PageDocument | SettingsDocument;
+/**
+ * Item in *Social Bar → Social Bar*
+ */
+export interface SocialBarDocumentDataSocialBarItem {
+  /**
+   * Social Icon field in *Social Bar → Social Bar*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_bar.social_bar[].social_icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  social_icon: prismic.ImageField<never>;
+
+  /**
+   * Social Link field in *Social Bar → Social Bar*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_bar.social_bar[].social_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  social_link: prismic.LinkField;
+}
+
+/**
+ * Content for Social Bar documents
+ */
+interface SocialBarDocumentData {
+  /**
+   * Social Bar field in *Social Bar*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_bar.social_bar[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social_bar: prismic.GroupField<Simplify<SocialBarDocumentDataSocialBarItem>>;
+}
+
+/**
+ * Social Bar document from Prismic
+ *
+ * - **API ID**: `social_bar`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialBarDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SocialBarDocumentData>,
+    "social_bar",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | PageDocument
+  | SettingsDocument
+  | SocialBarDocument;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -240,6 +300,9 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      SocialBarDocument,
+      SocialBarDocumentData,
+      SocialBarDocumentDataSocialBarItem,
       AllDocumentTypes,
       RichTextSlice,
       RichTextSliceDefaultPrimary,

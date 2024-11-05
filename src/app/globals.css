@@ -35,6 +35,11 @@
     box-sizing: border-box;
 }
 
+*::selection {
+    color: white;
+    background-color: var(--red);
+}
+
 * {
     margin: 0;
 }

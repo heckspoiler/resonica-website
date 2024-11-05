@@ -1,0 +1,28 @@
+.socialsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.socialsItem {
+    overflow: hidden;
+}
+
+.socialsItem a {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+}
+
+.socialsItem a p {
+    font-family: var(--regular-font);
+    font-size: 0.8rem;
+    visibility: visible;
+    transform: translateY(120%);
+    transition: transform 0.1s linear;
+}
+
+.socialsItem:hover a p {
+    transform: translateY(0%);
+}

@@ -5,12 +5,11 @@ import { createClient } from '@/prismicio';
 
 import styles from './Navigation.module.css';
 import { PrismicNextLink } from '@prismicio/next';
+import SocialBar from './SocialBar/SocialBar';
 
 export default async function Navigation() {
   const client = createClient();
   const settings = await client.getSingle('settings');
-
-  console.log(settings.data.navigation[0]?.link.text);
 
   return (
     <nav className={styles.main}>
@@ -34,7 +33,7 @@ export default async function Navigation() {
           <PrismicNextLink field={settings.data.navigation[5]?.link} />
         </div>
         <div className={styles.linkContainer}>
-          <PrismicNextLink field={settings.data.navigation[6]?.link} />
+          <SocialBar />
         </div>
       </section>
     </nav>

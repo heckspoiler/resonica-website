@@ -1,0 +1,38 @@
+{
+  "format": "custom",
+  "id": "social_bar",
+  "label": "Social Bar",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "social_bar": {
+        "type": "Group",
+        "config": {
+          "label": "Social Bar",
+          "repeat": true,
+          "fields": {
+            "social_icon": {
+              "type": "Image",
+              "config": {
+                "label": "Social Icon",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "social_link": {
+              "type": "Link",
+              "config": {
+                "label": "Social Link",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "select": null,
+                "allowText": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
