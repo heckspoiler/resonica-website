@@ -1,0 +1,78 @@
+.main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    pointer-events: inherit;
+}
+
+.linkContainer {
+    width: fit-content;
+    padding: 1rem;
+    position: absolute;
+    transition: transform 0.2s cubic-bezier(0.215, 0.610, 0.355, 1)
+}
+
+.linkContainer a {
+    font-size: 1.125rem;
+}
+
+.titleContainer {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.titleContainer a {
+    font-size: 1.5rem;
+}
+
+.linkContainer:nth-of-type(2) {
+    left: 0%;
+}
+
+.linkContainer:nth-of-type(3) {
+    right: 0;
+}
+
+.linkContainer:nth-of-type(4) {
+    left: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.linkContainer:nth-of-type(5) {
+    left: 0%;
+    bottom: 0%;
+}
+
+.linkContainer:nth-of-type(6) {
+    right: 0%;
+    bottom: 0%;
+}
+
+
+
+
+
+
+
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 768px) and (max-width: 1120px) {}
