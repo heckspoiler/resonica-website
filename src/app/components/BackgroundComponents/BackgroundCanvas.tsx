@@ -11,10 +11,11 @@ import {
   Vector2,
   Mesh,
   Texture,
+  Vector3,
 } from 'three';
 
 // Import the image as a texture
-import backgroundDesktop from '../../../../public/background_bevel.png';
+import backgroundDesktop from '../../../../public/this.png';
 
 export default function BackgroundCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -37,12 +38,12 @@ export default function BackgroundCanvas() {
     const camera = new OrthographicCamera(
       -1,
       1,
-      (1 / aspectRatio) * 1.2,
-      (-1 / aspectRatio) * 1.2,
+      1 / aspectRatio,
+      -1 / aspectRatio,
       0.1,
       1000
     );
-    camera.position.z = 1;
+    camera.position.z = 15;
 
     // Texture and Shader Material setup
     const loader = new TextureLoader();
@@ -51,6 +52,8 @@ export default function BackgroundCanvas() {
       u_texture: { value: texture },
       u_mouse: { value: new Vector2(0.5, 0.5) },
       u_prevMouse: { value: new Vector2(0.5, 0.5) },
+      u_hoverColor: { value: new Vector3(1.0, 0.0, 0.0) },
+      u_hoverStrength: { value: 0.5 },
     };
 
     const planeGeometry = new PlaneGeometry(2, 2);
@@ -103,7 +106,7 @@ export default function BackgroundCanvas() {
 
     // Mouse event listeners
     const handleMouseMove = (event: MouseEvent) => {
-      easeFactor.current = 0.015;
+      easeFactor.current = 0.08;
       const rect = mountRef.current?.getBoundingClientRect();
       if (!rect) return;
 
@@ -162,8 +165,8 @@ export default function BackgroundCanvas() {
       const aspectRatio = window.innerWidth / window.innerHeight;
       camera.left = -1;
       camera.right = 1;
-      camera.top = (1 / aspectRatio) * 1.5;
-      camera.bottom = (-1 / aspectRatio) * 1.5;
+      camera.top = 1 / aspectRatio;
+      camera.bottom = -1 / aspectRatio;
       camera.updateProjectionMatrix();
 
       renderer.setSize(window.innerWidth, window.innerHeight);
