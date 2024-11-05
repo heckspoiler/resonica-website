@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+.socialsItem:hover img {
+    scale: 1.05
+}
+
 .socialsItem a {
     display: flex;
     flex-direction: row-reverse;
@@ -19,10 +23,11 @@
     font-family: var(--regular-font);
     font-size: 0.8rem;
     visibility: visible;
-    transform: translateY(120%);
-    transition: transform 0.1s linear;
+    transform: translateY(200%);
+
 }
 
 .socialsItem:hover a p {
     transform: translateY(0%);
+
 }

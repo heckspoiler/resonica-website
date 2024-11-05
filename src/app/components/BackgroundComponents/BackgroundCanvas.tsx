@@ -37,8 +37,8 @@ export default function BackgroundCanvas() {
     const camera = new OrthographicCamera(
       -1,
       1,
-      (1 / aspectRatio) * 1.5,
-      (-1 / aspectRatio) * 1.5,
+      (1 / aspectRatio) * 1.2,
+      (-1 / aspectRatio) * 1.2,
       0.1,
       1000
     );
