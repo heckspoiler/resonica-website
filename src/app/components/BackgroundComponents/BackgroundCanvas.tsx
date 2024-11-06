@@ -15,7 +15,7 @@ import {
 } from 'three';
 
 // Import the image as a texture
-import backgroundDesktop from '../../../../public/blurry.png';
+import backgroundDesktop from '../../../../public/blurry2.png';
 
 export default function BackgroundCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);

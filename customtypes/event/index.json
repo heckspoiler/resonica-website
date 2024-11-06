@@ -1,0 +1,99 @@
+{
+  "format": "custom",
+  "id": "event",
+  "label": "Event",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "event_type": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Event Type",
+          "placeholder": "Festival, Release, Clubnight etc.",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "hero_image": {
+        "type": "Image",
+        "config": {
+          "label": "Event Hero Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "event_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Event Title",
+          "placeholder": "i.e. Resonica at Zukunft",
+          "allowTargetBlank": true,
+          "multi": "heading2"
+        }
+      },
+      "event_date": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Event Date",
+          "placeholder": "16.02.2025",
+          "allowTargetBlank": true,
+          "multi": "heading3"
+        }
+      },
+      "event_time": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Event Time",
+          "placeholder": "23:59 - 06:30 (choose format of your liking but keep consistent)",
+          "allowTargetBlank": true,
+          "multi": "heading3"
+        }
+      },
+      "event_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Event Description",
+          "placeholder": "Max. 750 Characters",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "ticket_link": {
+        "type": "Link",
+        "config": {
+          "label": "Ticket Link",
+          "placeholder": "You only have to put the link, text is irrelevant since \"TICKETS\" is hardcoded",
+          "allowTargetBlank": true,
+          "select": null,
+          "allowText": true
+        }
+      },
+      "acts": {
+        "type": "Group",
+        "config": {
+          "label": "Acts",
+          "repeat": true,
+          "fields": {
+            "act_link": {
+              "type": "Link",
+              "config": {
+                "label": "act_link",
+                "placeholder": "Insta, SC, whatever you prefer",
+                "allowTargetBlank": true,
+                "select": null,
+                "allowText": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
