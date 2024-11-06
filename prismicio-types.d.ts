@@ -59,6 +59,17 @@ interface DateDocumentData {
   date_acts: prismic.GroupField<Simplify<DateDocumentDataDateActsItem>>;
 
   /**
+   * Ticket Link field in *date*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: TICKET or GET TICKETS or whatever you want
+   * - **API ID Path**: date.ticket_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  ticket_link: prismic.LinkField;
+
+  /**
    * Event Title field in *date*
    *
    * - **Field Type**: Rich Text
@@ -68,17 +79,6 @@ interface DateDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   date_title: prismic.RichTextField;
-
-  /**
-   * Event Date field in *date*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 12.02.2025
-   * - **API ID Path**: date.event_date
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_date: prismic.RichTextField;
 
   /**
    * Event Time field in *date*
@@ -92,15 +92,15 @@ interface DateDocumentData {
   date_time: prismic.RichTextField;
 
   /**
-   * Ticket Link field in *date*
+   * Event Date field in *date*
    *
-   * - **Field Type**: Link
-   * - **Placeholder**: TICKET or GET TICKETS or whatever you want
-   * - **API ID Path**: date.ticket_link
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: 12.02.2025
+   * - **API ID Path**: date.event_date
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  ticket_link: prismic.LinkField;
+  event_date: prismic.RichTextField;
 
   /**
    * Event Description field in *date*
@@ -228,126 +228,6 @@ interface DatesDocumentData {
  */
 export type DatesDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DatesDocumentData>, "dates", Lang>;
-
-/**
- * Item in *Event → Acts*
- */
-export interface EventDocumentDataActsItem {
-  /**
-   * act_link field in *Event → Acts*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Insta, SC, whatever you prefer
-   * - **API ID Path**: event.acts[].act_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  act_link: prismic.LinkField;
-}
-
-/**
- * Content for Event documents
- */
-interface EventDocumentData {
-  /**
-   * Event Type field in *Event*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Festival, Release, Clubnight etc.
-   * - **API ID Path**: event.event_type
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_type: prismic.RichTextField;
-
-  /**
-   * Event Hero Image field in *Event*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: event.hero_image
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  hero_image: prismic.ImageField<never>;
-
-  /**
-   * Event Title field in *Event*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: i.e. Resonica at Zukunft
-   * - **API ID Path**: event.event_title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_title: prismic.RichTextField;
-
-  /**
-   * Event Date field in *Event*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 16.02.2025
-   * - **API ID Path**: event.event_date
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_date: prismic.RichTextField;
-
-  /**
-   * Event Time field in *Event*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 23:59 - 06:30 (choose format of your liking but keep consistent)
-   * - **API ID Path**: event.event_time
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_time: prismic.RichTextField;
-
-  /**
-   * Event Description field in *Event*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Max. 750 Characters
-   * - **API ID Path**: event.event_description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_description: prismic.RichTextField;
-
-  /**
-   * Ticket Link field in *Event*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: You only have to put the link, text is irrelevant since "TICKETS" is hardcoded
-   * - **API ID Path**: event.ticket_link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  ticket_link: prismic.LinkField;
-
-  /**
-   * Acts field in *Event*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: event.acts[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  acts: prismic.GroupField<Simplify<EventDocumentDataActsItem>>;
-}
-
-/**
- * Event document from Prismic
- *
- * - **API ID**: `event`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type EventDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<EventDocumentData>, "event", Lang>;
 
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
@@ -571,7 +451,6 @@ export type SocialBarDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | DateDocument
   | DatesDocument
-  | EventDocument
   | PageDocument
   | SettingsDocument
   | SocialBarDocument;
@@ -649,9 +528,6 @@ declare module "@prismicio/client" {
       DatesDocument,
       DatesDocumentData,
       DatesDocumentDataSlicesSlice,
-      EventDocument,
-      EventDocumentData,
-      EventDocumentDataActsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

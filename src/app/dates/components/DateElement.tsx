@@ -4,15 +4,16 @@ import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 
 import styles from './DateElement.module.css';
-import { PrismicNextImage } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import Link from 'next/link';
+import Image from 'next/image';
+
+import arrow from '../../../../public/arrow.png';
 
 export default function DateElement({ dates }: { dates: any }) {
-  console.log(dates);
-
   const truncateText = (text: string, maxLength: number) => {
     if (text && text.length > maxLength) {
-      return text.substring(0, maxLength) + '... [MORE]';
+      return text.substring(0, maxLength) + '... ';
     }
     return text;
   };
@@ -32,9 +33,15 @@ export default function DateElement({ dates }: { dates: any }) {
               </div>
               <div className={styles.textContainer}>
                 <p>
-                  {truncateText(date.data.description, 100)}{' '}
-                  <Link href={date.url}>[...MORE]</Link>
+                  {truncateText(date.data.event_description, 250)}
+                  <Link href={date.url}>[MORE]</Link>
                 </p>
+              </div>
+              <div className={styles.linkContainer}>
+                <PrismicNextLink field={date.data.ticket_link}>
+                  <p>Tickets</p>
+                  <Image src={arrow} alt="Arrow Image" />
+                </PrismicNextLink>
               </div>
             </div>
           </div>

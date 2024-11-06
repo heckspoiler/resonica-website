@@ -64,6 +64,10 @@ p {
     font-family: var(--text-font);
 }
 
+a {
+    text-decoration: none;
+}
+
 nav p,
 nav a {
     font-family: var(--title-font);
@@ -72,7 +76,6 @@ nav a {
     pointer-events: all;
     cursor: pointer;
     text-shadow: var(--text-shadow-small);
-    text-decoration: none;
 }
 
 nav p:hover,
@@ -124,7 +127,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+a {
     overflow-wrap: break-word;
     color: var(--black);
 }

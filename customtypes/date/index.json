@@ -48,6 +48,16 @@
           }
         }
       },
+      "ticket_link": {
+        "type": "Link",
+        "config": {
+          "label": "Ticket Link",
+          "placeholder": "TICKET or GET TICKETS or whatever you want",
+          "allowTargetBlank": true,
+          "select": null,
+          "allowText": true
+        }
+      },
       "date_title": {
         "type": "StructuredText",
         "config": {
@@ -55,15 +65,6 @@
           "placeholder": "Resonica at Zukunft",
           "allowTargetBlank": true,
           "multi": "heading2"
-        }
-      },
-      "event_date": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Event Date",
-          "placeholder": "12.02.2025",
-          "allowTargetBlank": true,
-          "multi": "heading3"
         }
       },
       "date_time": {
@@ -75,14 +76,13 @@
           "multi": "heading4"
         }
       },
-      "ticket_link": {
-        "type": "Link",
+      "event_date": {
+        "type": "StructuredText",
         "config": {
-          "label": "Ticket Link",
-          "placeholder": "TICKET or GET TICKETS or whatever you want",
+          "label": "Event Date",
+          "placeholder": "12.02.2025",
           "allowTargetBlank": true,
-          "select": null,
-          "allowText": true
+          "multi": "heading3"
         }
       },
       "event_description": {
