@@ -29,6 +29,25 @@
           "thumbnails": []
         }
       },
+      "date_acts": {
+        "type": "Group",
+        "config": {
+          "label": "Event Acts",
+          "repeat": true,
+          "fields": {
+            "date_act": {
+              "type": "Link",
+              "config": {
+                "label": "Act",
+                "placeholder": "Name of Act & Link to SC in Linkfield",
+                "allowTargetBlank": true,
+                "select": null,
+                "allowText": true
+              }
+            }
+          }
+        }
+      },
       "date_title": {
         "type": "StructuredText",
         "config": {
@@ -56,15 +75,6 @@
           "multi": "heading4"
         }
       },
-      "date_description": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Event Description",
-          "placeholder": "Max. 750 Characters",
-          "allowTargetBlank": true,
-          "multi": "paragraph"
-        }
-      },
       "ticket_link": {
         "type": "Link",
         "config": {
@@ -75,23 +85,11 @@
           "allowText": true
         }
       },
-      "date_acts": {
-        "type": "Group",
+      "event_description": {
+        "type": "Text",
         "config": {
-          "label": "Event Acts",
-          "repeat": true,
-          "fields": {
-            "date_act": {
-              "type": "Link",
-              "config": {
-                "label": "Act",
-                "placeholder": "Name of Act & Link to SC in Linkfield",
-                "allowTargetBlank": true,
-                "select": null,
-                "allowText": true
-              }
-            }
-          }
+          "label": "Event Description",
+          "placeholder": "Max. 750 characters"
         }
       },
       "slices": {

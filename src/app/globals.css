@@ -19,13 +19,14 @@
 :root {
 
     --black: #2c2c2c;
-    --grey: #b2b2b2;
     --red: rgba(234, 84, 79, 1);
+    --red-lowopa: rgba(234, 84, 79, 0.45);
     --title-font: "GT America Black";
     --regular-font: "GT America Regular";
     --text-font: "GT America Thin";
     --text-shadow-small: 0px 0px 15px rgba(238, 238, 238, 0.5);
     --text-shadow-small-hover: 0px 0px 15px rgba(238, 238, 238, 0.4);
+    --background-grey: #ECECEC
 }
 
 
@@ -40,6 +41,8 @@
     background-color: var(--red);
 }
 
+
+
 * {
     margin: 0;
 }
@@ -47,6 +50,14 @@
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+}
+
+section {
+    pointer-events: none;
+}
+
+section * {
+    pointer-events: all;
 }
 
 p {
@@ -100,6 +111,11 @@ h6 {
 h1,
 h2 {
     font-family: var(--title-font);
+}
+
+h3 {
+    font-family: var(--text-font);
+    font-size: 0.8rem;
 }
 
 p,

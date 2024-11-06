@@ -1,0 +1,10 @@
+.container {
+    height: 100vh;
+    width: auto;
+    aspect-ratio: 4/3;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 8rem 0 0 0;
+}

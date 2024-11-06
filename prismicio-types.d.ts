@@ -48,6 +48,17 @@ interface DateDocumentData {
   hero_image: prismic.ImageField<never>;
 
   /**
+   * Event Acts field in *date*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: date.date_acts[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  date_acts: prismic.GroupField<Simplify<DateDocumentDataDateActsItem>>;
+
+  /**
    * Event Title field in *date*
    *
    * - **Field Type**: Rich Text
@@ -81,17 +92,6 @@ interface DateDocumentData {
   date_time: prismic.RichTextField;
 
   /**
-   * Event Description field in *date*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Max. 750 Characters
-   * - **API ID Path**: date.date_description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  date_description: prismic.RichTextField;
-
-  /**
    * Ticket Link field in *date*
    *
    * - **Field Type**: Link
@@ -103,15 +103,15 @@ interface DateDocumentData {
   ticket_link: prismic.LinkField;
 
   /**
-   * Event Acts field in *date*
+   * Event Description field in *date*
    *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: date.date_acts[]
+   * - **Field Type**: Text
+   * - **Placeholder**: Max. 750 characters
+   * - **API ID Path**: date.event_description
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  date_acts: prismic.GroupField<Simplify<DateDocumentDataDateActsItem>>;
+  event_description: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *date*

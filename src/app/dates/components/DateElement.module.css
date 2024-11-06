@@ -1,0 +1,33 @@
+.item {
+    background-color: var(--background-grey);
+    display: flex;
+    align-items: center;
+    height: 12rem;
+    gap: 2rem;
+}
+
+/* image container */
+
+.imageContainer {
+    overflow: hidden;
+    max-width: 12rem;
+}
+
+.imageContainer img {
+    object-fit: contain;
+}
+
+/* content container */
+
+.contentContainer {
+    max-width: 80%;
+}
+
+.titleContainer h2 {
+    font-size: 1.25rem;
+}
+
+.textContainer p {
+
+    font-size: 0.8rem;
+}
