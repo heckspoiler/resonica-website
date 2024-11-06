@@ -67,7 +67,9 @@ nav a {
 nav p:hover,
 nav a:hover {
     color: var(--red);
-    text-shadow: var(--text-shadow-small-hover)
+    text-shadow: var(--text-shadow-small-hover);
+    cursor: pointer;
+
 }
 
 img,

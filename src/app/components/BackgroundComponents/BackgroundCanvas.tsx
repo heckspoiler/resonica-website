@@ -15,7 +15,7 @@ import {
 } from 'three';
 
 // Import the image as a texture
-import backgroundDesktop from '../../../../public/this.png';
+import backgroundDesktop from '../../../../public/blurry.png';
 
 export default function BackgroundCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -38,8 +38,8 @@ export default function BackgroundCanvas() {
     const camera = new OrthographicCamera(
       -1,
       1,
-      1 / aspectRatio,
-      -1 / aspectRatio,
+      (1 / aspectRatio) * 1.8,
+      (-1 / aspectRatio) * 1.8,
       0.1,
       1000
     );
@@ -165,8 +165,8 @@ export default function BackgroundCanvas() {
       const aspectRatio = window.innerWidth / window.innerHeight;
       camera.left = -1;
       camera.right = 1;
-      camera.top = 1 / aspectRatio;
-      camera.bottom = -1 / aspectRatio;
+      camera.top = (1 / aspectRatio) * 1.8;
+      camera.bottom = (-1 / aspectRatio) * 1.8;
       camera.updateProjectionMatrix();
 
       renderer.setSize(window.innerWidth, window.innerHeight);

@@ -11,7 +11,7 @@ export default function SocialBarContent({
   return (
     <div className={styles.socialsContainer}>
       {socialBarItems.map((item: any, index: number) => (
-        <div key={item.index} className={styles.socialsItem}>
+        <div key={index} className={styles.socialsItem}>
           <PrismicNextLink field={item.social_link as any}>
             <PrismicNextImage field={item.social_icon} />
             <p>{item.social_link.text} </p>
