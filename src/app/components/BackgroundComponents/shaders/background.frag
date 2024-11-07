@@ -32,7 +32,7 @@ void main() {
   float gravityEffect = smoothstep(0.1, 1.5, colorBrightness);
 
   // Create a time-based wobble effect
-  float timeWobble = sin(u_time * 0.5  + distance * 10.0) * 0.05;
+  float timeWobble = sin(u_time * 0.5  + distance * 1.0) * 0.05;
   gravityEffect += timeWobble;
 
   // Amplify the UV offset for a more extreme distortion
