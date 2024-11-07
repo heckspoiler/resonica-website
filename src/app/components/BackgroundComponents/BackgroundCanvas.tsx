@@ -14,6 +14,9 @@ import {
   Vector3,
 } from 'three';
 
+import fragment from './shaders/background.frag';
+import vertex from './shaders/background.vert';
+
 // Import the image as a texture
 import backgroundDesktop from '../../../../public/blurry2.png';
 
@@ -53,40 +56,14 @@ export default function BackgroundCanvas() {
       u_mouse: { value: new Vector2(0.5, 0.5) },
       u_prevMouse: { value: new Vector2(0.5, 0.5) },
       u_hoverColor: { value: new Vector3(1.0, 0.0, 0.0) },
-      u_hoverStrength: { value: 0.5 },
+      u_gravityStrength: { value: 1.0 },
+      u_time: { value: 0.0 },
     };
 
     const planeGeometry = new PlaneGeometry(2, 2);
     const planeMaterial = new ShaderMaterial({
-      vertexShader: `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        varying vec2 vUv;
-        uniform sampler2D u_texture;
-        uniform vec2 u_mouse;
-        uniform vec2 u_prevMouse;
-        
-        void main() {
-          vec2 gridUV = floor(vUv * vec2(30.0, 30.0)) / vec2(30.0, 30.0);
-          vec2 centerOfPixel = gridUV + vec2(1.0 / 30.0, 1.0 / 30.0);
-
-          vec2 mouseDirection = u_mouse - u_prevMouse;
-          vec2 pixelToMouseDirection = centerOfPixel - u_mouse;
-          float pixelDistanceToMouse = length(pixelToMouseDirection);
-          float strength = smoothstep(0.3, 0.0, pixelDistanceToMouse);
-
-          vec2 uvOffset = strength * -mouseDirection * 0.08;
-          vec2 uv = vUv - uvOffset;
-
-          vec4 color = texture2D(u_texture, uv);
-          gl_FragColor = color;
-        }
-      `,
+      vertexShader: vertex,
+      fragmentShader: fragment,
       uniforms: shaderUniforms,
     });
 

@@ -1,27 +1,29 @@
+// Varying from the vertex shader
 varying vec2 vUv;
+
+// Uniforms
 uniform sampler2D u_texture;
 uniform vec2 u_mouse;
-uniform vec2 u_prevMouse;
-uniform vec3 u_hoverColor; 
-uniform float u_hoverStrength; 
+uniform float u_gravityStrength; // Strength of the gravitational effect
+
+float brightness(vec3 color) {
+  return dot(color, vec3(0.2126, 0.7152, 0.0722)); // Standard luminance formula
+}
 
 void main() {
-    vec2 gridUV = floor(vUv * vec2(80.0, 80.0)) / vec2(80.0, 80.0);
-    vec2 centerOfPixel = gridUV + vec2(1.0 / 80.0, 1.0 / 80.0);
 
-    vec2 mouseDirection = u_mouse - u_prevMouse;
-    vec2 pixelToMouseDirection = centerOfPixel - u_mouse;
+  vec4 baseColor = texture2D(u_texture, vUv);
 
-    float pixelDistanceToMouse = length(pixelToMouseDirection);
-    float strength = smoothstep(0.5, 0.1, pixelDistanceToMouse); 
+  vec2 pixelToMouse = vUv - u_mouse;
+  float distance = length(pixelToMouse);
 
-    vec2 uvOffset = strength * -mouseDirection * 0.4;
-    vec2 uv = vUv - uvOffset;
+  float colorBrightness = brightness(baseColor.rgb);
 
-    vec4 baseColor = texture2D(u_texture, uv);
+  float gravityEffect = smoothstep(0.7, 2.0, colorBrightness); 
 
-    vec3 hoverEffectColor = mix(baseColor.rgb, u_hoverColor, strength * u_hoverStrength);
+  vec2 uvOffset = pixelToMouse * gravityEffect * u_gravityStrength / (distance + 0.01);
 
-    gl_FragColor = vec4(u_hoverColor, 1.0); // This should make everything red
+  vec4 finalColor = texture2D(u_texture, vUv - uvOffset);
 
+  gl_FragColor = finalColor;
 }
