@@ -56,7 +56,7 @@ export default function BackgroundCanvas() {
       u_mouse: { value: new Vector2(0.5, 0.5) },
       u_prevMouse: { value: new Vector2(0.5, 0.5) },
       u_hoverColor: { value: new Vector3(1.0, 0.0, 0.0) },
-      u_gravityStrength: { value: 1.0 },
+      u_gravityStrength: { value: 1.8 },
       u_time: { value: 0.0 }, // Initialize u_time to 0.0
     };
 

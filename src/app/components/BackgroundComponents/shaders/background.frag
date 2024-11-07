@@ -12,9 +12,9 @@ float brightness(vec3 color) {
   return dot(color, vec3(0.2126, 0.7152, 0.0722)); // Standard luminance formula
 }
 
-// Simple noise function for added complexity
+// Simple noise function for subtle complexity
 float noise(vec2 st) {
-  return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+  return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 8.5453123);
 }
 
 void main() {
@@ -25,20 +25,20 @@ void main() {
   vec2 pixelToMouse = vUv - u_mouse;
   float distance = length(pixelToMouse);
 
-
+  // Calculate the brightness of the base color
   float colorBrightness = brightness(baseColor.rgb);
 
-  // Make the gravitational effect more extreme and use a wider range
-  float gravityEffect = smoothstep(0.1, 1.5, colorBrightness);
+  // Smoother and less extreme gravitational effect
+  float gravityEffect = smoothstep(0.8, 0.4, colorBrightness);
 
-  // Create a time-based wobble effect
-  float timeWobble = sin(u_time * 0.5  + distance * 1.0) * 0.05;
-  gravityEffect += timeWobble;
+  // Create a more subtle time-based wobble effect
+  float timeWobble = sin(u_time * -0.3 + distance * 0.1) * 0.02;
+  gravityEffect += timeWobble * 3.0;
 
-  // Amplify the UV offset for a more extreme distortion
-  vec2 uvOffset = pixelToMouse * gravityEffect / 2.0 * u_gravityStrength / (distance + 0.01);
+  // Reduce the UV offset intensity for a more refined distortion
+  vec2 uvOffset = pixelToMouse * gravityEffect * -.8 * u_gravityStrength / (distance + 0.1);
 
-  // Add noise to make the effect more chaotic
+  // Add subtle noise to the UV offset
   uvOffset += vec2(noise(vUv * 10.0 + u_time), noise(vUv * 10.0 - u_time)) * 0.05;
 
   // Sample the texture with the displaced UV coordinates

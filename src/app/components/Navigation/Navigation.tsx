@@ -12,9 +12,17 @@ export default async function Navigation() {
 
   const socialBarItems = socialBar.data.social_bar;
 
+  const dates = await client.getAllByType('date');
+
+  console.log(dates);
+
   return (
     <nav className={styles.main}>
-      <NavigationContent settings={settings} socialBarItems={socialBarItems} />
+      <NavigationContent
+        dates={dates}
+        settings={settings}
+        socialBarItems={socialBarItems}
+      />
     </nav>
   );
 }

@@ -1,17 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './Navigation.module.css';
 
 import { PrismicNextLink } from '@prismicio/next';
 import SocialBar from './SocialBar/SocialBar';
+import DateDropdown from './DateDropdown/DateDropdown';
 
 export default function NavigationContent({
+  dates,
   settings,
   socialBarItems,
 }: {
   settings: any;
+  dates: any;
   socialBarItems: any;
 }) {
   return (
@@ -23,6 +26,7 @@ export default function NavigationContent({
           </div>
           <div className={styles.linkContainer}>
             <PrismicNextLink field={settings.data.navigation[1]?.link} />
+            {/* <DateDropdown dates={dates} /> */}
           </div>
           <div className={styles.linkContainer}>
             <PrismicNextLink field={settings.data.navigation[2]?.link} />
