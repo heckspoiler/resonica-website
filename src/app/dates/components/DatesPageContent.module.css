@@ -2,9 +2,27 @@
     height: 100vh;
     width: auto;
     aspect-ratio: 4/3;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 8rem 0 0 0;
+    backdrop-filter: blur(10px);
+    scrollbar-color: var(--red);
+    scrollbar-width: thin;
+}
+
+.container::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: var(--red);
+    border-radius: none;
 }
