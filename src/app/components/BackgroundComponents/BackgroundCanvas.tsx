@@ -57,7 +57,7 @@ export default function BackgroundCanvas() {
       u_prevMouse: { value: new Vector2(0.5, 0.5) },
       u_hoverColor: { value: new Vector3(1.0, 0.0, 0.0) },
       u_gravityStrength: { value: 1.0 },
-      u_time: { value: 0.0 },
+      u_time: { value: 0.0 }, // Initialize u_time to 0.0
     };
 
     const planeGeometry = new PlaneGeometry(2, 2);
@@ -115,6 +115,9 @@ export default function BackgroundCanvas() {
     // Animation loop
     const animateScene = () => {
       requestAnimationFrame(animateScene);
+
+      // Update u_time uniform
+      shaderUniforms.u_time.value += 0.01; // Increment time, adjust speed as needed
 
       mousePosition.current.x +=
         (targetMousePosition.current.x - mousePosition.current.x) *
