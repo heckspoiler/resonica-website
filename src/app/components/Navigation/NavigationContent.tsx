@@ -22,10 +22,6 @@ export default function NavigationContent({
 
   const pathname = usePathname();
 
-  const [first, second, third] = pathname.split('/').filter(Boolean);
-
-  console.log(first, second, third);
-
   useEffect(() => {
     switch (true) {
       case pathname.includes('dates'):

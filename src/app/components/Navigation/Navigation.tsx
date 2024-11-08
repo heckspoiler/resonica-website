@@ -14,8 +14,6 @@ export default async function Navigation() {
 
   const dates = await client.getAllByType('date');
 
-  console.log(dates);
-
   return (
     <nav className={styles.main}>
       <NavigationContent

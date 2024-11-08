@@ -8,12 +8,21 @@
     display: flex;
 }
 
+.item {
+    width: fit-content;
+}
+
 .item a {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
     font-size: 12px;
+
+}
+
+.item:hover {
+    background-color: var(--red);
 }
 
 .item span {
@@ -27,6 +36,10 @@
 
 .typeContainer p {
     color: var(--red);
+}
+
+.item:hover .typeContainer p {
+    color: white;
 }
 
 .dateContainer {}
@@ -47,12 +60,17 @@
 }
 
 .seeMore {
-    padding-left: 2rem;
+    margin-left: 2rem;
     padding-top: 0.5rem;
 }
 
 .seeMore a {
     font-size: 0.7rem;
     font-family: var(--regular-font);
+    color: white;
+}
+
+.seeMore:hover a {
+    background-color: var(--red);
     color: white;
 }
