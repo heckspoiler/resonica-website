@@ -5,7 +5,7 @@ varying vec2 vUv;
 uniform sampler2D u_texture;
 uniform vec2 u_mouse;
 uniform float u_gravityStrength; // Strength of the gravitational effect
-uniform float u_time; // Time variable for animation
+uniform float u_time; 
 
 // Function to calculate brightness
 float brightness(vec3 color) {
@@ -45,7 +45,7 @@ void main() {
   float gravityEffect = smoothstep(0.8, 0.4, colorBrightness);
 
   // Create a more subtle and slower time-based wobble effect
-  float timeWobble = sin(u_time * 0.2 + distance * 0.1) * 0.005; // Reduced amplitude and slower frequency
+  float timeWobble = sin(u_time / 10.0 + distance * 0.1) * 0.005; // Reduced amplitude and slower frequency
   gravityEffect += timeWobble * 0.5; // Reduced influence of the wobble effect
 
   // Reduce the UV offset intensity for a more refined and subtle distortion
