@@ -57,7 +57,7 @@ export default function BackgroundCanvas() {
       u_prevMouse: { value: new Vector2(0.5, 0.5) },
       u_hoverColor: { value: new Vector3(1.0, 0.0, 0.0) },
       u_gravityStrength: { value: 1.8 },
-      u_time: { value: 0.0 }, // Initialize u_time to 0.0
+      u_time: { value: 0.0 * 0.005 }, // Initialize u_time to 0.0
     };
 
     const planeGeometry = new PlaneGeometry(2, 2);
