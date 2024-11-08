@@ -1,0 +1,83 @@
+.container {
+    background-color: var(--red-lowopa);
+    backdrop-filter: blur(20px);
+    border-radius: 60px;
+    overflow: hidden;
+}
+
+.contentContainer {
+    width: calc(30rem + 40vw);
+    display: grid;
+    grid-template-columns: 1.75fr 1fr;
+    height: calc(20rem + 40vh);
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleContainer h2 {
+    font-size: 2rem;
+}
+
+.timeContainer {
+    padding-top: 1rem;
+}
+
+.timeContainer h3 {
+    font-size: 1rem;
+    font-family: var(--regular-font)
+}
+
+.timeContainer h4 {
+    font-family: var(--regular-font);
+    font-size: 0.7rem;
+}
+
+.descriptionContainer {
+    width: 90%;
+    margin-top: 2rem;
+}
+
+.descriptionContainer p {
+    font-size: 14px;
+    hyphens: auto;
+}
+
+.ticketContainer {
+    font-family: var(--regular-font);
+    margin-top: 2rem;
+}
+
+.actsContainer {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.imageContainer {
+    height: 100%;
+    overflow: hidden;
+}
+
+.imageContainer img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.actsContainer {
+    font-family: var(--regular-font);
+    text-transform: uppercase;
+}
+
+.act {
+    font-size: 1rem;
+}
+
+.infoContainer {
+    padding-top: 3rem;
+    padding-left: 3rem;
+}
