@@ -1,0 +1,58 @@
+.itemsContainer {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.isHovered {
+    display: flex;
+}
+
+.item a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 12px;
+}
+
+.item span {
+    color: white;
+}
+
+
+.typeContainer {
+    width: 1.5rem;
+}
+
+.typeContainer p {
+    color: var(--red);
+}
+
+.dateContainer {}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dateContainer h3 {
+    color: white;
+}
+
+.titleContainer h2 {
+    font-size: 12px;
+    color: white;
+}
+
+.seeMore {
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+}
+
+.seeMore a {
+    font-size: 0.7rem;
+    font-family: var(--regular-font);
+    color: white;
+}

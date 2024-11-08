@@ -25,6 +25,12 @@
     gap: 2rem;
 }
 
+
+.active a {
+    color: var(--red);
+}
+
+
 .linkContainer a {
     font-size: 1rem;
     cursor: pointer;

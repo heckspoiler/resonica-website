@@ -8,22 +8,39 @@ import { PrismicRichText } from '@prismicio/react';
 import styles from './DateDropdown.module.css';
 import Link from 'next/link';
 
-export default function DateDropdown({ dates }: { dates: any }) {
+export default function DateDropdown({
+  dates,
+  showDateDropdown,
+}: {
+  dates: any;
+  showDateDropdown: boolean;
+}) {
   return (
-    <>
+    <div
+      className={`${styles.itemsContainer} ${showDateDropdown ? styles.isHovered : null}`}
+    >
       {dates &&
         dates.map((date: any, index: number) => (
           <div key={index} className={styles.item}>
-            <div className={styles.contentContainer}>
-              <div className={styles.titleContainer}>
-                <PrismicRichText field={date.data.date_title} />
-                <PrismicRichText field={date.data.event_date} />
+            <PrismicNextLink href={date.url}>
+              <div className={styles.typeContainer}>
+                <p>{date.data.date_type[0].text[0]}</p>
               </div>
-              <PrismicNextLink href={date.url}>See More</PrismicNextLink>
-            </div>
+              <div className={styles.leftContainer}>
+                <div className={styles.dateContainer}>
+                  <PrismicRichText field={date.data.event_date} />
+                </div>
+                <span>-</span>
+                <div className={styles.titleContainer}>
+                  <PrismicRichText field={date.data.date_title} />
+                </div>
+              </div>
+            </PrismicNextLink>
           </div>
         ))}
-      <Link href="/dates">See More Dates</Link>
-    </>
+      <div className={styles.seeMore}>
+        <Link href="/dates">More Dates & Events</Link>
+      </div>
+    </div>
   );
 }
