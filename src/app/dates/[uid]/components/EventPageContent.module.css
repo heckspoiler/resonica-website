@@ -1,7 +1,8 @@
 .container {
-    background-color: var(--red-lowopa);
+    /* background-color: var(--red-lowopa); */
+    background-color: var(--background-grey);
     backdrop-filter: blur(20px);
-    border-radius: 60px;
+    /* border-radius: 60px; */
     overflow: hidden;
 }
 
@@ -48,6 +49,14 @@
 .ticketContainer {
     font-family: var(--regular-font);
     margin-top: 2rem;
+
+}
+
+.ticketContainer a,
+.actsContainer a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .actsContainer {

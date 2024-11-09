@@ -7,6 +7,7 @@ import { PrismicRichText } from '@prismicio/react';
 
 import styles from './DateDropdown.module.css';
 import Link from 'next/link';
+import Arrow from '../../Arrow/Arrow';
 
 export default function DateDropdown({
   dates,
@@ -39,7 +40,12 @@ export default function DateDropdown({
           </div>
         ))}
       <div className={styles.seeMore}>
-        <Link href="/dates">More Dates & Events</Link>
+        <Link href="/dates">
+          More Dates & Events
+          <span>
+            <Arrow width={10} height={11} />
+          </span>
+        </Link>
       </div>
     </div>
   );

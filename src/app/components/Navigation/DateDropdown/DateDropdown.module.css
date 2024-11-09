@@ -68,6 +68,10 @@
     font-size: 0.7rem;
     font-family: var(--regular-font);
     color: white;
+    display: flex;
+    width: fit-content;
+    gap: 1rem;
+    align-items: center;
 }
 
 .seeMore:hover a {

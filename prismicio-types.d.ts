@@ -312,6 +312,180 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type ReleaseDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Release documents
+ */
+interface ReleaseDocumentData {
+  /**
+   * Release Title field in *Release*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Resonica001
+   * - **API ID Path**: release.release_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  release_title: prismic.RichTextField;
+
+  /**
+   * Release Date field in *Release*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: 14.04.2025 ("Release Date" is hardcoded)
+   * - **API ID Path**: release.release_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  release_date: prismic.RichTextField;
+
+  /**
+   * Release Description field in *Release*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.release_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  release_description: prismic.RichTextField;
+
+  /**
+   * Release Image field in *Release*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.release_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  release_image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Release*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ReleaseDocumentDataSlicesSlice> /**
+   * Meta Title field in *Release*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: release.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Release*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: release.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Release*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Release document from Prismic
+ *
+ * - **API ID**: `release`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ReleaseDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ReleaseDocumentData>,
+    "release",
+    Lang
+  >;
+
+type ReleasesDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Releases documents
+ */
+interface ReleasesDocumentData {
+  /**
+   * Slice Zone field in *Releases*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: releases.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ReleasesDocumentDataSlicesSlice> /**
+   * Meta Title field in *Releases*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: releases.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Releases*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: releases.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Releases*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: releases.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Releases document from Prismic
+ *
+ * - **API ID**: `releases`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ReleasesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ReleasesDocumentData>,
+    "releases",
+    Lang
+  >;
+
 /**
  * Item in *Settings → Navigation*
  */
@@ -463,6 +637,8 @@ export type AllDocumentTypes =
   | DateDocument
   | DatesDocument
   | PageDocument
+  | ReleaseDocument
+  | ReleasesDocument
   | SettingsDocument
   | SocialBarDocument;
 
@@ -542,6 +718,12 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ReleaseDocument,
+      ReleaseDocumentData,
+      ReleaseDocumentDataSlicesSlice,
+      ReleasesDocument,
+      ReleasesDocumentData,
+      ReleasesDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,

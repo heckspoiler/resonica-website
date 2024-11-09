@@ -6,6 +6,8 @@ import { PrismicRichText } from '@prismicio/react';
 
 import styles from './EventPageContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import Arrow from '@/app/components/Arrow/Arrow';
+import Link from 'next/link';
 
 export default function EventPageContent({ data }: { data: any }) {
   return (
@@ -23,12 +25,22 @@ export default function EventPageContent({ data }: { data: any }) {
             <p>{data.event_description}</p>
           </div>
           <div className={styles.ticketContainer}>
-            <PrismicNextLink field={data.ticket_link} />
+            <Link href={data.ticket_link.url} target="_blank">
+              <span>{data.ticket_link.text}</span>
+              <span>
+                <Arrow width={12} height={13} fill="var(--black)" />
+              </span>
+            </Link>
           </div>
           <div className={styles.actsContainer}>
             {data.date_acts.map((item: any, index: number) => (
               <div key={index} className={styles.act}>
-                <PrismicNextLink field={item.date_act} />
+                <Link href={item.date_act.url} target="_blank">
+                  <span>{item.date_act.text}</span>
+                  <span>
+                    <Arrow width={12} height={13} fill="var(--black)" />
+                  </span>
+                </Link>
               </div>
             ))}
           </div>

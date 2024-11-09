@@ -57,7 +57,7 @@ export default function NavigationContent({
             onMouseEnter={() => setDateHovered(true)}
             onMouseLeave={() => setDateHovered(false)}
           >
-            <PrismicNextLink field={settings.data.navigation[1]?.link} />
+            <p>{settings.data.navigation[1]?.link.text}</p>
             <DateDropdown dates={dates} showDateDropdown={showDateDropdown} />
           </div>
           <div
