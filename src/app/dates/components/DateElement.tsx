@@ -1,7 +1,6 @@
 'use client';
-
+import React, { useState, useEffect } from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import React from 'react';
 
 import styles from './DateElement.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
@@ -33,7 +32,7 @@ export default function DateElement({ dates }: { dates: any }) {
               </div>
               <div className={styles.textContainer}>
                 <p>
-                  {truncateText(date.data.event_description, 250)}
+                  {truncateText(date.data.event_description, 230)}
                   <Link href={date.url}>[MORE]</Link>
                 </p>
               </div>

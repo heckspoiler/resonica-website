@@ -30,7 +30,6 @@
 
 .socialsItem:hover a p {
     transform: translateY(0%);
-
 }
 
 /* Enable hover only on non-touch devices */
@@ -43,8 +42,8 @@
 
     .socialsItem a p {
         display: none;
-
     }
+
 }
 
 /* Tablet and Smaller Desktop */

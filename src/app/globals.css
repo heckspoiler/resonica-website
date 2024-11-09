@@ -11,9 +11,15 @@
 }
 
 @font-face {
-    font-family: "GT America Thin";
+    font-family: "GT America Text";
     src: url("../../public/fonts/GT-America-Extended-Regular.otf");
     fallback: url("../../public/fonts/GT-America-Expanded-Thin.woff");
+}
+
+@font-face {
+    font-family: "GT America Thin";
+    src: url("../../public/fonts/GT-America-Expanded-Thin.woff");
+    fallback: url("../../public/fonts/GT-America-Expanded-Thin.woff2");
 }
 
 :root {
@@ -23,7 +29,8 @@
     --red-lowopa: rgba(234, 84, 79, 0.45);
     --title-font: "GT America Black";
     --regular-font: "GT America Regular";
-    --text-font: "GT America Thin";
+    --text-font: "GT America Text";
+    --thin-font: "GT America Thin";
     --text-shadow-small: 0px 0px 15px rgba(238, 238, 238, 0.5);
     --text-shadow-small-hover: 0px 0px 15px rgba(238, 238, 238, 0.4);
     --background-grey: #ECECEC;
