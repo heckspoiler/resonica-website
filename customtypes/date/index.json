@@ -76,10 +76,10 @@
           "multi": "heading4"
         }
       },
-      "event_date": {
+      "event_start_date": {
         "type": "StructuredText",
         "config": {
-          "label": "Event Date",
+          "label": "Event Start Date",
           "placeholder": "12.02.2025",
           "allowTargetBlank": true,
           "multi": "heading3"
@@ -90,6 +90,15 @@
         "config": {
           "label": "Event Description",
           "placeholder": "Max. 750 characters"
+        }
+      },
+      "event_end_date": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Event End Date",
+          "placeholder": "Only if Festival or two dates are needed",
+          "allowTargetBlank": true,
+          "multi": "heading3"
         }
       },
       "slices": {

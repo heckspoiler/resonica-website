@@ -88,6 +88,7 @@
         display: none;
         flex-direction: column;
         gap: 0.5rem;
+        padding-top: 1rem;
     }
 
     .isHovered {
@@ -141,7 +142,7 @@
     }
 
     .titleContainer h2 {
-        font-size: 12px;
+        font-size: 10px;
         color: white;
     }
 

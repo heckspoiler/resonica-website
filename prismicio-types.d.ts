@@ -92,15 +92,15 @@ interface DateDocumentData {
   date_time: prismic.RichTextField;
 
   /**
-   * Event Date field in *date*
+   * Event Start Date field in *date*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: 12.02.2025
-   * - **API ID Path**: date.event_date
+   * - **API ID Path**: date.event_start_date
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  event_date: prismic.RichTextField;
+  event_start_date: prismic.RichTextField;
 
   /**
    * Event Description field in *date*
@@ -112,6 +112,17 @@ interface DateDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   event_description: prismic.KeyTextField;
+
+  /**
+   * Event End Date field in *date*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Only if Festival or two dates are needed
+   * - **API ID Path**: date.event_end_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  event_end_date: prismic.RichTextField;
 
   /**
    * Slice Zone field in *date*

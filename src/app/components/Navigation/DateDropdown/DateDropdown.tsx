@@ -28,7 +28,7 @@ export default function DateDropdown({
               </div>
               <div className={styles.leftContainer}>
                 <div className={styles.dateContainer}>
-                  <PrismicRichText field={date.data.event_date} />
+                  <PrismicRichText field={date.data.event_start_date} />
                 </div>
                 <span>-</span>
                 <div className={styles.titleContainer}>
