@@ -3,12 +3,20 @@ import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
+import ReleasesPageContent from './[uid]/components/ReleasesPageContent';
+
+import styles from './page.module.css';
 
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle('releases');
+  const releases = await client.getAllByType('release');
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <section className={styles.main}>
+      <ReleasesPageContent releases={releases} />
+    </section>
+  );
 }
 
 export async function generateMetadata(): Promise<Metadata> {
