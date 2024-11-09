@@ -1,3 +1,7 @@
+.item:root {
+    --width-mobile: 78vw;
+}
+
 .item {
     background-color: var(--background-grey);
     display: flex;
@@ -71,8 +75,8 @@
     .item {
         display: flex;
         flex-direction: column;
-        width: 78vw;
-        min-height: 28rem;
+        width: 77vw;
+        min-height: 27rem;
         gap: 1rem;
     }
 
@@ -84,12 +88,12 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        max-width: 78vw;
+        max-width: 77vw;
         height: 50%;
     }
 
     .imageContainer img {
-        max-width: 78vw;
+        max-width: 77vw;
         width: auto;
         height: 30rem;
         object-fit: contain;

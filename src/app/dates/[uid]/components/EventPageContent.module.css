@@ -4,13 +4,37 @@
     backdrop-filter: blur(20px);
     /* border-radius: 60px; */
     overflow: hidden;
+
 }
 
 .contentContainer {
+    display: flex;
     width: calc(30rem + 40vw);
-    display: grid;
-    grid-template-columns: 1.75fr 1fr;
     height: calc(20rem + 40vh);
+    position: relative;
+}
+
+.imageContainer {
+    height: 100%;
+    overflow: hidden;
+    width: 40%;
+    position: relative;
+    transition: width 0.2s linear;
+}
+
+.imageContainer img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-top: 2.5rem;
+    width: 60%;
 }
 
 .titleContainer {
@@ -19,7 +43,7 @@
 }
 
 .titleContainer h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .timeContainer {
@@ -36,19 +60,15 @@
     font-size: 0.7rem;
 }
 
-.descriptionContainer {
-    width: 90%;
-    margin-top: 2rem;
-}
 
 .descriptionContainer p {
     font-size: 14px;
     hyphens: auto;
+    width: 90%;
 }
 
 .ticketContainer {
     font-family: var(--regular-font);
-    margin-top: 2rem;
 
 }
 
@@ -60,22 +80,12 @@
 }
 
 .actsContainer {
-    margin-top: 4rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.imageContainer {
-    height: 100%;
-    overflow: hidden;
-}
 
-.imageContainer img {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-}
 
 .actsContainer {
     font-family: var(--regular-font);
@@ -84,9 +94,4 @@
 
 .act {
     font-size: 1rem;
-}
-
-.infoContainer {
-    padding-top: 3rem;
-    padding-left: 3rem;
 }

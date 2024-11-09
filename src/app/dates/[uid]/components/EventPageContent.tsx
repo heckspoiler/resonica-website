@@ -17,7 +17,7 @@ export default function EventPageContent({ data }: { data: any }) {
           <div className={styles.titleContainer}>
             <PrismicRichText field={data.date_title} />
             <div className={styles.timeContainer}>
-              <PrismicRichText field={data.event_date} />
+              <PrismicRichText field={data.event_start_date} />
               <PrismicRichText field={data.date_time} />
             </div>
           </div>
