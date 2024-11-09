@@ -26,7 +26,8 @@
     --text-font: "GT America Thin";
     --text-shadow-small: 0px 0px 15px rgba(238, 238, 238, 0.5);
     --text-shadow-small-hover: 0px 0px 15px rgba(238, 238, 238, 0.4);
-    --background-grey: #ECECEC
+    --background-grey: #ECECEC;
+    font-size: 16px;
 }
 
 
@@ -154,7 +155,13 @@ h6 {
 
 
 /* Mobile */
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+
+    :root {
+        font-size: 14px;
+    }
+
+}
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 768px) and (max-width: 1120px) {}

@@ -1,6 +1,7 @@
 .socialsContainer {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 2rem;
 }
 
@@ -31,3 +32,20 @@
     transform: translateY(0%);
 
 }
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .socialsItem a p {
+        display: none;
+
+    }
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 768px) and (max-width: 1120px) {}
