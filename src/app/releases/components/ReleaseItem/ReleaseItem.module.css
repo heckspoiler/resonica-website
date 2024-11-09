@@ -1,0 +1,173 @@
+.item:root {
+    --width-mobile: 78vw;
+}
+
+.item {
+    background-color: var(--background-grey);
+    display: flex;
+    align-items: center;
+    height: 14.25rem;
+    gap: 2rem;
+}
+
+/* image container */
+
+.imageContainer {
+    overflow: hidden;
+    max-width: 14.25rem;
+}
+
+.imageContainer img {
+    object-fit: contain;
+}
+
+/* content container */
+
+.contentContainer {
+    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.titleContainer h2 {
+    font-size: 1.25rem;
+}
+
+
+.textContainer p {
+
+    font-size: 0.8rem;
+}
+
+.textContainer p a {
+    color: var(--red);
+    font-family: var(--regular-font);
+
+}
+
+/* Link Container */
+
+.linkContainer a {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.1s linear;
+    width: fit-content;
+}
+
+
+.linkContainer a p {
+    font-family: var(--regular-font);
+    font-size: 0.9em;
+}
+
+
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+    .item {
+        display: flex;
+        flex-direction: column;
+        width: 77vw;
+        min-height: 27rem;
+        gap: 1rem;
+    }
+
+    /* image container */
+
+    .imageContainer {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 77vw;
+        height: 50%;
+    }
+
+    .imageContainer img {
+        max-width: 77vw;
+        width: auto;
+        height: 30rem;
+        object-fit: contain;
+
+    }
+
+    /* content container */
+
+    .contentContainer {
+        display: flex;
+        flex-direction: column;
+        max-width: 78vw;
+        padding: 1rem;
+        padding-top: 0;
+        gap: 0.5rem;
+        height: 50%;
+    }
+
+    .titleContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titleContainer h2 {
+        font-size: 1rem;
+    }
+
+    .titleContainer h3 {
+        font-family: var(--thin-font);
+        font-size: 0.7rem;
+        padding: 0.25rem 0;
+
+    }
+
+    .textContainer {
+        padding-top: 0.5rem;
+    }
+
+
+    .textContainer p {
+        font-size: 0.7rem;
+
+    }
+
+    .textContainer p a {
+        color: var(--red);
+        font-family: var(--regular-font);
+    }
+
+    /* Link Container */
+
+    .linkContainer a {
+        text-transform: uppercase;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.1s linear;
+    }
+
+    .linkContainer a:hover {
+        transform: translateX(5px);
+    }
+
+    .linkContainer a p {
+        font-family: var(--regular-font);
+        font-size: 0.7em;
+    }
+
+    .linkContainer img {
+        scale: 0.7;
+    }
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 768px) and (max-width: 1120px) {}

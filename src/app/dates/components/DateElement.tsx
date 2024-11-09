@@ -10,14 +10,14 @@ import Image from 'next/image';
 import arrow from '../../../../public/arrow.png';
 import Arrow from '@/app/components/Arrow/Arrow';
 
-export default function DateElement({ dates }: { dates: any }) {
-  const truncateText = (text: string, maxLength: number) => {
-    if (text && text.length > maxLength) {
-      return text.substring(0, maxLength) + '... ';
-    }
-    return text;
-  };
+export const truncateText = (text: string, maxLength: number) => {
+  if (text && text.length > maxLength) {
+    return text.substring(0, maxLength) + '... ';
+  }
+  return text;
+};
 
+export default function DateElement({ dates }: { dates: any }) {
   return (
     <>
       {dates &&

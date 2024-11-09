@@ -3,7 +3,7 @@ import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
-import ReleasesPageContent from './[uid]/components/ReleasesPageContent';
+import ReleasesPageContent from './components/ReleasesPageContent';
 
 import styles from './page.module.css';
 
