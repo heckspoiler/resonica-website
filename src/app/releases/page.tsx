@@ -12,9 +12,13 @@ export default async function Page() {
   const page = await client.getSingle('releases');
   const releases = await client.getAllByType('release');
 
+  const sortedReleases = releases.sort((a: any, b: any) => {
+    return b.data.release_index - a.data.release_index;
+  });
+
   return (
     <section className={styles.main}>
-      <ReleasesPageContent releases={releases} />
+      <ReleasesPageContent releases={sortedReleases} />
     </section>
   );
 }

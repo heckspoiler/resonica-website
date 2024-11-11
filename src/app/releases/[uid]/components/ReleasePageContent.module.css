@@ -1,0 +1,135 @@
+.container {
+    /* background-color: var(--red-lowopa); */
+    background-color: var(--background-grey);
+    backdrop-filter: blur(20px);
+    /* border-radius: 60px; */
+    overflow: hidden;
+
+}
+
+.contentContainer {
+    display: flex;
+    width: calc(30rem + 40vw);
+    height: calc(20rem + 40vh);
+    position: relative;
+}
+
+.imageContainer {
+    height: 100%;
+    overflow: hidden;
+    width: 40%;
+    position: relative;
+    transition: width 0.2s linear;
+}
+
+.imageContainer img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-top: 2.5rem;
+    width: 60%;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleContainer h2 {
+    font-size: 2.5rem;
+}
+
+.timeContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timeContainer h3 {
+    font-size: 1rem;
+    font-family: var(--thin-font)
+}
+
+.timeContainer h4 {
+    font-family: var(--regular-font);
+    font-size: 0.7rem;
+}
+
+
+.descriptionContainer p {
+    font-size: 14px;
+    hyphens: auto;
+    width: 90%;
+}
+
+.linkContainer {
+    font-family: var(--regular-font);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.linkContainer a,
+.actsContainer a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.songsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+.act {
+    font-size: 0.8rem;
+    display: flex;
+    gap: 2rem;
+    text-transform: uppercase;
+}
+
+.act span:nth-of-type(1) {
+    font-family: var(--text-font);
+    font-weight: 800;
+}
+
+.act span:nth-of-type(2) {
+    font-family: var(--text-font);
+}
+
+.act p:nth-of-type(2) {
+    font-family: var(--text-font);
+    font-style: italic;
+    font-weight: thin;
+}
+
+.buyLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    width: fit-content;
+}
+
+.buyLink:hover {
+    background-color: var(--red);
+    color: white;
+}
+
+.buyLink:hover a,
+.buyLink:hover span {
+    color: white;
+}
+
+.buyLink:hover svg {
+    fill: white;
+}

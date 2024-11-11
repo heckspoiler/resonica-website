@@ -6,6 +6,7 @@ import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 
 import styles from './page.module.css';
+import ReleasePageContent from './components/ReleasePageContent';
 
 type Params = { uid: string };
 
@@ -13,8 +14,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID('release', uid).catch(() => notFound());
+  const data = page.data;
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <section className={styles.main}>
+      <ReleasePageContent data={data} />
+    </section>
+  );
 }
 
 export async function generateMetadata({

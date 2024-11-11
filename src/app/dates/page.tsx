@@ -12,9 +12,13 @@ export default async function Page() {
   const page = await client.getSingle('dates');
   const dates = await client.getAllByType('date');
 
+  const sortedDates = dates.sort((a: any, b: any) => {
+    return b.data.date_index - a.data.date_index;
+  });
+
   return (
     <section className={styles.main}>
-      <DatesPageContent dates={dates} />
+      <DatesPageContent dates={sortedDates} />
     </section>
   );
 }
