@@ -41,7 +41,7 @@ export default function DateElement({ dates }: { dates: any }) {
                 <PrismicNextLink field={date.data.ticket_link}>
                   <p>{date.data.ticket_link.text}</p>
                   <span>
-                    <Arrow width={12} height={13} fill="var(--black)" />
+                    <Arrow width={11} height={11} fill="var(--black)" />
                   </span>
                 </PrismicNextLink>
               </div>
