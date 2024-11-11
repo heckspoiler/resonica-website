@@ -34,6 +34,19 @@
     font-size: 1.25rem;
 }
 
+.releaseDate {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.releaseDate * {
+
+    font-family: var(--thin-font);
+    font-size: .7rem;
+}
+
 
 .textContainer p {
 
@@ -48,6 +61,11 @@
 
 /* Link Container */
 
+.linkContainer {
+    display: flex;
+    gap: 2rem;
+}
+
 .linkContainer a {
     text-transform: uppercase;
     display: flex;
@@ -60,7 +78,7 @@
 
 .linkContainer a p {
     font-family: var(--regular-font);
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 

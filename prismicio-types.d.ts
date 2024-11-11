@@ -125,6 +125,17 @@ interface DateDocumentData {
   event_end_date: prismic.RichTextField;
 
   /**
+   * Date Index field in *date*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: IMPORTANT FOR THE SORTING!
+   * - **API ID Path**: date.date_index
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  date_index: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *date*
    *
    * - **Field Type**: Slice Zone
@@ -312,6 +323,56 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+/**
+ * Item in *Release → Buylink Container*
+ */
+export interface ReleaseDocumentDataBuylinkContainerItem {
+  /**
+   * Buylink Label field in *Release → Buylink Container*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Get on Bandcamp
+   * - **API ID Path**: release.buylink_container[].buylink_label
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  buylink_label: prismic.LinkField;
+}
+
+/**
+ * Item in *Release → Release Titlelist*
+ */
+export interface ReleaseDocumentDataReleaseTitlelistItem {
+  /**
+   * Artist Name field in *Release → Release Titlelist*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 2M
+   * - **API ID Path**: release.release_titlelist[].artist_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  artist_name: prismic.KeyTextField;
+
+  /**
+   * Track Name field in *Release → Release Titlelist*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.release_titlelist[].track_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  track_name: prismic.KeyTextField;
+
+  /**
+   * Track Time field in *Release → Release Titlelist*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 04:32
+   * - **API ID Path**: release.release_titlelist[].track_time
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  track_time: prismic.KeyTextField;
+}
+
 type ReleaseDocumentDataSlicesSlice = never;
 
 /**
@@ -319,15 +380,28 @@ type ReleaseDocumentDataSlicesSlice = never;
  */
 interface ReleaseDocumentData {
   /**
-   * Release Title field in *Release*
+   * Release Image field in *Release*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Resonica001
-   * - **API ID Path**: release.release_title
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.release_image
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  release_title: prismic.RichTextField;
+  release_image: prismic.ImageField<never>;
+
+  /**
+   * Buylink Container field in *Release*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.buylink_container[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  buylink_container: prismic.GroupField<
+    Simplify<ReleaseDocumentDataBuylinkContainerItem>
+  >;
 
   /**
    * Release Date field in *Release*
@@ -341,6 +415,17 @@ interface ReleaseDocumentData {
   release_date: prismic.RichTextField;
 
   /**
+   * Release Title field in *Release*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Resonica001
+   * - **API ID Path**: release.release_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  release_title: prismic.RichTextField;
+
+  /**
    * Release Description field in *Release*
    *
    * - **Field Type**: Rich Text
@@ -352,15 +437,39 @@ interface ReleaseDocumentData {
   release_description: prismic.RichTextField;
 
   /**
-   * Release Image field in *Release*
+   * Release Titlelist field in *Release*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: release.release_image
+   * - **API ID Path**: release.release_titlelist[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  release_image: prismic.ImageField<never>;
+  release_titlelist: prismic.GroupField<
+    Simplify<ReleaseDocumentDataReleaseTitlelistItem>
+  >;
+
+  /**
+   * Release number field in *Release*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 001
+   * - **API ID Path**: release.release_number
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  release_number: prismic.KeyTextField;
+
+  /**
+   * Release Index field in *Release*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: IMPORTANT FOR THE SORTING!
+   * - **API ID Path**: release.release_index
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  release_index: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Release*
@@ -720,6 +829,8 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       ReleaseDocument,
       ReleaseDocumentData,
+      ReleaseDocumentDataBuylinkContainerItem,
+      ReleaseDocumentDataReleaseTitlelistItem,
       ReleaseDocumentDataSlicesSlice,
       ReleasesDocument,
       ReleasesDocumentData,

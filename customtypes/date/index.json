@@ -101,6 +101,13 @@
           "multi": "heading3"
         }
       },
+      "date_index": {
+        "type": "Text",
+        "config": {
+          "label": "Date Index",
+          "placeholder": "IMPORTANT FOR THE SORTING!"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

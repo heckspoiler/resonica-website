@@ -1,5 +1,5 @@
 .itemsContainer {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
@@ -31,12 +31,13 @@
 
 
 .typeContainer {
-    width: 1.5rem;
+    min-width: 2.5rem;
 }
 
 .typeContainer p {
     color: var(--red);
     font-size: 0.8rem;
+    text-align: right;
 }
 
 .item:hover .typeContainer p {
@@ -61,8 +62,9 @@
 }
 
 .seeMore {
-    margin-left: 2rem;
+    margin-left: 3rem;
     padding-top: 0.5rem;
+    align-self: flex-start;
 }
 
 .seeMore a {

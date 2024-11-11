@@ -6,19 +6,37 @@
   "status": true,
   "json": {
     "Main": {
+      "release_image": {
+        "type": "Image",
+        "config": {
+          "label": "Release Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "buylink_container": {
+        "type": "Group",
+        "config": {
+          "label": "Buylink Container",
+          "repeat": true,
+          "fields": {
+            "buylink_label": {
+              "type": "Link",
+              "config": {
+                "label": "Buylink Label",
+                "placeholder": "Get on Bandcamp",
+                "allowTargetBlank": true,
+                "select": null,
+                "allowText": true
+              }
+            }
+          }
+        }
+      },
       "uid": {
         "type": "UID",
         "config": {
           "label": "UID"
-        }
-      },
-      "release_title": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Release Title",
-          "placeholder": "Resonica001",
-          "allowTargetBlank": true,
-          "multi": "heading2"
         }
       },
       "release_date": {
@@ -30,6 +48,15 @@
           "multi": "heading3"
         }
       },
+      "release_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Release Title",
+          "placeholder": "Resonica001",
+          "allowTargetBlank": true,
+          "multi": "heading2"
+        }
+      },
       "release_description": {
         "type": "StructuredText",
         "config": {
@@ -39,12 +66,48 @@
           "multi": "paragraph"
         }
       },
-      "release_image": {
-        "type": "Image",
+      "release_titlelist": {
+        "type": "Group",
         "config": {
-          "label": "Release Image",
-          "constraint": {},
-          "thumbnails": []
+          "label": "Release Titlelist",
+          "repeat": true,
+          "fields": {
+            "artist_name": {
+              "type": "Text",
+              "config": {
+                "label": "Artist Name",
+                "placeholder": "2M"
+              }
+            },
+            "track_name": {
+              "type": "Text",
+              "config": {
+                "label": "Track Name",
+                "placeholder": ""
+              }
+            },
+            "track_time": {
+              "type": "Text",
+              "config": {
+                "label": "Track Time",
+                "placeholder": "04:32"
+              }
+            }
+          }
+        }
+      },
+      "release_number": {
+        "type": "Text",
+        "config": {
+          "label": "Release number",
+          "placeholder": "001"
+        }
+      },
+      "release_index": {
+        "type": "Text",
+        "config": {
+          "label": "Release Index",
+          "placeholder": "IMPORTANT FOR THE SORTING!"
         }
       },
       "slices": {

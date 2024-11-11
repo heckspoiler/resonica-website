@@ -46,6 +46,19 @@
 
 }
 
+.dateContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.dateContainer * {
+
+    font-family: var(--thin-font);
+    font-size: .7rem;
+}
+
 /* Link Container */
 
 .linkContainer a {

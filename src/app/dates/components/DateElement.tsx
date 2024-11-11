@@ -29,7 +29,9 @@ export default function DateElement({ dates }: { dates: any }) {
             <div className={styles.contentContainer}>
               <div className={styles.titleContainer}>
                 <PrismicRichText field={date.data.date_title} />
-                <PrismicRichText field={date.data.event_start_date} />
+                <div className={styles.dateContainer}>
+                  <PrismicRichText field={date.data.event_start_date} />
+                </div>
               </div>
               <div className={styles.textContainer}>
                 <p>

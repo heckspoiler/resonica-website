@@ -6,18 +6,23 @@ import styles from './Navigation.module.css';
 import { PrismicNextLink } from '@prismicio/next';
 import SocialBar from './SocialBar/SocialBar';
 import DateDropdown from './DateDropdown/DateDropdown';
+import ReleaseDropdown from './ReleaseDropdown/ReleaseDropdown';
 
 export default function NavigationContent({
   dates,
+  releases,
   settings,
   socialBarItems,
 }: {
   settings: any;
+  releases: any;
   dates: any;
   socialBarItems: any;
 }) {
   const [dateHovered, setDateHovered] = useState(false);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
+  const [releasesHovered, setReleasesHovered] = useState(false);
+  const [showReleasesDropdown, setShowReleasesDropdown] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
   const pathname = usePathname();
@@ -43,6 +48,14 @@ export default function NavigationContent({
     }
   }, [dateHovered]);
 
+  useEffect(() => {
+    if (releasesHovered) {
+      setShowReleasesDropdown(true);
+    } else {
+      setShowReleasesDropdown(false);
+    }
+  }, [releasesHovered]);
+
   return (
     <>
       {settings && socialBarItems ? (
@@ -64,8 +77,14 @@ export default function NavigationContent({
             className={`${styles.linkContainer} ${
               activeLink === 'releases' ? styles.active : ''
             }`}
+            onMouseEnter={() => setReleasesHovered(true)}
+            onMouseLeave={() => setReleasesHovered(false)}
           >
-            <PrismicNextLink field={settings.data.navigation[2]?.link} />
+            <ReleaseDropdown
+              releases={releases}
+              showReleasesDropdown={showReleasesDropdown}
+            />
+            <p>{settings.data.navigation[2]?.link.text}</p>
           </div>
           <div className={styles.linkContainer}>
             <PrismicNextLink field={settings.data.navigation[3]?.link} />
