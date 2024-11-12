@@ -12,17 +12,24 @@ import Arrow from '../../Arrow/Arrow';
 export default function DateDropdown({
   dates,
   showDateDropdown,
+  setShowDateDropdown,
 }: {
   dates: any;
   showDateDropdown: boolean;
+  setShowDateDropdown: any;
 }) {
   const sortedDates = dates.sort((a: any, b: any) => {
     return b.data.date_index - a.data.date_index;
   });
 
+  const handleLinkClick = () => {
+    setShowDateDropdown(false);
+  };
+
   return (
     <div
-      className={`${styles.itemsContainer} ${showDateDropdown ? styles.isHovered : null}`}
+      className={`${styles.itemsContainer} ${showDateDropdown ? styles.isHovered : ''}`}
+      onClick={() => !showDateDropdown}
     >
       {dates &&
         sortedDates.length > 0 &&

@@ -1,22 +1,21 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-
 import { PrismicRichText } from '@prismicio/react';
-
 import styles from './ReleasePageContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import Arrow from '@/app/components/Arrow/Arrow';
 
 export default function EventPageContent({ data }: { data: any }) {
   const [isMobile, setIsMobile] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -29,7 +28,7 @@ export default function EventPageContent({ data }: { data: any }) {
             </div>
           </div>
           <div className={styles.descriptionContainer}>
-            <PrismicRichText field={data.release_description} />{' '}
+            <PrismicRichText field={data.release_description} />
           </div>
 
           <div className={styles.songsContainer}>
@@ -78,15 +77,15 @@ export default function EventPageContent({ data }: { data: any }) {
               <div
                 key={index}
                 className={styles.buyLink}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <PrismicNextLink field={item.buylink_label} />
                 <span>
                   <Arrow
                     width={isMobile ? 8 : 11}
                     height={isMobile ? 8 : 11}
-                    fill={isHovered ? 'white' : 'var(--black)'}
+                    fill={hoveredIndex === index ? 'white' : 'var(--black)'}
                   />
                 </span>
               </div>
@@ -95,7 +94,7 @@ export default function EventPageContent({ data }: { data: any }) {
         </div>
 
         <div className={styles.imageContainer}>
-          <PrismicNextImage field={data.release_image} />{' '}
+          <PrismicNextImage field={data.release_image} />
         </div>
       </div>
     </div>

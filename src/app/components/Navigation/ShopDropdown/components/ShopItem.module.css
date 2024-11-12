@@ -37,6 +37,10 @@
 
 }
 
+.item:hover {
+    scale: 1.15;
+}
+
 /* Adjusted hover effect */
 .item:hover .paraContainer {
     display: block;

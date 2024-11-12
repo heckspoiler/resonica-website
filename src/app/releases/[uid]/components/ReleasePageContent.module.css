@@ -62,8 +62,10 @@
 
 .linkContainer {
     font-family: var(--regular-font);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
 }
 
 .linkContainer a,
@@ -84,7 +86,7 @@
     font-size: 0.8rem;
     display: flex;
     text-transform: uppercase;
-    width: 60%;
+    width: 70%;
     justify-content: space-between;
 }
 

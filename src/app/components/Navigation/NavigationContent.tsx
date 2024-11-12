@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './Navigation.module.css';
 import { PrismicNextLink } from '@prismicio/next';
@@ -22,14 +22,8 @@ export default function NavigationContent({
   socialBarItems: any;
   shopItems: any[];
 }) {
-  const [dateHovered, setDateHovered] = useState(false);
-  const [showDateDropdown, setShowDateDropdown] = useState(false);
-  const [releasesHovered, setReleasesHovered] = useState(false);
-  const [showReleasesDropdown, setShowReleasesDropdown] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const [activeLink, setActiveLink] = useState('');
-  const [showShopDropdown, setShowShopDropdown] = useState(false);
-  const [shopHovered, setShopHovered] = useState(false);
-
   const pathname = usePathname();
 
   useEffect(() => {
@@ -46,28 +40,18 @@ export default function NavigationContent({
   }, [pathname]);
 
   useEffect(() => {
-    if (dateHovered) {
-      setShowDateDropdown(true);
-    } else {
-      setShowDateDropdown(false);
-    }
-  }, [dateHovered]);
+    // This effect will handle all dropdown visibility
+  }, [hovered]);
 
-  useEffect(() => {
-    if (releasesHovered) {
-      setShowReleasesDropdown(true);
-    } else {
-      setShowReleasesDropdown(false);
-    }
-  }, [releasesHovered]);
+  const handleMouseEnter = (section: string) => {
+    setHovered(section);
+  };
 
-  useEffect(() => {
-    if (shopHovered) {
-      setShowShopDropdown(true);
-    } else {
-      setShowShopDropdown(false);
-    }
-  }, [shopHovered]);
+  const handleMouseLeave = () => {
+    setHovered(null);
+  };
+
+  const showDropdown = (section: string) => hovered === section;
 
   return (
     <>
@@ -80,23 +64,27 @@ export default function NavigationContent({
             className={`${styles.linkContainer} ${
               activeLink === 'dates' ? styles.active : ''
             }`}
-            onMouseEnter={() => setDateHovered(true)}
-            onMouseLeave={() => setDateHovered(false)}
+            onMouseEnter={() => handleMouseEnter('dates')}
+            onMouseLeave={handleMouseLeave}
           >
             <p>{settings.data.navigation[1]?.link.text}</p>
-            <DateDropdown dates={dates} showDateDropdown={showDateDropdown} />
+            <DateDropdown
+              dates={dates}
+              showDateDropdown={showDropdown('dates')}
+              setShowDateDropdown={showDropdown}
+            />
           </div>
           <div
             className={`${styles.linkContainer} ${
               activeLink === 'releases' ? styles.active : ''
             }`}
-            onMouseEnter={() => setReleasesHovered(true)}
-            onMouseLeave={() => setReleasesHovered(false)}
+            onMouseEnter={() => handleMouseEnter('releases')}
+            onMouseLeave={handleMouseLeave}
           >
             <p>{settings.data.navigation[2]?.link.text}</p>
             <ReleaseDropdown
               releases={releases}
-              showReleasesDropdown={showReleasesDropdown}
+              showReleasesDropdown={showDropdown('releases')}
             />
           </div>
           <div className={styles.linkContainer}>
@@ -104,13 +92,13 @@ export default function NavigationContent({
           </div>
           <div
             className={styles.linkContainer}
-            onMouseEnter={() => setShopHovered(true)}
-            onMouseLeave={() => setShopHovered(false)}
+            onMouseEnter={() => handleMouseEnter('shop')}
+            onMouseLeave={handleMouseLeave}
           >
             <PrismicNextLink field={settings.data.navigation[4]?.link} />
             <Shopdropdown
               shopItems={shopItems}
-              showShopDropdown={showShopDropdown}
+              showShopDropdown={showDropdown('shop')}
             />
           </div>
           <div className={styles.linkContainer}>
