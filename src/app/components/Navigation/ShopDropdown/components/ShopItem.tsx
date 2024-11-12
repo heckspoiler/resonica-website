@@ -21,7 +21,7 @@ export default function ShopItem({
         shopItems.map((item: any, index: any) => {
           return (
             <Link href={item.data.product_link.url} target="_blank">
-              <div className={styles.item}>
+              <div className={styles.item} key={index}>
                 <div className={styles.imageContainer}>
                   <PrismicNextImage field={item.data.product_image} />
                 </div>
