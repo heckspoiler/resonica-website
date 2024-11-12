@@ -1,0 +1,43 @@
+.container {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2rem;
+}
+
+.containerVisible {
+    display: flex;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+}
+
+.imageContainer {
+    max-height: 6rem;
+    max-width: 6rem;
+}
+
+.imageContainer img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+}
+
+.paraContainer {
+    display: none;
+}
+
+.paraContainer p {
+    font-size: 0.8rem;
+
+}
+
+/* Adjusted hover effect */
+.item:hover .paraContainer {
+    display: block;
+}

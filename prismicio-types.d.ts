@@ -686,6 +686,60 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Shop Element documents
+ */
+interface ShopElementDocumentData {
+  /**
+   * Product Image field in *Shop Element*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: shop_element.product_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  product_image: prismic.ImageField<never>;
+
+  /**
+   * Product Link field in *Shop Element*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: shop_element.product_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product_link: prismic.LinkField;
+
+  /**
+   * Product Description field in *Shop Element*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: shop_element.product_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_description: prismic.KeyTextField;
+}
+
+/**
+ * Shop Element document from Prismic
+ *
+ * - **API ID**: `shop_element`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ShopElementDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ShopElementDocumentData>,
+    "shop_element",
+    Lang
+  >;
+
+/**
  * Item in *Social Bar → Social Bar*
  */
 export interface SocialBarDocumentDataSocialBarItem {
@@ -749,6 +803,7 @@ export type AllDocumentTypes =
   | ReleaseDocument
   | ReleasesDocument
   | SettingsDocument
+  | ShopElementDocument
   | SocialBarDocument;
 
 /**
@@ -838,6 +893,8 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      ShopElementDocument,
+      ShopElementDocumentData,
       SocialBarDocument,
       SocialBarDocumentData,
       SocialBarDocumentDataSocialBarItem,

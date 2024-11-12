@@ -7,23 +7,28 @@ import { PrismicNextLink } from '@prismicio/next';
 import SocialBar from './SocialBar/SocialBar';
 import DateDropdown from './DateDropdown/DateDropdown';
 import ReleaseDropdown from './ReleaseDropdown/ReleaseDropdown';
+import Shopdropdown from './ShopDropdown/Shopdropdown';
 
 export default function NavigationContent({
   dates,
   releases,
   settings,
   socialBarItems,
+  shopItems,
 }: {
   settings: any;
   releases: any;
   dates: any;
   socialBarItems: any;
+  shopItems: any[];
 }) {
   const [dateHovered, setDateHovered] = useState(false);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [releasesHovered, setReleasesHovered] = useState(false);
   const [showReleasesDropdown, setShowReleasesDropdown] = useState(false);
   const [activeLink, setActiveLink] = useState('');
+  const [showShopDropdown, setShowShopDropdown] = useState(false);
+  const [shopHovered, setShopHovered] = useState(false);
 
   const pathname = usePathname();
 
@@ -55,6 +60,14 @@ export default function NavigationContent({
       setShowReleasesDropdown(false);
     }
   }, [releasesHovered]);
+
+  useEffect(() => {
+    if (shopHovered) {
+      setShowShopDropdown(true);
+    } else {
+      setShowShopDropdown(false);
+    }
+  }, [shopHovered]);
 
   return (
     <>
@@ -89,8 +102,16 @@ export default function NavigationContent({
           <div className={styles.linkContainer}>
             <PrismicNextLink field={settings.data.navigation[3]?.link} />
           </div>
-          <div className={styles.linkContainer}>
+          <div
+            className={styles.linkContainer}
+            onMouseEnter={() => setShopHovered(true)}
+            onMouseLeave={() => setShopHovered(false)}
+          >
             <PrismicNextLink field={settings.data.navigation[4]?.link} />
+            <Shopdropdown
+              shopItems={shopItems}
+              showShopDropdown={showShopDropdown}
+            />
           </div>
           <div className={styles.linkContainer}>
             <PrismicNextLink field={settings.data.navigation[5]?.link} />

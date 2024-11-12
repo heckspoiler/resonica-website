@@ -14,6 +14,9 @@ export default async function Navigation() {
 
   const dates = await client.getAllByType('date');
   const releases = await client.getAllByType('release');
+  const shopItems = await client.getAllByType('shop_element');
+
+  console.log(shopItems);
 
   return (
     <nav className={styles.main}>
@@ -22,6 +25,7 @@ export default async function Navigation() {
         releases={releases}
         settings={settings}
         socialBarItems={socialBarItems}
+        shopItems={shopItems}
       />
     </nav>
   );
