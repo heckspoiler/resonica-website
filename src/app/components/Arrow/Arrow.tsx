@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 
 export default function Arrow({
   width,
@@ -9,10 +11,21 @@ export default function Arrow({
   height?: number;
   fill?: string;
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  const arrowSize = isMobile ? 8 : 12;
+
   return (
     <svg
-      width={`${width ? width : 12}`}
-      height={`${height ? height : 13}`}
+      width={`${width ? width : arrowSize}`}
+      height={`${height ? height : arrowSize}`}
       viewBox="0 0 12 13"
       fill={fill ? fill : 'white'}
       xmlns="http://www.w3.org/2000/svg"

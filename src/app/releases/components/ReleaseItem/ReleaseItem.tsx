@@ -53,7 +53,7 @@ export default function ReleaseItem({ releases }: { releases: any }) {
                       <PrismicNextLink field={item.buylink_label}>
                         <p>{item.buylink_label.text}</p>
                         <span>
-                          <Arrow width={11} height={11} fill="var(--black)" />
+                          <Arrow fill="var(--black)" />
                         </span>
                       </PrismicNextLink>
                     </span>

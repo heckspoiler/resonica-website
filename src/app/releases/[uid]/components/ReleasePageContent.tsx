@@ -10,6 +10,7 @@ import Arrow from '@/app/components/Arrow/Arrow';
 
 export default function EventPageContent({ data }: { data: any }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -32,25 +33,60 @@ export default function EventPageContent({ data }: { data: any }) {
           </div>
 
           <div className={styles.songsContainer}>
-            {data.release_titlelist.map((item: any, index: number) => (
-              <div key={index} className={styles.act}>
-                <p>
-                  <span>{item.artist_name}</span> -{' '}
-                  <span>{item.track_name}</span>
-                </p>
-                <p>{item.track_time}</p>
-              </div>
-            ))}
+            {data.release_titlelist.reduce(
+              (acc: any, _: any, index: number) => {
+                if (index % 2 === 0) {
+                  acc.push(
+                    <div key={index} className={styles.pairContainer}>
+                      <div className={styles.act}>
+                        <p>
+                          <span>
+                            {data.release_titlelist[index]?.artist_name}
+                          </span>{' '}
+                          -{' '}
+                          <span>
+                            {data.release_titlelist[index]?.track_name}
+                          </span>
+                        </p>
+                        <p>{data.release_titlelist[index]?.track_time}</p>
+                      </div>
+                      {index + 1 < data.release_titlelist.length && (
+                        <div className={styles.act}>
+                          <p>
+                            <span>
+                              {data.release_titlelist[index + 1]?.artist_name}
+                            </span>{' '}
+                            -{' '}
+                            <span>
+                              {data.release_titlelist[index + 1]?.track_name}
+                            </span>
+                          </p>
+                          <p>{data.release_titlelist[index + 1]?.track_time}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                return acc;
+              },
+              []
+            )}
           </div>
+
           <div className={styles.linkContainer}>
             {data.buylink_container.map((item: any, index: number) => (
-              <div key={index} className={styles.buyLink}>
+              <div
+                key={index}
+                className={styles.buyLink}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 <PrismicNextLink field={item.buylink_label} />
                 <span>
                   <Arrow
                     width={isMobile ? 8 : 11}
                     height={isMobile ? 8 : 11}
-                    fill="var(--black)"
+                    fill={isHovered ? 'white' : 'var(--black)'}
                   />
                 </span>
               </div>

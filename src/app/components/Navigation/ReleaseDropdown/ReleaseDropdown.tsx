@@ -47,7 +47,7 @@ export default function DateDropdown({
         <Link href="/releases">
           More Releases
           <span>
-            <Arrow width={10} height={11} />
+            <Arrow />
           </span>
         </Link>
       </div>

@@ -28,7 +28,7 @@ export default function EventPageContent({ data }: { data: any }) {
             <Link href={data.ticket_link.url} target="_blank">
               <span>{data.ticket_link.text}</span>
               <span>
-                <Arrow width={12} height={13} fill="var(--black)" />
+                <Arrow fill="var(--black)" />
               </span>
             </Link>
           </div>
@@ -38,7 +38,7 @@ export default function EventPageContent({ data }: { data: any }) {
                 <Link href={item.date_act.url} target="_blank">
                   <span>{item.date_act.text}</span>
                   <span>
-                    <Arrow width={12} height={13} fill="var(--black)" />
+                    <Arrow fill="var(--black)" />
                   </span>
                 </Link>
               </div>
