@@ -2,7 +2,7 @@
 
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './ReleaseItem.module.css';
 
@@ -11,7 +11,16 @@ import Link from 'next/link';
 import Arrow from '@/app/components/Arrow/Arrow';
 
 export default function ReleaseItem({ releases }: { releases: any }) {
-  console.log(releases);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  const characterAmount = isMobile ? 150 : 260;
+
   return (
     <>
       {releases &&
@@ -30,7 +39,10 @@ export default function ReleaseItem({ releases }: { releases: any }) {
               </div>
               <div className={styles.textContainer}>
                 <p>
-                  {truncateText(release.data.release_description[0].text, 260)}
+                  {truncateText(
+                    release.data.release_description[0].text,
+                    characterAmount
+                  )}
                   <Link href={release.url}>[MORE]</Link>
                 </p>
               </div>

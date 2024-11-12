@@ -1,15 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { PrismicRichText } from '@prismicio/react';
 
 import styles from './ReleasePageContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import Arrow from '@/app/components/Arrow/Arrow';
-import Link from 'next/link';
 
 export default function EventPageContent({ data }: { data: any }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -41,7 +47,11 @@ export default function EventPageContent({ data }: { data: any }) {
               <div key={index} className={styles.buyLink}>
                 <PrismicNextLink field={item.buylink_label} />
                 <span>
-                  <Arrow width={11} height={11} fill="var(--black)" />
+                  <Arrow
+                    width={isMobile ? 8 : 11}
+                    height={isMobile ? 8 : 11}
+                    fill="var(--black)"
+                  />
                 </span>
               </div>
             ))}

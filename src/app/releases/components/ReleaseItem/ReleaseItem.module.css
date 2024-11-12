@@ -42,7 +42,6 @@
 }
 
 .releaseDate * {
-
     font-family: var(--thin-font);
     font-size: .7rem;
 }
@@ -164,9 +163,17 @@
 
     /* Link Container */
 
+    .linkContainer {
+        padding-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+        gap: 0.5rem;
+    }
+
     .linkContainer a {
+        margin-top: 0;
         text-transform: uppercase;
-        margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;

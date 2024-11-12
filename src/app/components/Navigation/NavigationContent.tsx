@@ -80,11 +80,11 @@ export default function NavigationContent({
             onMouseEnter={() => setReleasesHovered(true)}
             onMouseLeave={() => setReleasesHovered(false)}
           >
+            <p>{settings.data.navigation[2]?.link.text}</p>
             <ReleaseDropdown
               releases={releases}
               showReleasesDropdown={showReleasesDropdown}
             />
-            <p>{settings.data.navigation[2]?.link.text}</p>
           </div>
           <div className={styles.linkContainer}>
             <PrismicNextLink field={settings.data.navigation[3]?.link} />

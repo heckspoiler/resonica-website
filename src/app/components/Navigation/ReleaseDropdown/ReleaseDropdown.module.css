@@ -1,7 +1,8 @@
 .itemsContainer {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 0.5rem;
+    padding-top: 0.5rem;
 }
 
 .isHovered {
@@ -14,14 +15,11 @@
 
 .item a {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 12px;
-
+    width: fit-content;
 }
 
-.item:hover {
+.item:hover a {
     background-color: var(--red);
 }
 
@@ -31,13 +29,12 @@
 
 
 .typeContainer {
-    min-width: 2.5rem;
+    padding-right: 1rem;
 }
 
 .typeContainer p {
     color: var(--red);
     font-size: 0.8rem;
-    text-align: right;
 }
 
 .item:hover .typeContainer p {
@@ -50,6 +47,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-width: 14rem;
 }
 
 .dateContainer h3 {
@@ -62,7 +60,6 @@
 }
 
 .seeMore {
-    margin-left: 3rem;
     padding-top: 0.5rem;
     align-self: flex-start;
 }
@@ -109,7 +106,7 @@
     .item a {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: left;
         gap: 0.5rem;
         font-size: 12px;
 
@@ -125,7 +122,7 @@
 
 
     .typeContainer {
-        width: 1.5rem;
+        width: 2.5rem;
     }
 
     .typeContainer p {
@@ -154,7 +151,7 @@
     }
 
     .seeMore {
-        margin-left: 2rem;
+        margin-left: 0rem;
         padding-top: 0.5rem;
     }
 
