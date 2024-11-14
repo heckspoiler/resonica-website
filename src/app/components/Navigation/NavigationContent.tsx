@@ -35,6 +35,9 @@ export default function NavigationContent({
       case pathname.includes('releases'):
         setActiveLink('releases');
         break;
+      case pathname.includes('2m'):
+        setActiveLink('2m');
+        break;
       default:
         setActiveLink('');
     }
@@ -90,7 +93,11 @@ export default function NavigationContent({
               showReleasesDropdown={showDropdown('releases')}
             />
           </div>
-          <div className={styles.linkContainer}>
+          <div
+            className={`${styles.linkContainer} ${
+              activeLink === '2m' ? styles.active : ''
+            }`}
+          >
             <PrismicNextLink field={settings.data.navigation[3]?.link} />
           </div>
           <div

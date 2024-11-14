@@ -5,6 +5,173 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
+ * Item in *2M → 2m Socials*
+ */
+export interface _2mDocumentDataZweimSocialsItem {
+  /**
+   * Social Icon field in *2M → 2m Socials*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_socials[].social_icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  social_icon: prismic.ImageField<never>;
+
+  /**
+   * Social Link field in *2M → 2m Socials*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_socials[].social_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  social_link: prismic.LinkField;
+}
+
+/**
+ * Item in *2M → 2M Links*
+ */
+export interface _2mDocumentDataZweimLinksItem {
+  /**
+   * Link field in *2M → 2M Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+type _2mDocumentDataSlicesSlice = never;
+
+/**
+ * Content for 2M documents
+ */
+interface _2mDocumentData {
+  /**
+   * Hero Image field in *2M*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.hero_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_image: prismic.ImageField<never>;
+
+  /**
+   * Page Title field in *2M*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: 2M
+   * - **API ID Path**: 2m.page_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  page_title: prismic.RichTextField;
+
+  /**
+   * 2m Description field in *2M*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  zweim_description: prismic.RichTextField;
+
+  /**
+   * 2m Socials field in *2M*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_socials[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  zweim_socials: prismic.GroupField<Simplify<_2mDocumentDataZweimSocialsItem>>;
+
+  /**
+   * 2M Links field in *2M*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  zweim_links: prismic.GroupField<Simplify<_2mDocumentDataZweimLinksItem>>;
+
+  /**
+   * 2M Description field in *2M*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.zweim_descriptionagain
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  zweim_descriptionagain: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *2M*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<_2mDocumentDataSlicesSlice> /**
+   * Meta Title field in *2M*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: 2m.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *2M*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: 2m.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *2M*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: 2m.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * 2M document from Prismic
+ *
+ * - **API ID**: `2m`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type _2mDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<_2mDocumentData>, "2m", Lang>;
+
+/**
  * Item in *date → Event Acts*
  */
 export interface DateDocumentDataDateActsItem {
@@ -808,6 +975,7 @@ export type SocialBarDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | _2mDocument
   | DateDocument
   | DatesDocument
   | PageDocument
@@ -883,6 +1051,11 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      _2mDocument,
+      _2mDocumentData,
+      _2mDocumentDataZweimSocialsItem,
+      _2mDocumentDataZweimLinksItem,
+      _2mDocumentDataSlicesSlice,
       DateDocument,
       DateDocumentData,
       DateDocumentDataDateActsItem,

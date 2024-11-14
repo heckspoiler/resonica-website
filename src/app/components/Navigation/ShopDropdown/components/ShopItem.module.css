@@ -34,10 +34,12 @@
 
 .paraContainer p {
     font-size: 0.8rem;
+    background-color: var(--red);
+    color: white;
 }
 
-.item:hover {
-    scale: 1.05;
+.item:hover img {
+    scale: 1.15;
 }
 
 /* Adjusted hover effect */

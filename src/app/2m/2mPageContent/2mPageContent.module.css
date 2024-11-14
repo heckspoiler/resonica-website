@@ -1,0 +1,217 @@
+.container {
+    background-color: var(--background-grey);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+}
+
+.contentContainer {
+    display: flex;
+    width: calc(30rem + 40vw);
+    height: calc(20rem + 40vh);
+    position: relative;
+}
+
+.imageContainer {
+    height: 100%;
+    overflow: hidden;
+    width: 40%;
+    position: relative;
+    transition: width 0.2s linear;
+}
+
+.imageContainer img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-top: 2.5rem;
+    width: 60%;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleContainer h2 {
+    font-size: 1.8rem;
+}
+
+.timeContainer h3 {
+    font-size: 0.8rem;
+    font-family: var(--regular-font)
+}
+
+.timeContainer h4 {
+    font-family: var(--regular-font);
+    font-size: 0.7rem;
+}
+
+
+.descriptionContainer p {
+    font-size: 12px;
+    hyphens: auto;
+    width: 95%;
+}
+
+.ticketContainer {
+    font-family: var(--regular-font);
+}
+
+.ticketContainer a,
+.actsContainer a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+}
+
+.actsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+
+.actsContainer {
+    font-family: var(--regular-font);
+    text-transform: uppercase;
+}
+
+.act {
+    font-size: 1rem;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .container {
+        backdrop-filter: blur(20px);
+        overflow: hidden;
+    }
+
+    .contentContainer {
+        display: flex;
+        width: 75vw;
+        height: 85vh;
+        position: relative;
+        flex-direction: column;
+    }
+
+    .imageContainer {
+        overflow: hidden;
+        height: 30%;
+        max-height: 30%;
+        position: relative;
+        width: 100%;
+    }
+
+    .imageContainer img {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .infoContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        width: 100%;
+        height: 70%;
+
+    }
+
+    .titleContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .titleContainer h2 {
+        font-size: 1rem;
+
+    }
+
+
+    .timeContainer {
+        display: flex;
+        align-items: left;
+        flex-direction: column;
+        gap: 0rem;
+    }
+
+    .timeContainer h3 {
+        font-size: 0.5rem;
+        font-family: var(--regular-font)
+    }
+
+    .timeContainer h4 {
+        font-family: var(--thin-font);
+        font-size: 0.5rem;
+    }
+
+    .descriptionContainer p {
+        font-size: 0.5rem;
+        hyphens: auto;
+        width: 100%;
+    }
+
+    .linkContainer {
+        font-family: var(--regular-font);
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: fit-content;
+        gap: 0.25rem;
+    }
+
+    .linkContainer a,
+    .actsContainer a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .songsContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .act {
+        font-size: 0.5rem;
+        display: flex;
+        text-transform: uppercase;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .ticketContainer {
+        font-family: var(--regular-font);
+        font-size: 0.6rem;
+    }
+
+    .ticketContainer a,
+    .actsContainer a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 768px) and (max-width: 1120px) {}
