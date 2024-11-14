@@ -1,10 +1,8 @@
 'use client';
 
 import React from 'react';
-
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-
 import styles from './DateDropdown.module.css';
 import Link from 'next/link';
 import Arrow from '../../Arrow/Arrow';
@@ -13,15 +11,20 @@ export default function DateDropdown({
   dates,
   showDateDropdown,
   setShowDateDropdown,
+  hovered,
+  setHovered,
 }: {
   dates: any;
   showDateDropdown: boolean;
   setShowDateDropdown: any;
+  hovered: string | null;
+  setHovered: any;
 }) {
   const sortedDates = dates.sort((a: any, b: any) => {
     return b.data.date_index - a.data.date_index;
   });
 
+  // Function to close the dropdown
   const handleLinkClick = () => {
     setShowDateDropdown(false);
   };
@@ -29,13 +32,13 @@ export default function DateDropdown({
   return (
     <div
       className={`${styles.itemsContainer} ${showDateDropdown ? styles.isHovered : ''}`}
-      onClick={() => !showDateDropdown}
     >
       {dates &&
         sortedDates.length > 0 &&
         sortedDates.map((date: any, index: number) => (
           <div key={index} className={styles.item}>
-            <PrismicNextLink href={date.url}>
+            <PrismicNextLink href={date.url} onClick={handleLinkClick}>
+              {/* onClick to close dropdown on link click */}
               <div className={styles.typeContainer}>
                 <p>{date.data.date_type[0].text[0]}</p>
               </div>
@@ -52,7 +55,8 @@ export default function DateDropdown({
           </div>
         ))}
       <div className={styles.seeMore}>
-        <Link href="/dates">
+        <Link href="/dates" onClick={handleLinkClick}>
+          {/* onClick to close dropdown on "More Dates & Events" click */}
           More Dates & Events
           <span>
             <Arrow />

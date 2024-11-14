@@ -25,8 +25,12 @@ export default function NavigationContent({
 }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeLink, setActiveLink] = useState('');
+  const [showDateDropdown, setShowDateDropdown] = useState(false);
+  const [showReleasesDropdown, setShowReleasesDropdown] = useState(false);
+  const [showShopDropdown, setShowShopDropdown] = useState(false);
   const pathname = usePathname();
 
+  // Determine the active link based on the pathname
   useEffect(() => {
     switch (true) {
       case pathname.includes('dates'):
@@ -43,12 +47,24 @@ export default function NavigationContent({
     }
   }, [pathname]);
 
+  // Close dropdowns when hovered state changes to null
   useEffect(() => {
-    // This effect will handle all dropdown visibility
+    if (!hovered) {
+      setShowDateDropdown(false);
+      setShowReleasesDropdown(false);
+      setShowShopDropdown(false);
+    }
   }, [hovered]);
+
+  // Function to check if any dropdown is visible
+  const isAnyDropdownVisible = () =>
+    showDateDropdown || showReleasesDropdown || showShopDropdown;
 
   const handleMouseEnter = (section: string) => {
     setHovered(section);
+    if (section === 'dates') setShowDateDropdown(true);
+    if (section === 'releases') setShowReleasesDropdown(true);
+    if (section === 'shop') setShowShopDropdown(true);
   };
 
   const handleMouseLeave = () => {
@@ -76,8 +92,10 @@ export default function NavigationContent({
             <p>{settings.data.navigation[1]?.link.text}</p>
             <DateDropdown
               dates={dates}
-              showDateDropdown={showDropdown('dates')}
-              setShowDateDropdown={showDropdown}
+              showDateDropdown={showDateDropdown}
+              setShowDateDropdown={setShowDateDropdown}
+              hovered={hovered}
+              setHovered={setHovered}
             />
           </div>
           <div
@@ -90,7 +108,8 @@ export default function NavigationContent({
             <p>{settings.data.navigation[2]?.link.text}</p>
             <ReleaseDropdown
               releases={releases}
-              showReleasesDropdown={showDropdown('releases')}
+              showReleasesDropdown={showReleasesDropdown}
+              setShowReleasesDropdown={setShowReleasesDropdown}
             />
           </div>
           <div
@@ -108,7 +127,8 @@ export default function NavigationContent({
             <PrismicNextLink field={settings.data.navigation[4]?.link} />
             <Shopdropdown
               shopItems={shopItems}
-              showShopDropdown={showDropdown('shop')}
+              showShopDropdown={showShopDropdown}
+              setShowShopDropdown={setShowShopDropdown}
             />
           </div>
           <div className={styles.linkContainer}>
@@ -123,7 +143,9 @@ export default function NavigationContent({
             <SocialBar socialBarItems={socialBarItems} />
           </div>
           <div
-            className={`${styles.overlay} ${hovered !== null ? styles.overlayVisible : ''}`}
+            className={`${styles.overlay} ${
+              isAnyDropdownVisible() ? styles.overlayVisible : ''
+            }`}
           ></div>
         </section>
       ) : null}

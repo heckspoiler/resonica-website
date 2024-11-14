@@ -16,8 +16,6 @@ export default async function Navigation() {
   const releases = await client.getAllByType('release');
   const shopItems = await client.getAllByType('shop_element');
 
-  console.log(shopItems);
-
   return (
     <nav className={styles.main}>
       <NavigationContent

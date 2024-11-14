@@ -77,6 +77,13 @@
     width: fit-content;
 }
 
+.linkContainer a:hover {
+    background-color: var(--red);
+}
+
+.linkContainer a:hover p {
+    color: white;
+}
 
 .linkContainer a p {
     font-family: var(--regular-font);

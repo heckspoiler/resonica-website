@@ -18,6 +18,17 @@ export const truncateText = (text: string, maxLength: number) => {
 };
 
 export default function DateElement({ dates }: { dates: any }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [arrowColor, setArrowColor] = useState('var(--black)');
+
+  useEffect(() => {
+    if (isHovered) {
+      setArrowColor('white');
+    } else {
+      setArrowColor('var(--black)');
+    }
+  });
+
   return (
     <>
       {dates &&
@@ -39,12 +50,16 @@ export default function DateElement({ dates }: { dates: any }) {
                   <Link href={date.url}> [MORE]</Link>
                 </p>
               </div>
-              <div className={styles.linkContainer}>
+              <div
+                className={styles.linkContainer}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 {date.data.ticket_link.url && (
                   <PrismicNextLink field={date.data.ticket_link}>
                     <p>{date.data.ticket_link.text}</p>
                     <span>
-                      <Arrow fill="var(--black)" />
+                      <Arrow fill={arrowColor} />
                     </span>
                   </PrismicNextLink>
                 )}

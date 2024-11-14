@@ -10,6 +10,7 @@ import Arrow from '@/app/components/Arrow/Arrow';
 import Link from 'next/link';
 
 export default function EventPageContent({ data }: { data: any }) {
+  console.log(data.date_acts);
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -35,16 +36,20 @@ export default function EventPageContent({ data }: { data: any }) {
             )}
           </div>
           <div className={styles.actsContainer}>
-            {data.date_acts.map((item: any, index: number) => (
-              <div key={index} className={styles.act}>
-                <Link href={item.date_act.url} target="_blank">
-                  <span>{item.date_act.text}</span>
-                  <span>
-                    <Arrow fill="var(--black)" />
-                  </span>
-                </Link>
-              </div>
-            ))}
+            {data.date_acts.length === 0 ? (
+              <h4>Acts tba</h4>
+            ) : (
+              data.date_acts.map((item: any, index: number) => (
+                <div key={index} className={styles.act}>
+                  <Link href={item.date_act.url} target="_blank">
+                    <span>{item.date_act.text}</span>
+                    <span>
+                      <Arrow fill="var(--black)" />
+                    </span>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
 

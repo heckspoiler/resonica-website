@@ -13,8 +13,6 @@ export default async function Page() {
   const page = await client.getSingle('2m');
   const data = page.data;
 
-  console.log(data);
-
   return (
     <section className={styles.main}>
       <PageContent data={data} />
