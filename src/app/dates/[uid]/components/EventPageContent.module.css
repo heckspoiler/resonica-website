@@ -1,7 +1,8 @@
 .container {
-    background-color: var(--background-grey);
+    background-color: var(--red-lowopa);
     backdrop-filter: blur(20px);
     overflow: hidden;
+    border-radius: 40px;
 
 }
 
@@ -41,11 +42,11 @@
 }
 
 .titleContainer h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .timeContainer h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: var(--regular-font)
 }
 
@@ -56,9 +57,9 @@
 
 
 .descriptionContainer p {
-    font-size: 14px;
+    font-size: 12px;
     hyphens: auto;
-    width: 90%;
+    width: 95%;
 }
 
 .ticketContainer {
@@ -70,6 +71,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: fit-content;
 }
 
 .actsContainer {
@@ -86,7 +88,11 @@
 }
 
 .act {
-    font-size: 1rem;
+    font-size: 0.7rem;
+    display: flex;
+    text-transform: uppercase;
+    width: 70%;
+    justify-content: space-between;
 }
 
 /* Enable hover only on non-touch devices */

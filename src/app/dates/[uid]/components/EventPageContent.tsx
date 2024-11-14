@@ -25,12 +25,14 @@ export default function EventPageContent({ data }: { data: any }) {
             <p>{data.event_description}</p>
           </div>
           <div className={styles.ticketContainer}>
-            <Link href={data.ticket_link.url} target="_blank">
-              <span>{data.ticket_link.text}</span>
-              <span>
-                <Arrow fill="var(--black)" />
-              </span>
-            </Link>
+            {data.ticket_link.url && (
+              <Link href={data.ticket_link.url} target="_blank">
+                <span>{data.ticket_link.text}</span>
+                <span>
+                  <Arrow fill="var(--black)" />
+                </span>
+              </Link>
+            )}
           </div>
           <div className={styles.actsContainer}>
             {data.date_acts.map((item: any, index: number) => (
