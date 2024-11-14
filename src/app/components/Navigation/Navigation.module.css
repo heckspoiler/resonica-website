@@ -8,11 +8,30 @@
     pointer-events: none;
 }
 
+
+
 .container {
     height: 100vh;
     width: 100vw;
     position: relative;
 }
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(35, 35, 35, 0.4);
+    backdrop-filter: blur(2px);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.overlayVisible {
+    visibility: visible;
+}
+
 
 .linkContainer {
     width: fit-content;
@@ -96,7 +115,6 @@
 
 
 
-
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {}
 
@@ -143,11 +161,13 @@
     .titleContainer {
         left: 50%;
         transform: translateX(-50%);
+        padding-top: 1.5rem;
     }
 
-    .titleContainer a {
-        font-size: 1rem;
-        padding-top: 0.5rem;
+    .titleContainer a img {
+        height: 1.2rem;
+        width: auto;
+
     }
 
     .linkContainer:nth-of-type(2) {
@@ -167,7 +187,7 @@
     }
 
     .linkContainer:nth-of-type(4) a {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .linkContainer:nth-of-type(5) {
