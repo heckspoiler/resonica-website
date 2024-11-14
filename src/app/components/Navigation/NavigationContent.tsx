@@ -3,11 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './Navigation.module.css';
-import { PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import SocialBar from './SocialBar/SocialBar';
 import DateDropdown from './DateDropdown/DateDropdown';
 import ReleaseDropdown from './ReleaseDropdown/ReleaseDropdown';
 import Shopdropdown from './ShopDropdown/Shopdropdown';
+import Link from 'next/link';
 
 export default function NavigationContent({
   dates,
@@ -58,7 +59,9 @@ export default function NavigationContent({
       {settings && socialBarItems ? (
         <section className={styles.container}>
           <div className={`${styles.titleContainer} ${styles.linkContainer}`}>
-            <PrismicNextLink field={settings.data.navigation[0]?.link} />
+            <Link href={settings.data.navigation[0]?.link.url}>
+              <PrismicNextImage field={settings.data.logo} />
+            </Link>
           </div>
           <div
             className={`${styles.linkContainer} ${

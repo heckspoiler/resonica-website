@@ -44,8 +44,12 @@
     transform: translateX(-50%);
 }
 
-.titleContainer a {
-    font-size: 1.25rem;
+.titleContainer a {}
+
+
+.titleContainer a img {
+    height: 2rem;
+    width: auto;
 }
 
 .linkContainer:nth-of-type(2) {
@@ -65,7 +69,7 @@
 }
 
 .linkContainer:nth-of-type(4) a {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .linkContainer:nth-of-type(5) {
@@ -128,8 +132,6 @@
     .active {
         pointer-events: none;
     }
-
-
 
     .linkContainer a,
     .linkContainer p {

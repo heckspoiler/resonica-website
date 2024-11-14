@@ -9,11 +9,6 @@ export default function ReleasesPageContent({ releases }: { releases: any }) {
   return (
     <div className={styles.container}>
       <ReleaseItem releases={releases} />
-      <ReleaseItem releases={releases} />
-      <ReleaseItem releases={releases} />
-      <ReleaseItem releases={releases} />
-      <ReleaseItem releases={releases} />
-      <ReleaseItem releases={releases} />
     </div>
   );
 }
