@@ -83,8 +83,8 @@ export default function EventPageContent({ data }: { data: any }) {
                 <PrismicNextLink field={item.buylink_label} />
                 <span>
                   <Arrow
-                    width={isMobile ? 8 : 11}
-                    height={isMobile ? 8 : 11}
+                    width={isMobile ? 8 : 10}
+                    height={isMobile ? 8 : 10}
                     fill={hoveredIndex === index ? 'white' : 'var(--black)'}
                   />
                 </span>

@@ -36,16 +36,18 @@ export default function DateElement({ dates }: { dates: any }) {
               <div className={styles.textContainer}>
                 <p>
                   {truncateText(date.data.event_description, 260)}
-                  <Link href={date.url}>[MORE]</Link>
+                  <Link href={date.url}> [MORE]</Link>
                 </p>
               </div>
               <div className={styles.linkContainer}>
-                <PrismicNextLink field={date.data.ticket_link}>
-                  <p>{date.data.ticket_link.text}</p>
-                  <span>
-                    <Arrow fill="var(--black)" />
-                  </span>
-                </PrismicNextLink>
+                {date.data.ticket_link.url && (
+                  <PrismicNextLink field={date.data.ticket_link}>
+                    <p>{date.data.ticket_link.text}</p>
+                    <span>
+                      <Arrow fill="var(--black)" />
+                    </span>
+                  </PrismicNextLink>
+                )}
               </div>
             </div>
           </div>

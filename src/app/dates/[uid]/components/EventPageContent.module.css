@@ -88,11 +88,7 @@
 }
 
 .act {
-    font-size: 0.7rem;
-    display: flex;
-    text-transform: uppercase;
-    width: 70%;
-    justify-content: space-between;
+    font-size: 1rem;
 }
 
 /* Enable hover only on non-touch devices */

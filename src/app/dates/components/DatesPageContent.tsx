@@ -8,15 +8,6 @@ export default function DatesPageContent({ dates }: { dates: any }) {
   return (
     <div className={styles.container}>
       <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
-      <DateElement dates={dates} />
     </div>
   );
 }

@@ -17,6 +17,7 @@
     width: 40%;
     position: relative;
     transition: width 0.2s linear;
+
 }
 
 .imageContainer img {
@@ -28,7 +29,7 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     padding-left: 2.5rem;
     padding-top: 2.5rem;
     width: 60%;
@@ -40,7 +41,7 @@
 }
 
 .titleContainer h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 .timeContainer {
@@ -50,7 +51,7 @@
 }
 
 .timeContainer h3 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-family: var(--regular-font)
 }
 
@@ -92,12 +93,14 @@
 }
 
 .act span:nth-of-type(1) {
-    font-family: var(--title-font);
+    font-family: var(--regular-font);
+
 }
 
 
 .act span:nth-of-type(2) {
     font-family: var(--regular-font);
+    color: var(--red);
 }
 
 .act p:nth-of-type(2) {
@@ -110,7 +113,7 @@
     align-items: center;
     gap: 1rem;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     width: fit-content;
 }
 
