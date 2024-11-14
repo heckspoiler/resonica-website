@@ -110,7 +110,9 @@ export default function NavigationContent({
           <div className={styles.linkContainer}>
             <SocialBar socialBarItems={socialBarItems} />
           </div>
-          <div className={styles.overlay}></div>
+          <div
+            className={`${styles.overlay} ${hovered !== null ? styles.overlayVisible : ''}`}
+          ></div>
         </section>
       ) : null}
     </>

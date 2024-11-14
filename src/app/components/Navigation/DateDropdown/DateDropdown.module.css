@@ -95,8 +95,6 @@
         flex-direction: column;
         gap: 0.5rem;
         padding-top: 1rem;
-        background-color: rgba(113, 113, 113, 0.5);
-        backdrop-filter: blur(20px)
     }
 
     .isHovered {
