@@ -112,7 +112,12 @@ export default function NavigationContent({
             />
           </div>
           <div className={styles.linkContainer}>
-            <PrismicNextLink field={settings.data.navigation[5]?.link} />
+            <Link
+              href={`mailto:${settings.data.navigation[5]?.link.url}`}
+              target="_blank"
+            >
+              {settings.data.navigation[5]?.link.text}
+            </Link>
           </div>
           <div className={styles.linkContainer}>
             <SocialBar socialBarItems={socialBarItems} />

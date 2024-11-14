@@ -63,6 +63,7 @@
 .linkContainer {
     display: flex;
     gap: 2rem;
+    width: fit-content
 }
 
 .linkContainer a {
@@ -72,6 +73,15 @@
     gap: 1rem;
     transition: transform 0.1s linear;
     width: fit-content;
+
+}
+
+
+.linkContainer a:hover,
+.linkContainer a:hover p {
+    color: white;
+    background-color: var(--red);
+
 }
 
 

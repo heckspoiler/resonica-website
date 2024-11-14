@@ -5,13 +5,13 @@ import { PrismicRichText } from '@prismicio/react';
 import React, { useState, useEffect } from 'react';
 
 import styles from './ReleaseItem.module.css';
-
 import { truncateText } from '@/app/dates/components/DateElement';
 import Link from 'next/link';
 import Arrow from '@/app/components/Arrow/Arrow';
 
 export default function ReleaseItem({ releases }: { releases: any }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [hoveredLinkIndex, setHoveredLinkIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -48,12 +48,22 @@ export default function ReleaseItem({ releases }: { releases: any }) {
               </div>
               <div className={styles.linkContainer} key={index}>
                 {release.data.buylink_container.map(
-                  (item: any, index: number) => (
-                    <span key={index}>
+                  (item: any, linkIndex: number) => (
+                    <span
+                      key={linkIndex}
+                      onMouseEnter={() => setHoveredLinkIndex(linkIndex)}
+                      onMouseLeave={() => setHoveredLinkIndex(null)}
+                    >
                       <PrismicNextLink field={item.buylink_label}>
                         <p>{item.buylink_label.text}</p>
                         <span>
-                          <Arrow fill="var(--black)" />
+                          <Arrow
+                            fill={
+                              hoveredLinkIndex === linkIndex
+                                ? 'white'
+                                : 'var(--black)'
+                            }
+                          />
                         </span>
                       </PrismicNextLink>
                     </span>
