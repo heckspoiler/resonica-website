@@ -17,6 +17,7 @@
     width: 40%;
     position: relative;
     transition: width 0.2s linear;
+    display: none;
 }
 
 .imageContainer img {
@@ -28,10 +29,10 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     padding-left: 2.5rem;
     padding-top: 2.5rem;
-    width: 60%;
+    width: 100%;
 }
 
 .titleContainer {
@@ -40,7 +41,7 @@
 }
 
 .titleContainer h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .timeContainer {
@@ -50,14 +51,14 @@
 }
 
 .timeContainer h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: var(--regular-font)
 }
 
 .descriptionContainer p {
-    font-size: 14px;
+    font-size: 12px;
     hyphens: auto;
-    width: 90%;
+    width: 95%;
 }
 
 .linkContainer {
@@ -83,7 +84,7 @@
 
 
 .act {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     display: flex;
     text-transform: uppercase;
     width: 70%;

@@ -18,7 +18,7 @@
 }
 
 .imageContainer {
-    max-height: 6rem;
+    max-height: fit-content;
     max-width: 6rem;
 }
 
@@ -34,11 +34,11 @@
 
 .paraContainer p {
     font-size: 0.8rem;
-
+    color: var(--red)
 }
 
 .item:hover {
-    scale: 1.15;
+    scale: 1.05;
 }
 
 /* Adjusted hover effect */
@@ -74,8 +74,8 @@
     }
 
     .imageContainer {
-        max-height: 6rem;
-        max-width: 6rem;
+        max-height: fit-content;
+        max-width: 4rem;
     }
 
     .imageContainer img {

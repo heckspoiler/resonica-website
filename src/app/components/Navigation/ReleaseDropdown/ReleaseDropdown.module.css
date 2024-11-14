@@ -1,8 +1,9 @@
 .itemsContainer {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding-top: 0.5rem;
+    align-items: flex-end;
 }
 
 .isHovered {
@@ -11,11 +12,13 @@
 
 .item {
     width: fit-content;
+
 }
 
 .item a {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     width: fit-content;
 }
 
@@ -47,7 +50,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    min-width: 14rem;
+    min-width: fit-content;
 }
 
 .dateContainer h3 {
@@ -61,7 +64,7 @@
 
 .seeMore {
     padding-top: 0.5rem;
-    align-self: flex-start;
+    align-self: flex-end;
     padding-left: 3rem;
 }
 
