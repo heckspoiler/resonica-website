@@ -14,7 +14,7 @@
 .imageContainer {
     height: 100%;
     overflow: hidden;
-    width: 40%;
+    width: 45%;
     position: relative;
     transition: width 0.2s linear;
 }
@@ -28,10 +28,10 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     padding-left: 2.5rem;
     padding-top: 2.5rem;
-    width: 60%;
+    width: 55%;
 }
 
 .titleContainer {
@@ -57,12 +57,9 @@
 .descriptionContainer p {
     font-size: 12px;
     hyphens: auto;
-    width: 95%;
+    width: 90%;
 }
 
-.ticketContainer {
-    font-family: var(--regular-font);
-}
 
 .socialsContainer {
     display: flex;
@@ -70,33 +67,37 @@
     gap: 2rem;
 }
 
-.socialsContainer img {
-    fill: black;
-}
 
-.ticketContainer a,
-.actsContainer a {
+
+.pressContainer a {
     display: flex;
     align-items: center;
     gap: 1rem;
     width: fit-content;
 }
 
-.actsContainer {
+.pressContainer {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-
-
-
-.actsContainer {
     font-family: var(--regular-font);
     text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
-.act {
-    font-size: 1rem;
+
+
+.presslinkContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.presslinkContainer:hover,
+.presslinkContainer:hover a {
+    background-color: var(--red);
+    color: white;
+    width: fit-content
 }
 
 /* Enable hover only on non-touch devices */

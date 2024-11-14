@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-
+import React, { useState } from 'react';
 import styles from './2mPageContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
@@ -9,6 +8,8 @@ import Arrow from '@/app/components/Arrow/Arrow';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 export default function PageContent({ data }: { data: any }) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -28,9 +29,21 @@ export default function PageContent({ data }: { data: any }) {
               </div>
             ))}
           </div>
-          <div className={styles.actsContainer}>
+          <div className={styles.pressContainer}>
             {data.zweim_links.map((item: any, index: number) => (
-              <PrismicNextLink field={item.link} />
+              <div
+                className={styles.presslinkContainer}
+                key={index}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <PrismicNextLink field={item.link} />
+                <Link href={item.link.url}>
+                  <Arrow
+                    fill={hoveredIndex === index ? 'white' : 'var(--black)'}
+                  />
+                </Link>
+              </div>
             ))}
           </div>
         </div>
