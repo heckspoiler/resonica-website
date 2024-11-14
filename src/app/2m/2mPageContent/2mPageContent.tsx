@@ -20,18 +20,17 @@ export default function PageContent({ data }: { data: any }) {
             <PrismicRichText field={data.zweim_description} />
           </div>
           <div className={styles.socialsContainer}>
-            {data.zweim &&
-              data.zweim_socials.map((item: any, index: number) => (
-                <div className={styles.socialContainer} key={index}>
+            {data.zweim_socials.map((item: any, index: number) => (
+              <div className={styles.socialContainer} key={index}>
+                <Link href={item.social_link.url} target="_blank">
                   <PrismicNextImage field={item.social_icon} />
-                </div>
-              ))}
+                </Link>
+              </div>
+            ))}
           </div>
           <div className={styles.actsContainer}>
             {data.zweim_links.map((item: any, index: number) => (
-              <div key={index} className={styles.act}>
-                <PrismicNextLink field={item.link} />
-              </div>
+              <PrismicNextLink field={item.link} />
             ))}
           </div>
         </div>

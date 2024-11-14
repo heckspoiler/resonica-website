@@ -64,6 +64,16 @@
     font-family: var(--regular-font);
 }
 
+.socialsContainer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.socialsContainer img {
+    fill: black;
+}
+
 .ticketContainer a,
 .actsContainer a {
     display: flex;
