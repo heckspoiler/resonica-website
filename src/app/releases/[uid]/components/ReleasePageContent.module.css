@@ -151,29 +151,29 @@
     }
 
     .contentContainer {
-        display: flex;
+        display: grid;
         flex-direction: column;
-        height: fit-content;
+        height: 100%;
         width: 100%;
         position: relative;
-        justify-content: space-between;
+        grid-template-rows: 1fr 1fr;
     }
 
     .imageContainer {
         overflow: hidden;
         flex: 1;
         position: relative;
+        height: 100%;
+        min-height: 50vh;
         width: 100%;
         display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        height: 100%;
+        justify-content: baseline;
     }
 
     .imageContainer img {
         height: 100%;
         width: auto;
-        object-fit: contain;
+        object-fit: cover;
     }
 
     .infoContainer {
