@@ -25,8 +25,6 @@ export default function NavigationContent({
 }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeLink, setActiveLink] = useState('');
-  const [isMobile, setIsMobile] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [showReleasesDropdown, setShowReleasesDropdown] = useState(false);
   const [showShopDropdown, setShowShopDropdown] = useState(false);
