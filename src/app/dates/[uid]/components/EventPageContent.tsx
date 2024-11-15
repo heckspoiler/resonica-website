@@ -1,16 +1,13 @@
 'use client';
 
-import React from 'react';
-
+import React, { useEffect, useRef } from 'react';
 import { PrismicRichText } from '@prismicio/react';
-
 import styles from './EventPageContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import Arrow from '@/app/components/Arrow/Arrow';
 import Link from 'next/link';
 
 export default function EventPageContent({ data }: { data: any }) {
-  console.log(data.date_acts);
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -54,7 +51,7 @@ export default function EventPageContent({ data }: { data: any }) {
         </div>
 
         <div className={styles.imageContainer}>
-          <PrismicNextImage field={data.hero_image} />{' '}
+          <PrismicNextImage field={data.hero_image} />
         </div>
       </div>
     </div>

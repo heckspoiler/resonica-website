@@ -145,30 +145,35 @@
     .container {
         background-color: var(--background-grey);
         backdrop-filter: blur(20px);
-        overflow: hidden;
+        overflow-y: scroll;
+        width: 75svw;
+        height: 85svh;
     }
 
     .contentContainer {
         display: flex;
-        width: 75svw;
-        height: 85svh;
-        position: relative;
         flex-direction: column;
+        height: fit-content;
+        width: 100%;
+        position: relative;
+        justify-content: space-between;
     }
 
     .imageContainer {
         overflow: hidden;
-        height: 100%;
-        max-height: 50%;
+        flex: 1;
         position: relative;
         width: 100%;
-        align-self: flex-start;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        height: 100%;
     }
 
     .imageContainer img {
-        height: auto;
-        width: 100%;
-        object-fit: cover;
+        height: 100%;
+        width: auto;
+        object-fit: contain;
     }
 
     .infoContainer {
@@ -177,7 +182,8 @@
         gap: 0.75rem;
         padding: 1rem;
         width: 100%;
-        height: fit-content;
+        height: auto;
+        flex: 1;
 
     }
 
