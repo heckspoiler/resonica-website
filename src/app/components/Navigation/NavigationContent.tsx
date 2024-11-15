@@ -25,6 +25,8 @@ export default function NavigationContent({
 }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeLink, setActiveLink] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [showReleasesDropdown, setShowReleasesDropdown] = useState(false);
   const [showShopDropdown, setShowShopDropdown] = useState(false);
@@ -62,9 +64,21 @@ export default function NavigationContent({
 
   const handleMouseEnter = (section: string) => {
     setHovered(section);
-    if (section === 'dates') setShowDateDropdown(true);
-    if (section === 'releases') setShowReleasesDropdown(true);
-    if (section === 'shop') setShowShopDropdown(true);
+    if (section === 'dates') {
+      setShowDateDropdown(true);
+      setShowReleasesDropdown(false);
+      setShowShopDropdown(false);
+    }
+    if (section === 'releases') {
+      setShowDateDropdown(false);
+      setShowReleasesDropdown(true);
+      setShowShopDropdown(false);
+    }
+    if (section === 'shop') {
+      setShowDateDropdown(false);
+      setShowReleasesDropdown(false);
+      setShowShopDropdown(true);
+    }
   };
 
   const handleMouseLeave = () => {
