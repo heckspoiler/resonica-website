@@ -1,6 +1,5 @@
 .container {
     background-color: var(--background-grey);
-    backdrop-filter: blur(20px);
     overflow: hidden;
 }
 
@@ -110,7 +109,6 @@
 
     .container {
         background-color: var(--background-grey);
-        backdrop-filter: blur(20px);
         overflow-y: scroll;
         width: 75svw;
         height: 85svh;
@@ -236,7 +234,6 @@
 @media (min-width: 768px) and (max-width: 1120px) {
     .container {
         background-color: var(--background-grey);
-        backdrop-filter: blur(20px);
         overflow-y: scroll;
         width: 75svw;
         height: 85svh;

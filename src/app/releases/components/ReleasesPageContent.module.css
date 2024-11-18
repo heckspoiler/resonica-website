@@ -8,7 +8,6 @@
     flex-direction: column;
     gap: 2rem;
     padding: 8rem 0 0 0;
-    backdrop-filter: blur(10px);
     scrollbar-width: none;
     pointer-events: none;
 }
@@ -36,7 +35,6 @@
         align-items: center;
         gap: 2rem;
         padding: 6rem 0 4rem 0;
-        backdrop-filter: blur(10px);
     }
 
 }
@@ -53,6 +51,5 @@
         align-items: center;
         gap: 2rem;
         padding: 6rem 0 4rem 0;
-        backdrop-filter: blur(10px);
     }
 }

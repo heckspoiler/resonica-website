@@ -8,6 +8,7 @@ import { components } from '@/slices';
 import styles from './page.module.css';
 
 import EventPageContent from './components/EventPageContent';
+import BackToHomeOverlay from '@/app/components/backToHomeOverlay/BackToHomeOverlay';
 
 type Params = { uid: string };
 
@@ -20,6 +21,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   return (
     <section className={styles.main}>
       <EventPageContent data={data} />
+      <BackToHomeOverlay />
     </section>
   );
 }
