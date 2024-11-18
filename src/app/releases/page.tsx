@@ -6,6 +6,7 @@ import { components } from '@/slices';
 import ReleasesPageContent from './components/ReleasesPageContent';
 
 import styles from './page.module.css';
+import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
 
 export default async function Page() {
   const client = createClient();
@@ -19,6 +20,7 @@ export default async function Page() {
   return (
     <section className={styles.main}>
       <ReleasesPageContent releases={sortedReleases} />
+      <BackToHomeOverlay />
     </section>
   );
 }

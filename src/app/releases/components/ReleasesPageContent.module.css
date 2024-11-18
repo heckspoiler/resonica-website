@@ -10,6 +10,7 @@
     padding: 8rem 0 0 0;
     backdrop-filter: blur(10px);
     scrollbar-width: none;
+    pointer-events: none;
 }
 
 .container::-webkit-scrollbar {

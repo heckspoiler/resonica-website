@@ -6,6 +6,7 @@ import { components } from '@/slices';
 import DatesPageContent from './components/DatesPageContent';
 
 import styles from './page.module.css';
+import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
 
 export default async function Page() {
   const client = createClient();
@@ -19,6 +20,7 @@ export default async function Page() {
   return (
     <section className={styles.main}>
       <DatesPageContent dates={sortedDates} />
+      <BackToHomeOverlay />
     </section>
   );
 }
