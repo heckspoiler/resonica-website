@@ -32,6 +32,8 @@
     padding-left: calc(1vh + 1.5rem);
     padding-top: calc(1vh + 1.5rem);
     width: 60%;
+    overflow-y: scroll;
+    padding-bottom: calc(1vh + 1.5rem);
 }
 
 .titleContainer {
@@ -55,7 +57,7 @@
 }
 
 .descriptionContainer p {
-    font-size: 12px;
+    font-size: calc(0.5vh + 7px);
     hyphens: auto;
     width: 95%;
 }
@@ -65,7 +67,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-
+    width: fit-content;
+    padding-top: calc(1vh + 0.5rem);
 }
 
 .linkContainer a,

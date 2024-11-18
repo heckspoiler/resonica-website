@@ -19,18 +19,25 @@ export default function Arrow({
   useEffect(() => {
     if (window.innerWidth < 768) {
       setIsMobile(true);
+      isLargeScreen && setIsLargeScreen(false);
+    } else if (window.innerWidth > 2020) {
+      setIsLargeScreen(true);
+      isMobile && setIsMobile(false);
     } else {
-      setIsMobile(false);
+      isMobile && setIsMobile(false);
+      isLargeScreen && setIsLargeScreen(false);
     }
   }, []);
 
   useEffect(() => {
     if (isMobile) {
       setArrowSize(8);
+    } else if (isLargeScreen) {
+      setArrowSize(18);
     } else {
       setArrowSize(12);
     }
-  }, [isMobile]);
+  }, [isMobile, isLargeScreen]);
 
   return (
     <svg

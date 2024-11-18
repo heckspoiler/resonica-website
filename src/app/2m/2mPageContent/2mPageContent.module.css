@@ -27,10 +27,14 @@
 
 .infoContainer {
     display: flex;
+    align-self: flex-start;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding-left: 2.5rem;
+    padding-top: 2.5rem;
+    gap: 2rem;
     width: 55%;
+
 }
 
 .titleContainer {
@@ -54,7 +58,7 @@
 
 
 .descriptionContainer p {
-    font-size: 0.75rem;
+    font-size: calc(0.5vh + 7px);
     hyphens: auto;
     width: 90%;
 }
@@ -65,6 +69,8 @@
     align-items: center;
     gap: 2rem;
 }
+
+
 
 
 
@@ -334,111 +340,6 @@
         width: fit-content;
     }
 
-
-    .presslinkContainer:hover,
-    .presslinkContainer:hover a {
-        background-color: var(--red);
-        color: white;
-        width: fit-content
-    }
-}
-
-
-@media (min-width: 2400px) {
-    .container {
-        background-color: var(--background-grey);
-        overflow: hidden;
-    }
-
-    .contentContainer {
-        display: flex;
-        width: 80vw;
-        height: 80vh;
-        position: relative;
-    }
-
-    .imageContainer {
-        height: 100%;
-        overflow: hidden;
-        width: 45%;
-        position: relative;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .imageContainer img {
-        height: 100%;
-        width: auto;
-        object-fit: cover;
-    }
-
-    .infoContainer {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        padding-left: 4rem;
-        padding-top: 4rem;
-        width: 55%;
-    }
-
-    .titleContainer {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .titleContainer h2 {
-        font-size: 4rem;
-    }
-
-    .timeContainer h3 {
-        font-size: 2rem;
-        font-family: var(--regular-font)
-    }
-
-    .timeContainer h4 {
-        font-family: var(--regular-font);
-        font-size: 2rem;
-    }
-
-
-    .descriptionContainer p {
-        font-size: 1.5rem;
-        hyphens: auto;
-        width: 90%;
-    }
-
-
-    .socialsContainer {
-        display: flex;
-        align-items: center;
-        gap: 4rem;
-    }
-
-
-
-    .pressContainer a {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        width: fit-content;
-    }
-
-    .pressContainer {
-        display: flex;
-        flex-direction: row;
-        gap: 4rem;
-        font-family: var(--regular-font);
-        text-transform: uppercase;
-        font-size: 1.5rem;
-    }
-
-
-
-    .presslinkContainer {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-    }
 
     .presslinkContainer:hover,
     .presslinkContainer:hover a {
