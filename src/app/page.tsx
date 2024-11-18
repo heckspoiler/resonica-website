@@ -5,6 +5,7 @@ import * as prismic from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
+import Marquee from './components/Marquee/Marquee';
 
 // This component renders your homepage.
 //
@@ -30,6 +31,9 @@ export default async function Index() {
   // The client queries content from the Prismic API
   const client = createClient();
   const home = await client.getByUID('page', 'home');
+  const marqueeFetch = await client.getByType('marquee');
 
-  return <></>;
+  const showMarquee = marqueeFetch.results[0].data.show_marquee;
+
+  return <>{showMarquee && <Marquee />}</>;
 }

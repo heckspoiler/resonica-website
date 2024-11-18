@@ -1,0 +1,52 @@
+{
+  "format": "custom",
+  "id": "marquee",
+  "label": "Marquee",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "marquee_text": {
+        "type": "Text",
+        "config": {
+          "label": "Marquee Text",
+          "placeholder": ""
+        }
+      },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "show_marquee": {
+        "type": "Boolean",
+        "config": {
+          "label": "Show Marquee",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
+      "second_marquee_text": {
+        "type": "Text",
+        "config": {
+          "label": "Second marquee Text",
+          "placeholder": ""
+        }
+      },
+      "marquee_link": {
+        "type": "Link",
+        "config": {
+          "label": "Marquee Link",
+          "placeholder": "Event/Release Link",
+          "allowTargetBlank": true,
+          "select": null,
+          "allowText": true
+        }
+      }
+    }
+  }
+}

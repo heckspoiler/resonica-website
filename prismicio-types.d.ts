@@ -418,6 +418,83 @@ interface DatesDocumentData {
 export type DatesDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DatesDocumentData>, "dates", Lang>;
 
+/**
+ * Content for Marquee documents
+ */
+interface MarqueeDocumentData {
+  /**
+   * Marquee Text field in *Marquee*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marquee.marquee_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  marquee_text: prismic.KeyTextField;
+
+  /**
+   * Logo field in *Marquee*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marquee.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * Show Marquee field in *Marquee*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: marquee.show_marquee
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  show_marquee: prismic.BooleanField;
+
+  /**
+   * Second marquee Text field in *Marquee*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marquee.second_marquee_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  second_marquee_text: prismic.KeyTextField;
+
+  /**
+   * Marquee Link field in *Marquee*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Event/Release Link
+   * - **API ID Path**: marquee.marquee_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  marquee_link: prismic.LinkField;
+}
+
+/**
+ * Marquee document from Prismic
+ *
+ * - **API ID**: `marquee`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MarqueeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<MarqueeDocumentData>,
+    "marquee",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
 /**
@@ -978,6 +1055,7 @@ export type AllDocumentTypes =
   | _2mDocument
   | DateDocument
   | DatesDocument
+  | MarqueeDocument
   | PageDocument
   | ReleaseDocument
   | ReleasesDocument
@@ -1063,6 +1141,8 @@ declare module "@prismicio/client" {
       DatesDocument,
       DatesDocumentData,
       DatesDocumentDataSlicesSlice,
+      MarqueeDocument,
+      MarqueeDocumentData,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

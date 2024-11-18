@@ -1,0 +1,33 @@
+.marquee {
+    position: fixed;
+    top: calc(7vh + 2rem);
+    width: 100svw;
+    background-color: var(--red);
+    padding: 0.25rem 0;
+    opacity: 0;
+    transition: opacity 0.4s linear;
+}
+
+.marqueeVisible {
+    opacity: 1;
+}
+
+.marqueeElement {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 0 calc(2rem + 4vw);
+}
+
+
+
+.imageContainer img {
+    height: 0.8rem;
+    width: auto;
+}
+
+.marqueeElement p {
+    font-size: 0.7rem;
+    color: white;
+    font-family: var(--title-font)
+}
