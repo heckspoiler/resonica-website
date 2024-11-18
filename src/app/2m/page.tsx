@@ -7,6 +7,7 @@ import { components } from '@/slices';
 import styles from './page.module.css';
 
 import PageContent from './2mPageContent/2mPageContent';
+import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
 
 export default async function Page() {
   const client = createClient();
@@ -16,6 +17,7 @@ export default async function Page() {
   return (
     <section className={styles.main}>
       <PageContent data={data} />
+      <BackToHomeOverlay />
     </section>
   );
 }
