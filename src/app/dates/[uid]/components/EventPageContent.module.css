@@ -92,7 +92,7 @@
 }
 
 .act {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 /* Enable hover only on non-touch devices */
@@ -106,28 +106,28 @@
     .container {
         backdrop-filter: blur(20px);
         width: 75svw;
-        height: 85svh;
+        max-height: 85svh;
+        height: fit-content;
         border-radius: 20px;
         overflow-y: scroll;
     }
 
     .contentContainer {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        gap: 1rem;
-        width: 100%;
+        display: flex;
+        flex-direction: column;
         height: 100%;
+        width: 100%;
+        position: relative;
+        justify-content: space-between;
+        overflow: scroll;
     }
 
     .imageContainer {
         height: fit-content;
         width: 100%;
-        flex: 1;
-
     }
 
     .imageContainer img {
-
         height: 100%;
         width: auto;
         object-fit: cover;
@@ -137,12 +137,9 @@
     .infoContainer {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        justify-content: space-between;
+        gap: 1rem;
         padding: 1rem;
         width: 100%;
-        height: auto;
-        flex: 1;
         height: fit-content;
     }
 
@@ -236,7 +233,8 @@
         backdrop-filter: blur(20px);
         overflow-y: scroll;
         width: 75svw;
-        height: 85svh;
+        max-height: 85svh;
+        height: fit-content;
         border-radius: 20px;
     }
 
@@ -258,12 +256,12 @@
         align-self: bottom;
         justify-content: center;
         height: 100%;
-        border: 1px solid white;
     }
 
     .imageContainer img {
-        height: auto;
-        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        width: 75svw;
     }
 
     .infoContainer {
@@ -272,9 +270,9 @@
         gap: 1rem;
         padding: 1.5rem;
         width: 100%;
-        height: auto;
+        height: fit-content;
         flex: 1;
-
+        justify-content: flex-start;
     }
 
     .titleContainer {

@@ -60,7 +60,6 @@
 }
 
 .dateContainer * {
-
     font-family: var(--thin-font);
     font-size: .7rem;
 }
@@ -177,13 +176,17 @@
 
     /* Link Container */
 
+    .linkContainer {
+        margin-top: 1rem;
+        width: fit-content;
+    }
+
     .linkContainer a {
         text-transform: uppercase;
-        margin-top: 1rem;
+
         display: flex;
         align-items: center;
         gap: 0.5rem;
-
     }
 
 
