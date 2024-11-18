@@ -106,6 +106,7 @@
         min-height: 27rem;
         gap: 1rem;
         border-radius: 30px;
+        overflow: hidden;
     }
 
     /* image container */
@@ -209,7 +210,6 @@
         min-height: 27rem;
         gap: 1rem;
         border-radius: 30px;
-
     }
 
     /* image container */
@@ -242,9 +242,11 @@
         flex-direction: column;
         max-width: 78vw;
         padding: 0.75rem;
+        width: 100%;
         padding-top: 0;
         gap: 0rem;
         height: 50%;
+        align-items: left;
     }
 
     .titleContainer {

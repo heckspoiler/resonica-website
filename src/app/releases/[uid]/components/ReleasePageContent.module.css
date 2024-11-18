@@ -279,4 +279,138 @@
 
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {}
+@media (min-width: 768px) and (max-width: 1120px) {
+    .container {
+        background-color: var(--background-grey);
+        backdrop-filter: blur(20px);
+        overflow-y: scroll;
+        width: 75svw;
+        height: 85svh;
+    }
+
+    .contentContainer {
+        display: grid;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .imageContainer {
+        overflow: hidden;
+        flex: 1;
+        position: relative;
+        height: 100%;
+        min-height: 50vh;
+        width: 100%;
+        display: flex;
+        justify-content: baseline;
+    }
+
+    .imageContainer img {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .infoContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        width: 100%;
+        height: auto;
+        flex: 1;
+
+    }
+
+    .titleContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .titleContainer h2 {
+        font-size: 1.5rem;
+    }
+
+
+    .timeContainer {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .timeContainer h3 {
+        font-size: 0.7rem;
+        font-family: var(--regular-font)
+    }
+
+
+    .timeContainer h4 {
+        font-family: var(--thin-font);
+        font-size: 0.7rem;
+    }
+
+    .descriptionContainer p {
+        font-size: 0.7rem;
+        hyphens: auto;
+        width: 90%;
+    }
+
+    .linkContainer {
+        font-family: var(--regular-font);
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: fit-content;
+        gap: 0.25rem;
+    }
+
+    .linkContainer a,
+    .actsContainer a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .songsContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .act {
+        font-size: 0.6rem;
+        display: flex;
+        text-transform: uppercase;
+        justify-content: space-between;
+        width: 80%;
+    }
+
+
+
+    .buyLink {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        width: 100%;
+    }
+
+    .buyLink:hover {
+        background-color: var(--red);
+        color: white;
+    }
+
+    .buyLink:hover a,
+    .buyLink:hover span {
+        color: white;
+    }
+
+    .buyLink:hover svg {
+        fill: white;
+    }
+}

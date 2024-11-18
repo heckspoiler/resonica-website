@@ -9,21 +9,13 @@
     gap: 2rem;
     padding: 8rem 0 4rem 0;
     backdrop-filter: blur(10px);
+    scrollbar-width: none;
 }
 
 .container::-webkit-scrollbar {
     display: none;
-
 }
 
-.container::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.container::-webkit-scrollbar-thumb {
-    display: none;
-    border-radius: none;
-}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {}
