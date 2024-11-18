@@ -201,4 +201,105 @@
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {}
+@media (min-width: 768px) and (max-width: 1120px) {
+    .item {
+        display: flex;
+        flex-direction: column;
+        width: 77vw;
+        min-height: 27rem;
+        gap: 1rem;
+        border-radius: 30px;
+
+    }
+
+    /* image container */
+
+    .imageContainer {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 77vw;
+        height: 50%;
+        border-radius: 30px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .imageContainer img {
+        max-width: 77vw;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+
+    }
+
+    /* content container */
+
+    .contentContainer {
+        display: flex;
+        flex-direction: column;
+        max-width: 78vw;
+        padding: 0.75rem;
+        padding-top: 0;
+        gap: 0rem;
+        height: 50%;
+    }
+
+    .titleContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+    }
+
+    .titleContainer h2 {
+        font-size: 1rem;
+    }
+
+    .titleContainer h3 {
+        font-family: var(--thin-font);
+        font-size: 0.6rem;
+        padding: 0.25rem 0;
+
+    }
+
+    .textContainer {
+        padding-top: 0.5rem;
+    }
+
+
+    .textContainer p {
+        font-size: 0.7rem;
+
+    }
+
+    .textContainer p a {
+        color: var(--red);
+        font-family: var(--regular-font);
+    }
+
+    /* Link Container */
+
+    .linkContainer a {
+        text-transform: uppercase;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.1s linear;
+    }
+
+    .linkContainer a:hover {
+        transform: translateX(5px);
+    }
+
+    .linkContainer a p {
+        font-family: var(--regular-font);
+        font-size: 0.7em;
+    }
+
+    .linkContainer img {
+        scale: 0.7;
+    }
+}

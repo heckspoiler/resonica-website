@@ -37,7 +37,7 @@ export default function BackgroundCanvas() {
   useEffect(() => {
     // Update background based on screen size
     const updateBackground = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 850) {
         setBackground(backgroundMobile.src);
       } else {
         setBackground(backgroundDesktop.src);
