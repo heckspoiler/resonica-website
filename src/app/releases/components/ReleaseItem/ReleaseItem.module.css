@@ -8,6 +8,11 @@
     align-items: center;
     height: 14.25rem;
     gap: 2rem;
+    scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 /* image container */
@@ -258,12 +263,6 @@
         font-size: 1rem;
     }
 
-    .titleContainer h3 {
-        font-family: var(--thin-font);
-        font-size: 0.6rem;
-        padding: 0.25rem 0;
-
-    }
 
     .textContainer {
         padding-top: 0.5rem;
