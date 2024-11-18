@@ -116,11 +116,13 @@
     }
 
     .contentContainer {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        gap: 0;
-        width: 100%;
+        display: flex;
+        flex-direction: column;
         height: 100%;
+        width: 100%;
+        position: relative;
+        justify-content: space-between;
+        overflow: scroll;
     }
 
     .imageContainer {
@@ -130,9 +132,8 @@
     }
 
     .imageContainer img {
-        height: 100%;
-        width: auto;
-        object-fit: cover;
+        height: auto;
+        object-fit: contain;
         width: 75svw;
     }
 
@@ -146,7 +147,6 @@
         height: auto;
         flex: 1;
         height: fit-content;
-
     }
 
     .titleContainer {

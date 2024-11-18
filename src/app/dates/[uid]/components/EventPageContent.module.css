@@ -33,7 +33,7 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1rem;
     padding-left: 2.5rem;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
@@ -46,7 +46,7 @@
 }
 
 .titleContainer h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 .timeContainer h3 {
@@ -63,7 +63,7 @@
 .descriptionContainer p {
     font-size: 12px;
     hyphens: auto;
-    width: 95%;
+    width: 90%;
 }
 
 .ticketContainer {
