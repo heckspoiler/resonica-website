@@ -134,8 +134,6 @@
         align-items: flex-end;
         justify-content: center;
         height: 100%;
-        min-height: 50%;
-        background-color: red;
     }
 
     .imageContainer img {
