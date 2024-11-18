@@ -6,10 +6,9 @@
     background-color: var(--background-grey);
     display: flex;
     align-items: center;
-    min-height: 14.25rem;
+    height: 14.25rem;
     gap: 2rem;
     border-radius: 100px;
-
 }
 
 /* image container */
@@ -184,12 +183,9 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        transition: transform 0.1s linear;
+
     }
 
-    .linkContainer a:hover {
-        transform: translateX(5px);
-    }
 
     .linkContainer a p {
         font-family: var(--regular-font);
@@ -206,7 +202,8 @@
     .item {
         display: flex;
         flex-direction: column;
-        width: 77vw;
+        width: 75vw;
+        max-width: 75vw;
         min-height: 27rem;
         gap: 1rem;
         border-radius: 30px;
@@ -220,7 +217,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        max-width: 77vw;
+        max-width: 75vw;
         height: 50%;
         border-radius: 30px;
         border-bottom-left-radius: 0;
@@ -228,7 +225,7 @@
     }
 
     .imageContainer img {
-        max-width: 77vw;
+        max-width: 75vw;
         width: 100%;
         height: auto;
         object-fit: contain;
@@ -240,10 +237,8 @@
     .contentContainer {
         display: flex;
         flex-direction: column;
-        max-width: 78vw;
-        padding: 0.75rem;
-        width: 100%;
-        padding-top: 0;
+        padding: 1rem;
+        min-width: 100%;
         gap: 0rem;
         height: 50%;
         align-items: left;
@@ -252,7 +247,7 @@
     .titleContainer {
         display: flex;
         flex-direction: column;
-        align-items: left;
+        align-items: flex-start;
     }
 
     .titleContainer h2 {
@@ -261,18 +256,19 @@
 
     .titleContainer h3 {
         font-family: var(--thin-font);
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         padding: 0.25rem 0;
 
     }
 
     .textContainer {
         padding-top: 0.5rem;
+        width: 100%;
     }
 
 
     .textContainer p {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
 
     }
 
@@ -289,12 +285,9 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        transition: transform 0.1s linear;
+
     }
 
-    .linkContainer a:hover {
-        transform: translateX(5px);
-    }
 
     .linkContainer a p {
         font-family: var(--regular-font);

@@ -13,14 +13,24 @@ export default function Arrow({
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [arrowSize, setArrowSize] = useState(12);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
       setIsMobile(true);
+    } else {
+      setIsMobile(false);
     }
   }, []);
 
-  const arrowSize = isMobile ? 8 : 12;
+  useEffect(() => {
+    if (isMobile) {
+      setArrowSize(8);
+    } else {
+      setArrowSize(12);
+    }
+  }, [isMobile]);
 
   return (
     <svg

@@ -10,6 +10,7 @@
     padding: 8rem 0 0 0;
     scrollbar-width: none;
     pointer-events: none;
+    max-width: 80vw;
 }
 
 .container::-webkit-scrollbar {

@@ -245,18 +245,18 @@
     .contentContainer {
         display: flex;
         flex-direction: column;
-        max-width: 78vw;
-        padding: 0.75rem;
-        width: 100%;
+        padding: 1rem;
+        min-width: 100%;
         padding-top: 0;
         gap: 0rem;
         height: 50%;
+        align-items: left;
     }
 
     .titleContainer {
         display: flex;
         flex-direction: column;
-        align-items: left;
+        align-items: flex-start;
     }
 
     .titleContainer h2 {
@@ -287,12 +287,8 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        transition: transform 0.1s linear;
     }
 
-    .linkContainer a:hover {
-        transform: translateX(5px);
-    }
 
     .linkContainer a p {
         font-family: var(--regular-font);
