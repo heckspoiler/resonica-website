@@ -2,14 +2,23 @@
     position: fixed;
     top: calc(7vh + 2rem);
     width: 100svw;
-    background-color: var(--red);
-    padding: 0.25rem 0;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.4s linear;
+    overflow: hidden;
 }
 
-.marqueeVisible {
+.marqueeContent {
+    background-color: var(--red);
+    padding: 0.25rem 0;
+    height: fit-content;
+    transform: translateY(110%);
+    transition: transform 0.3s linear;
+}
+
+
+.marqueeVisible .marqueeContent {
     opacity: 1;
+    transform: translateY(0);
 }
 
 .marqueeElement {
