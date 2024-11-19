@@ -28,9 +28,11 @@ export default function DateDropdown({
     return eventDate >= currentDate;
   });
 
-  const sortedDates = upcomingDates.sort((a: any, b: any) => {
-    return a.data.date_index - b.data.date_index;
-  });
+  const sortedDates = upcomingDates
+    .sort((a: any, b: any) => {
+      return a.data.date_index - b.data.date_index;
+    })
+    .slice(0, 10);
 
   // Function to close the dropdown
   const handleLinkClick = () => {
