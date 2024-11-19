@@ -16,9 +16,11 @@ export default function ReleaseDropdown({
   showReleasesDropdown: boolean;
   setShowReleasesDropdown: (value: boolean) => void;
 }) {
-  const sortedReleases = releases.sort((a: any, b: any) => {
-    return b.data.release_index - a.data.release_index;
-  });
+  const sortedReleases = releases
+    .sort((a: any, b: any) => {
+      return b.data.release_index - a.data.release_index;
+    })
+    .slice(0, 10);
 
   // Function to close the dropdown
   const handleLinkClick = () => {

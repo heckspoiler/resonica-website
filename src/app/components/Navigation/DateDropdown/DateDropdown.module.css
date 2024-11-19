@@ -1,6 +1,5 @@
 .itemsContainer {
-    display: flex;
-    visibility: hidden;
+    display: none;
     flex-direction: column;
     gap: 0.5rem;
     padding-top: 0.5rem;
@@ -8,7 +7,7 @@
 }
 
 .isHovered {
-    visibility: visible;
+    display: flex;
     pointer-events: all;
 }
 
