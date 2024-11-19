@@ -1,5 +1,7 @@
 .itemsContainer {
-    display: none;
+    display: flex;
+    visibility: hidden;
+    pointer-events: none;
     flex-direction: column;
     gap: 0.5rem;
     padding-top: 0.5rem;
@@ -7,7 +9,8 @@
 }
 
 .isHovered {
-    display: flex;
+    visibility: visible;
+    pointer-events: all;
 }
 
 .item {
@@ -93,16 +96,11 @@
 @media (max-width: 768px) {
 
     .itemsContainer {
-        display: none;
         flex-direction: column;
         gap: 0.5rem;
         padding-top: 1rem;
-
     }
 
-    .isHovered {
-        display: flex;
-    }
 
     .item {
         width: fit-content;

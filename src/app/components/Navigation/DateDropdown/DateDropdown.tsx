@@ -20,8 +20,16 @@ export default function DateDropdown({
   hovered: string | null;
   setHovered: any;
 }) {
-  const sortedDates = dates.sort((a: any, b: any) => {
-    return b.data.date_index - a.data.date_index;
+  const upcomingDates = dates.filter((date: any) => {
+    const currentDate = new Date();
+    const dateString = date.data.event_date_start;
+    const eventDate = new Date(dateString);
+
+    return eventDate >= currentDate;
+  });
+
+  const sortedDates = upcomingDates.sort((a: any, b: any) => {
+    return a.data.date_index - b.data.date_index;
   });
 
   // Function to close the dropdown

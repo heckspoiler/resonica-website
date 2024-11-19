@@ -67,6 +67,13 @@
           "multi": "heading2"
         }
       },
+      "date_index": {
+        "type": "Text",
+        "config": {
+          "label": "Date Index",
+          "placeholder": "IMPORTANT FOR THE SORTING!"
+        }
+      },
       "date_time": {
         "type": "StructuredText",
         "config": {
@@ -101,11 +108,18 @@
           "multi": "heading3"
         }
       },
-      "date_index": {
-        "type": "Text",
+      "event_date_start": {
+        "type": "Date",
         "config": {
-          "label": "Date Index",
-          "placeholder": "IMPORTANT FOR THE SORTING!"
+          "label": "Event Date Start",
+          "placeholder": ""
+        }
+      },
+      "event_date_end": {
+        "type": "Date",
+        "config": {
+          "label": "Event Date End",
+          "placeholder": "Only needed if Festival"
         }
       },
       "slices": {

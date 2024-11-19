@@ -248,6 +248,17 @@ interface DateDocumentData {
   date_title: prismic.RichTextField;
 
   /**
+   * Date Index field in *date*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: IMPORTANT FOR THE SORTING!
+   * - **API ID Path**: date.date_index
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  date_index: prismic.KeyTextField;
+
+  /**
    * Event Time field in *date*
    *
    * - **Field Type**: Rich Text
@@ -292,15 +303,26 @@ interface DateDocumentData {
   event_end_date: prismic.RichTextField;
 
   /**
-   * Date Index field in *date*
+   * Event Date Start field in *date*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: IMPORTANT FOR THE SORTING!
-   * - **API ID Path**: date.date_index
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: date.event_date_start
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#date
    */
-  date_index: prismic.KeyTextField;
+  event_date_start: prismic.DateField;
+
+  /**
+   * Event Date End field in *date*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: Only needed if Festival
+   * - **API ID Path**: date.event_date_end
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  event_date_end: prismic.DateField;
 
   /**
    * Slice Zone field in *date*
