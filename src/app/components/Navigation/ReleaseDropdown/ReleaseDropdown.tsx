@@ -41,12 +41,12 @@ export default function ReleaseDropdown({
                 <p>{item.data.release_number}</p>
               </div>
               <div className={styles.leftContainer}>
-                <div className={styles.titleContainer}>
-                  <PrismicRichText field={item.data.release_title} />
-                </div>
-                <span>-</span>
                 <div className={styles.dateContainer}>
                   <PrismicRichText field={item.data.release_date} />
+                </div>
+                <span>-</span>{' '}
+                <div className={styles.titleContainer}>
+                  <PrismicRichText field={item.data.release_title} />
                 </div>
               </div>
             </PrismicNextLink>
