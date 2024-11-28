@@ -68,6 +68,7 @@
 
 .ticketContainer {
     font-family: var(--regular-font);
+
 }
 
 .ticketContainer a,
@@ -76,12 +77,13 @@
     align-items: center;
     gap: 1rem;
     width: fit-content;
+    font-size: 0.8rem;
 }
 
 .actsContainer {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
 
 

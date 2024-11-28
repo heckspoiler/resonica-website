@@ -41,7 +41,7 @@ export default function EventPageContent({ data }: { data: any }) {
                   <Link href={item.date_act.url} target="_blank">
                     <span>{item.date_act.text}</span>
                     <span>
-                      <Arrow fill="var(--black)" />
+                      <Arrow fill="var(--black)" height={10} width={10} />
                     </span>
                   </Link>
                 </div>
