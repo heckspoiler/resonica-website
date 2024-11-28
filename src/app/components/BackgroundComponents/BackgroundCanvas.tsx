@@ -18,8 +18,8 @@ import fragment from './shaders/background.frag';
 import vertex from './shaders/background.vert';
 
 // Import the image as a texture
-import backgroundDesktop from '../../../../public/blurry2.png';
-import backgroundMobile from '../../../../public/background-mobile.png';
+import backgroundDesktop from '../../../../public/image.jpg';
+import backgroundMobile from '../../../../public/image.jpg';
 
 export default function BackgroundCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);

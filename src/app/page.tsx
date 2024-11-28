@@ -35,5 +35,5 @@ export default async function Index() {
 
   const showMarquee = marqueeFetch.results[0].data.show_marquee;
 
-  return <>{showMarquee && <Marquee />}</>;
+  // return <>{showMarquee && <Marquee />}</>;
 }
