@@ -22,16 +22,18 @@ export default function DateDropdown({
 }) {
   const upcomingDates = dates.filter((date: any) => {
     const currentDate = new Date();
-    const dateString = date.data.event_date_start;
-    const eventDate = new Date(dateString);
+    const eventDate = new Date(date.data.event_date_start);
 
-    return eventDate >= currentDate;
+    // Set both dates to start of day for comparison
+    currentDate.setHours(0, 0, 0, 0);
+    const eventDateStart = new Date(eventDate);
+    eventDateStart.setHours(0, 0, 0, 0);
+
+    return eventDateStart >= currentDate;
   });
 
   const sortedDates = upcomingDates
-    .sort((a: any, b: any) => {
-      return a.data.date_index - b.data.date_index;
-    })
+    .sort((a: any, b: any) => a.data.date_index - b.data.date_index)
     .slice(0, 10);
 
   // Function to close the dropdown
