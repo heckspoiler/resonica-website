@@ -66,6 +66,10 @@
 
 /* Link Container */
 
+.linkContainer {
+    width: fit-content;
+}
+
 .linkContainer a {
     text-transform: uppercase;
     display: flex;
