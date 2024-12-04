@@ -1,13 +1,10 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 
 import styles from './DateElement.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import Link from 'next/link';
-import Image from 'next/image';
-
-import arrow from '../../../../public/arrow.png';
 import Arrow from '@/app/components/Arrow/Arrow';
 
 export const truncateText = (text: string, maxLength: number) => {
@@ -18,16 +15,7 @@ export const truncateText = (text: string, maxLength: number) => {
 };
 
 export default function DateElement({ dates }: { dates: any }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [arrowColor, setArrowColor] = useState('var(--black)');
-
-  useEffect(() => {
-    if (isHovered) {
-      setArrowColor('white');
-    } else {
-      setArrowColor('var(--black)');
-    }
-  });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <>
@@ -52,14 +40,16 @@ export default function DateElement({ dates }: { dates: any }) {
               </div>
               <div
                 className={styles.linkContainer}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 {date.data.ticket_link.url && (
                   <PrismicNextLink field={date.data.ticket_link}>
                     <p>{date.data.ticket_link.text}</p>
                     <span>
-                      <Arrow fill={arrowColor} />
+                      <Arrow
+                        fill={hoveredIndex === index ? 'white' : 'var(--black)'}
+                      />
                     </span>
                   </PrismicNextLink>
                 )}
