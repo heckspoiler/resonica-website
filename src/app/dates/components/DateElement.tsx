@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 
 import styles from './DateElement.module.css';
@@ -16,6 +16,11 @@ export const truncateText = (text: string, maxLength: number) => {
 
 export default function DateElement({ dates }: { dates: any }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 840);
+  }, [window.innerWidth]);
 
   return (
     <>
@@ -34,7 +39,10 @@ export default function DateElement({ dates }: { dates: any }) {
               </div>
               <div className={styles.textContainer}>
                 <p>
-                  {truncateText(date.data.event_description, 260)}
+                  {truncateText(
+                    date.data.event_description,
+                    isMobile ? 180 : 260
+                  )}
                   <Link href={date.url}> [MORE]</Link>
                 </p>
               </div>
