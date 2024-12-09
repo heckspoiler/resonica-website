@@ -1,8 +1,7 @@
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
 
-import { Analytics } from '@vercel/analytics/next';
-
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation/Navigation';
 
 import './globals.css';
