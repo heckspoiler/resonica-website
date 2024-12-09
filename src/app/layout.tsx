@@ -1,6 +1,8 @@
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
 
+import { Analytics } from '@vercel/analytics/next';
+
 import Navigation from './components/Navigation/Navigation';
 
 import './globals.css';
@@ -18,6 +20,7 @@ export default function RootLayout({
         <Background />
         <Navigation />
         {children}
+        <Analytics />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
