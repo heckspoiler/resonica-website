@@ -9,6 +9,7 @@
     height: 14.25rem;
     gap: 2rem;
     border-radius: 40px;
+    min-height: 14.25rem;
 }
 
 /* image container */
@@ -70,7 +71,8 @@
     width: fit-content;
 }
 
-.linkContainer a {
+.linkContainer a,
+.linkContainer p {
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -79,7 +81,8 @@
     width: fit-content;
 }
 
-.linkContainer a:hover {
+.linkContainer a:hover,
+.linkContainer p:hover {
     background-color: var(--red);
 }
 

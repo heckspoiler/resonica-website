@@ -50,7 +50,6 @@ export default function DateDropdown({
         sortedDates.map((date: any, index: number) => (
           <div key={index} className={styles.item}>
             <PrismicNextLink href={date.url} onClick={handleLinkClick}>
-              {/* onClick to close dropdown on link click */}
               <div className={styles.typeContainer}>
                 <p>{date.data.date_type[0].text[0]}</p>
               </div>
