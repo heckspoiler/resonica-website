@@ -38,7 +38,7 @@ export default function EventPageContent({ data }: { data: any }) {
             ) : (
               data.date_acts.map((item: any, index: number) => (
                 <div key={index} className={styles.act}>
-                  <Link href={item.date_act.url} target="_blank">
+                  <Link href={item.date_act.url || ''} target="_blank">
                     <span>{item.date_act.text}</span>
                     <span>
                       <Arrow fill="var(--black)" height={10} width={10} />
