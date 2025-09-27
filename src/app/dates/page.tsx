@@ -13,9 +13,18 @@ export default async function Page() {
   const page = await client.getSingle('dates');
   const dates = await client.getAllByType('date');
 
-  const sortedDates = dates.sort((a: any, b: any) => {
-    return b.data.date_index - a.data.date_index;
-  });
+  const sortedDates = dates
+    .sort((a: any, b: any) => {
+      const dateA = new Date(a.data.event_date_start);
+      const dateB = new Date(b.data.event_date_start);
+
+      // Handle invalid dates
+      if (isNaN(dateA.getTime())) return 1;
+      if (isNaN(dateB.getTime())) return -1;
+
+      return dateB.getTime() - dateA.getTime();
+    })
+    .slice(0, 10);
 
   return (
     <section className={styles.main}>
