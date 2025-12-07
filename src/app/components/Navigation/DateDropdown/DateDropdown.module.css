@@ -11,6 +11,17 @@
     pointer-events: all;
 }
 
+.sectionLabel h3 {
+    text-shadow: var(--text-shadow-small);
+    color: var(--red);
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
 .item {
     width: fit-content;
 }
@@ -98,6 +109,11 @@
         padding-top: 1rem;
     }
 
+    .sectionLabel {
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
 
     .item {
         width: fit-content;
