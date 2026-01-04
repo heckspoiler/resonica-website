@@ -78,7 +78,9 @@ export default function DateDropdown({
       {/* Upcoming Dates Section */}
       {dates && sortedUpcomingDates.length > 0 && (
         <>
-          <div className={styles.sectionLabel}>Upcoming Dates</div>
+          <div className={styles.sectionLabel}>
+            <h3>Upcoming Dates</h3>
+          </div>
           {sortedUpcomingDates.map((date: any, index: number) => (
             <div key={index} className={styles.item}>
               <PrismicNextLink href={date.url} onClick={handleLinkClick}>
