@@ -25,8 +25,8 @@
 :root {
 
     --black: #2c2c2c;
-    --red: rgba(234, 84, 79, 1);
-    --red-lowopa: rgba(234, 84, 79, 0.45);
+    --red: rgb(175, 203, 92);
+    --red-lowopa: rgba(175, 203, 92, 0.4);
     --title-font: "GT America Black";
     --regular-font: "GT America Regular";
     --text-font: "GT America Text";
