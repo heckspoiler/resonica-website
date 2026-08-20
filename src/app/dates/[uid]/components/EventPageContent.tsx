@@ -1,6 +1,6 @@
 'use client';
 
-import { asText, isFilled } from '@prismicio/client';
+import { asText } from '@prismicio/client';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 import styles from './EventPageContent.module.css';
@@ -11,11 +11,6 @@ import { formatEventDate, getEventDates } from '@/app/lib/eventDates';
 
 export default function EventPageContent({ data }: { data: any }) {
   const eventDates = getEventDates(data);
-
-  // New rich-text description wins; older documents still carry the plain text.
-  const description = isFilled.richText(data.event_description_rich)
-    ? data.event_description_rich
-    : data.event_description;
 
   const acts = (data.date_acts ?? []).filter(
     (item: any) => item.date_act?.text || item.date_act?.url
@@ -42,7 +37,7 @@ export default function EventPageContent({ data }: { data: any }) {
             )}
           </header>
 
-          <RichText field={description} />
+          <RichText field={data.event_description_rich} />
 
           {data.ticket_link?.url && (
             <PrismicNextLink field={data.ticket_link} className={ui.link}>

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { asText, isFilled } from '@prismicio/client';
+import { asText } from '@prismicio/client';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 import styles from './DateElement.module.css';
@@ -27,10 +27,10 @@ export default function DateElement({ dates }: { dates: any }) {
       {dates &&
         dates.map((date: any, index: number) => {
           const days = getEventDates(date.data).filter((day) => day.date);
-          const description = isFilled.richText(date.data.event_description_rich)
-            ? date.data.event_description_rich
-            : date.data.event_description;
-          const excerpt = truncateText(descriptionToText(description), maxChars);
+          const excerpt = truncateText(
+            descriptionToText(date.data.event_description_rich),
+            maxChars
+          );
 
           return (
             <article key={date.id ?? index} className={styles.item}>

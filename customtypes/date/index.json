@@ -90,31 +90,6 @@
           }
         }
       },
-      "date_time": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Event Time",
-          "placeholder": "23:59 - 06.00",
-          "allowTargetBlank": true,
-          "multi": "heading4"
-        }
-      },
-      "event_start_date": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Event Start Date",
-          "placeholder": "12.02.2025",
-          "allowTargetBlank": true,
-          "multi": "heading3"
-        }
-      },
-      "event_description": {
-        "type": "Text",
-        "config": {
-          "label": "Event Description",
-          "placeholder": "Max. 750 characters"
-        }
-      },
       "event_description_rich": {
         "type": "StructuredText",
         "config": {
@@ -122,20 +97,6 @@
           "placeholder": "Paragraphs, bold, italic, lists, links, H4/H5 – replaces the plain-text description",
           "allowTargetBlank": true,
           "multi": "paragraph,heading4,heading5,strong,em,hyperlink,list-item,o-list-item"
-        }
-      },
-      "event_date_start": {
-        "type": "Date",
-        "config": {
-          "label": "Event Date Start",
-          "placeholder": ""
-        }
-      },
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
-        "config": {
-          "choices": {}
         }
       }
     },

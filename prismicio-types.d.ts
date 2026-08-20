@@ -211,8 +211,6 @@ export interface DateDocumentDataEventDatesItem {
   time: prismic.KeyTextField;
 }
 
-type DateDocumentDataSlicesSlice = never;
-
 /**
  * Content for date documents
  */
@@ -284,39 +282,6 @@ interface DateDocumentData {
   event_dates: prismic.GroupField<Simplify<DateDocumentDataEventDatesItem>>;
 
   /**
-   * Event Time field in *date*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 23:59 - 06.00
-   * - **API ID Path**: date.date_time
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  date_time: prismic.RichTextField;
-
-  /**
-   * Event Start Date field in *date*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 12.02.2025
-   * - **API ID Path**: date.event_start_date
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  event_start_date: prismic.RichTextField;
-
-  /**
-   * Event Description field in *date*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Max. 750 characters
-   * - **API ID Path**: date.event_description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  event_description: prismic.KeyTextField;
-
-  /**
    * Event Description (Rich Text) field in *date*
    *
    * - **Field Type**: Rich Text
@@ -328,26 +293,6 @@ interface DateDocumentData {
   event_description_rich: prismic.RichTextField;
 
   /**
-   * Event Date Start field in *date*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: date.event_date_start
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#date
-   */
-  event_date_start: prismic.DateField;
-
-  /**
-   * Slice Zone field in *date*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: date.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<DateDocumentDataSlicesSlice> /**
    * Meta Title field in *date*
    *
    * - **Field Type**: Text
@@ -355,7 +300,7 @@ interface DateDocumentData {
    * - **API ID Path**: date.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
   meta_title: prismic.KeyTextField;
 
   /**
