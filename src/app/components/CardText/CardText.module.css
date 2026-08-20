@@ -1,0 +1,183 @@
+/* Shared typographic roles for the date / release cards – both the list
+   previews and the detail (uid) pages – so the hierarchy is identical
+   everywhere and only the scale changes.
+
+   Each card root sets the size tokens:
+     --t-title   headline
+     --t-meta    date / time / release date row
+     --t-body    description (see RichText.module.css)
+     --t-label   kicker, section labels, meta labels
+     --t-link    ticket / buy / act links
+*/
+
+/* 1. Headline */
+.title {
+    font-family: var(--title-font);
+    font-size: var(--t-title, 1.5rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    text-wrap: balance;
+    margin: 0;
+}
+
+/* 2. Sub-heading label: section headings ("Line-up", "Tracklist",
+      "Listen & buy") and meta labels ("Release date"). Same face as the
+      title, same size as the text it labels. */
+.label {
+    font-family: var(--title-font);
+    font-size: var(--t-label, 0.75rem);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* 3. Meta row: date · time / release date */
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3em 0.75em;
+    font-family: var(--regular-font);
+    font-size: var(--t-meta, 0.75rem);
+    line-height: 1.3;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Several meta rows (one per event day) */
+.metaList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+
+.muted {
+    font-family: var(--thin-font);
+}
+
+.sep {
+    display: inline-block;
+    width: 0.3em;
+    height: 0.3em;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0.6;
+    align-self: center;
+    flex: none;
+}
+
+/* Kicker + title + meta */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+}
+
+/* Label + content */
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+}
+
+/* 4. Link with trailing arrow – ticket link, buy links, act links.
+      The arrow is sized in em and uses currentColor, so it always matches
+      the text next to it, including the hover state. */
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    width: fit-content;
+    font-family: var(--regular-font);
+    font-size: var(--t-link, 0.75rem);
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--black);
+    padding: 0.15em 0.4em;
+    margin: -0.15em -0.4em;
+    transition: background-color 0.12s linear, color 0.12s linear;
+}
+
+.link svg {
+    width: 0.7em;
+    height: 0.7em;
+    flex: none;
+    transform: translateY(-0.05em);
+}
+
+a.link:hover,
+a.link:focus-visible {
+    background-color: var(--red);
+    color: white;
+    outline: none;
+}
+
+/* Horizontal wrap of links (buy links) */
+.linkRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+}
+
+/* Vertical list of links (line-up) */
+.linkList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 5. Tracklist */
+.tracklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 34rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.track {
+    display: grid;
+    grid-template-columns: 2.2em minmax(0, 1fr) auto;
+    column-gap: 0.75em;
+    align-items: baseline;
+    font-size: var(--t-meta, 0.75rem);
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.trackNo,
+.trackTime {
+    font-family: var(--thin-font);
+    font-variant-numeric: tabular-nums;
+}
+
+.trackTime {
+    text-align: right;
+}
+
+.trackArtist {
+    font-family: var(--regular-font);
+}
+
+.trackName {
+    font-family: var(--regular-font);
+    color: var(--red);
+}
+
+/* "[MORE]" inline link in truncated previews */
+.more {
+    color: var(--red);
+    font-family: var(--regular-font);
+    white-space: nowrap;
+}

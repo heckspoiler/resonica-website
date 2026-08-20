@@ -3,9 +3,16 @@
 import React from 'react';
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
+import { asText } from '@prismicio/client';
 import styles from './DateDropdown.module.css';
 import Link from 'next/link';
 import Arrow from '../../Arrow/Arrow';
+import {
+  compareByFirstDate,
+  firstEventDate,
+  formatEventDate,
+  isUpcoming,
+} from '@/app/lib/eventDates';
 
 export default function DateDropdown({
   dates,
@@ -16,51 +23,17 @@ export default function DateDropdown({
   showDateDropdown: boolean;
   setShowDateDropdown: any;
 }) {
-  const currentDate = new Date();
-  currentDate.setHours(0, 0, 0, 0);
+  // An event stays "upcoming" until its last day is over.
+  const upcomingDates = dates.filter((date: any) => isUpcoming(date.data));
+  const pastDates = dates.filter((date: any) => !isUpcoming(date.data));
 
-  // Separate dates into upcoming and past
-  const upcomingDates = dates.filter((date: any) => {
-    const eventDate = new Date(date.data.event_date_start);
-    const eventDateStart = new Date(eventDate);
-    eventDateStart.setHours(0, 0, 0, 0);
-    return eventDateStart >= currentDate;
-  });
-
-  const pastDates = dates.filter((date: any) => {
-    const eventDate = new Date(date.data.event_date_start);
-    const eventDateStart = new Date(eventDate);
-    eventDateStart.setHours(0, 0, 0, 0);
-    return eventDateStart < currentDate;
-  });
-
-  // Sort upcoming dates (chronologically, earliest first)
-  const sortedUpcomingDates = upcomingDates
-    .sort((a: any, b: any) => {
-      const dateA = new Date(a.data.event_date_start);
-      const dateB = new Date(b.data.event_date_start);
-
-      // Handle invalid dates
-      if (isNaN(dateA.getTime())) return 1;
-      if (isNaN(dateB.getTime())) return -1;
-
-      return dateA.getTime() - dateB.getTime();
-    })
+  // Upcoming: earliest first. Past: most recent first, only the last 3.
+  const sortedUpcomingDates = [...upcomingDates]
+    .sort(compareByFirstDate)
     .slice(0, 10);
-
-  // Sort past dates (reverse chronologically, most recent first)
-  const sortedPastDates = pastDates
-    .sort((a: any, b: any) => {
-      const dateA = new Date(a.data.event_date_start);
-      const dateB = new Date(b.data.event_date_start);
-
-      // Handle invalid dates
-      if (isNaN(dateA.getTime())) return 1;
-      if (isNaN(dateB.getTime())) return -1;
-
-      return dateB.getTime() - dateA.getTime(); // Reverse order
-    })
-    .slice(0, 3); // Show only 3 most recent past dates
+  const sortedPastDates = [...pastDates]
+    .sort((a: any, b: any) => -compareByFirstDate(a, b))
+    .slice(0, 3);
 
   // Function to close the dropdown
   const handleLinkClick = () => {
@@ -81,11 +54,11 @@ export default function DateDropdown({
             <div key={index} className={styles.item}>
               <PrismicNextLink href={date.url} onClick={handleLinkClick}>
                 <div className={styles.typeContainer}>
-                  <p>{date.data.date_type[0].text[0]}</p>
+                  <p>{(asText(date.data.date_type) ?? '').charAt(0)}</p>
                 </div>
                 <div className={styles.leftContainer}>
                   <div className={styles.dateContainer}>
-                    <PrismicRichText field={date.data.event_start_date} />
+                    <h3>{formatEventDate(firstEventDate(date.data))}</h3>
                   </div>
                   <span>-</span>
                   <div className={styles.titleContainer}>
@@ -108,11 +81,11 @@ export default function DateDropdown({
             <div key={index} className={styles.item}>
               <PrismicNextLink href={date.url} onClick={handleLinkClick}>
                 <div className={styles.typeContainer}>
-                  <p>{date.data.date_type[0].text[0]}</p>
+                  <p>{(asText(date.data.date_type) ?? '').charAt(0)}</p>
                 </div>
                 <div className={styles.leftContainer}>
                   <div className={styles.dateContainer}>
-                    <PrismicRichText field={date.data.event_start_date} />
+                    <h3>{formatEventDate(firstEventDate(date.data))}</h3>
                   </div>
                   <span>-</span>
                   <div className={styles.titleContainer}>

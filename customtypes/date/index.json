@@ -67,11 +67,27 @@
           "multi": "heading2"
         }
       },
-      "date_index": {
-        "type": "Text",
+      "event_dates": {
+        "type": "Group",
         "config": {
-          "label": "Date Index",
-          "placeholder": "IMPORTANT FOR THE SORTING!"
+          "label": "Event Dates",
+          "repeat": true,
+          "fields": {
+            "date": {
+              "type": "Date",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "time": {
+              "type": "Text",
+              "config": {
+                "label": "Time",
+                "placeholder": "23:00 - 06:00"
+              }
+            }
+          }
         }
       },
       "date_time": {
@@ -99,13 +115,13 @@
           "placeholder": "Max. 750 characters"
         }
       },
-      "event_end_date": {
+      "event_description_rich": {
         "type": "StructuredText",
         "config": {
-          "label": "Event End Date",
-          "placeholder": "Only if Festival or two dates are needed",
+          "label": "Event Description (Rich Text)",
+          "placeholder": "Paragraphs, bold, italic, lists, links, H4/H5 – replaces the plain-text description",
           "allowTargetBlank": true,
-          "multi": "heading3"
+          "multi": "paragraph,heading4,heading5,strong,em,hyperlink,list-item,o-list-item"
         }
       },
       "event_date_start": {
@@ -113,13 +129,6 @@
         "config": {
           "label": "Event Date Start",
           "placeholder": ""
-        }
-      },
-      "event_date_end": {
-        "type": "Date",
-        "config": {
-          "label": "Event Date End",
-          "placeholder": "Only needed if Festival"
         }
       },
       "slices": {

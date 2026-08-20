@@ -1,0 +1,83 @@
+/* Shared rich-text body styles for the date / release cards.
+   Sizes derive from --t-body, set on the card root. */
+
+.rich {
+    font-family: var(--text-font);
+    max-width: 64ch;
+}
+
+.rich p {
+    font-size: var(--t-body, 0.8rem);
+    line-height: 1.6;
+    margin: 0 0 0.75em 0;
+    hyphens: auto;
+}
+
+.rich > :last-child {
+    margin-bottom: 0;
+}
+
+.rich > :first-child {
+    margin-top: 0;
+}
+
+.rich h4,
+.rich h5 {
+    font-family: var(--regular-font);
+    margin: 1.4em 0 0.4em 0;
+    line-height: 1.3;
+}
+
+.rich h4 {
+    font-size: calc(var(--t-body, 0.8rem) * 1.1);
+}
+
+.rich h5 {
+    font-size: calc(var(--t-body, 0.8rem) * 0.9);
+    letter-spacing: 0.08em;
+}
+
+.rich strong {
+    font-family: var(--regular-font);
+    font-weight: normal;
+}
+
+.rich em {
+    font-style: italic;
+}
+
+.rich ul,
+.rich ol {
+    margin: 0 0 0.75em 0;
+    padding-left: 1.4em;
+}
+
+.rich li {
+    font-size: var(--t-body, 0.8rem);
+    line-height: 1.55;
+    margin: 0.2em 0;
+}
+
+.rich li::marker {
+    color: var(--red);
+}
+
+.rich ol li::marker {
+    font-family: var(--regular-font);
+    font-size: 0.85em;
+}
+
+.rich a {
+    color: var(--black);
+    font-family: var(--regular-font);
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.rich a:hover {
+    background-color: var(--red);
+    color: white;
+    text-decoration: none;
+}

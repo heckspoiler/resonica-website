@@ -1,70 +1,83 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { PrismicRichText } from '@prismicio/react';
+import Link from 'next/link';
+import { asText, isFilled } from '@prismicio/client';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 import styles from './DateElement.module.css';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
-import Link from 'next/link';
+import ui from '@/app/components/CardText/CardText.module.css';
 import Arrow from '@/app/components/Arrow/Arrow';
-
-export const truncateText = (text: string, maxLength: number) => {
-  if (text && text.length > maxLength) {
-    return text.substring(0, maxLength) + '... ';
-  }
-  return text;
-};
+import {
+  descriptionToText,
+  truncateText,
+} from '@/app/components/RichText/RichText';
+import { formatEventDate, getEventDates } from '@/app/lib/eventDates';
 
 export default function DateElement({ dates }: { dates: any }) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 840);
+    setIsMobile(window.innerWidth < 768);
   }, []);
+
+  const maxChars = isMobile ? 90 : 260;
 
   return (
     <>
       {dates &&
-        dates.map((date: any, index: number) => (
-          <div key={index} className={styles.item}>
-            <div className={styles.imageContainer}>
-              <PrismicNextImage field={date.data.hero_image} />
-            </div>
-            <div className={styles.contentContainer}>
-              <div className={styles.titleContainer}>
-                <PrismicRichText field={date.data.date_title} />
-                <div className={styles.dateContainer}>
-                  <PrismicRichText field={date.data.event_start_date} />
-                </div>
+        dates.map((date: any, index: number) => {
+          const days = getEventDates(date.data).filter((day) => day.date);
+          const description = isFilled.richText(date.data.event_description_rich)
+            ? date.data.event_description_rich
+            : date.data.event_description;
+          const excerpt = truncateText(descriptionToText(description), maxChars);
+
+          return (
+            <article key={date.id ?? index} className={styles.item}>
+              <div className={styles.imageContainer}>
+                <PrismicNextImage
+                  field={date.data.hero_image}
+                  fallbackAlt=""
+                  sizes="(max-width: 1120px) 77vw, 14.25rem"
+                />
               </div>
-              <div className={styles.textContainer}>
-                <p>
-                  {truncateText(
-                    date.data.event_description,
-                    isMobile ? 180 : 260
+              <div className={styles.contentContainer}>
+                <header className={ui.header}>
+                  <h2 className={ui.title}>{asText(date.data.date_title)}</h2>
+                  {days.length > 0 && (
+                    <p className={ui.meta}>
+                      {days.map((day, dayIndex) => (
+                        <React.Fragment key={dayIndex}>
+                          {dayIndex > 0 && (
+                            <span className={ui.sep} aria-hidden="true" />
+                          )}
+                          <span>{formatEventDate(day.date)}</span>
+                        </React.Fragment>
+                      ))}
+                    </p>
                   )}
-                  <Link href={date.url}> [MORE]</Link>
+                </header>
+
+                <p className={styles.excerpt}>
+                  {excerpt}{' '}
+                  <Link href={date.url} className={ui.more}>
+                    [MORE]
+                  </Link>
                 </p>
-              </div>
-              <div
-                className={styles.linkContainer}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                {date.data.ticket_link.url && (
-                  <PrismicNextLink field={date.data.ticket_link}>
-                    <p>{date.data.ticket_link.text}</p>
-                    <span>
-                      <Arrow
-                        fill={hoveredIndex === index ? 'white' : 'var(--black)'}
-                      />
-                    </span>
+
+                {date.data.ticket_link?.url && (
+                  <PrismicNextLink
+                    field={date.data.ticket_link}
+                    className={ui.link}
+                  >
+                    {date.data.ticket_link.text || 'Tickets'}
+                    <Arrow />
                   </PrismicNextLink>
                 )}
               </div>
-            </div>
-          </div>
-        ))}
+            </article>
+          );
+        })}
     </>
   );
 }

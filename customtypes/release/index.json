@@ -63,7 +63,7 @@
           "label": "Release Description",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph"
+          "multi": "paragraph,heading4,heading5,strong,em,hyperlink,list-item,o-list-item"
         }
       },
       "release_titlelist": {

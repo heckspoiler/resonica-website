@@ -1,56 +1,84 @@
 'use client';
 
-import { PrismicRichText } from '@prismicio/react';
+import { asText, isFilled } from '@prismicio/client';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+
 import styles from './EventPageContent.module.css';
-import { PrismicNextImage } from '@prismicio/next';
+import ui from '@/app/components/CardText/CardText.module.css';
+import RichText from '@/app/components/RichText/RichText';
 import Arrow from '@/app/components/Arrow/Arrow';
-import Link from 'next/link';
+import { formatEventDate, getEventDates } from '@/app/lib/eventDates';
 
 export default function EventPageContent({ data }: { data: any }) {
+  const eventDates = getEventDates(data);
+
+  // New rich-text description wins; older documents still carry the plain text.
+  const description = isFilled.richText(data.event_description_rich)
+    ? data.event_description_rich
+    : data.event_description;
+
+  const acts = (data.date_acts ?? []).filter(
+    (item: any) => item.date_act?.text || item.date_act?.url
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <div className={styles.infoContainer}>
-          <div className={styles.titleContainer}>
-            <PrismicRichText field={data.date_title} />
-            <div className={styles.timeContainer}>
-              <PrismicRichText field={data.event_start_date} />
-              <PrismicRichText field={data.date_time} />
-            </div>
-          </div>
-          <div className={styles.descriptionContainer}>
-            <p>{data.event_description}</p>
-          </div>
-          <div className={styles.ticketContainer}>
-            {data.ticket_link.url && (
-              <Link href={data.ticket_link.url} target="_blank">
-                <span>{data.ticket_link.text}</span>
-                <span>
-                  <Arrow fill="var(--black)" />
-                </span>
-              </Link>
+          <header className={ui.header}>
+            <h2 className={ui.title}>{asText(data.date_title)}</h2>
+            {eventDates.length > 0 && (
+              <div className={ui.metaList}>
+                {eventDates.map((day, index) => (
+                  <p key={index} className={ui.meta}>
+                    {day.date && <span>{formatEventDate(day.date)}</span>}
+                    {day.date && day.time && (
+                      <span className={ui.sep} aria-hidden="true" />
+                    )}
+                    {day.time && <span className={ui.muted}>{day.time}</span>}
+                  </p>
+                ))}
+              </div>
             )}
-          </div>
-          <div className={styles.actsContainer}>
-            {data.date_acts.length === 0 ? (
-              <h4>Acts tba</h4>
+          </header>
+
+          <RichText field={description} />
+
+          {data.ticket_link?.url && (
+            <PrismicNextLink field={data.ticket_link} className={ui.link}>
+              {data.ticket_link.text || 'Tickets'}
+              <Arrow />
+            </PrismicNextLink>
+          )}
+
+          <section className={ui.section}>
+            <p className={ui.label}>Line-up</p>
+            {acts.length === 0 ? (
+              <p className={styles.tba}>Acts tba</p>
             ) : (
-              data.date_acts.map((item: any, index: number) => (
-                <div key={index} className={styles.act}>
-                  <Link href={item.date_act.url || ''} target="_blank">
-                    <span>{item.date_act.text}</span>
-                    <span>
-                      <Arrow fill="var(--black)" height={10} width={10} />
-                    </span>
-                  </Link>
-                </div>
-              ))
+              <ul className={ui.linkList}>
+                {acts.map((item: any, index: number) => (
+                  <li key={index}>
+                    {item.date_act.url ? (
+                      <PrismicNextLink
+                        field={item.date_act}
+                        className={ui.link}
+                      >
+                        {item.date_act.text}
+                        <Arrow />
+                      </PrismicNextLink>
+                    ) : (
+                      <span className={ui.link}>{item.date_act.text}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             )}
-          </div>
+          </section>
         </div>
 
         <div className={styles.imageContainer}>
-          <PrismicNextImage field={data.hero_image} />
+          <PrismicNextImage field={data.hero_image} fallbackAlt="" />
         </div>
       </div>
     </div>

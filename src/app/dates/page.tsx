@@ -5,22 +5,18 @@ import DatesPageContent from './components/DatesPageContent';
 
 import styles from './page.module.css';
 import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
+import { compareByFirstDate } from '@/app/lib/eventDates';
 
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle('dates');
   const dates = await client.getAllByType('date');
 
-  const sortedDates = dates
+  // Newest first; events without a date go last.
+  const sortedDates = [...dates]
     .sort((a: any, b: any) => {
-      const dateA = new Date(a.data.event_date_start);
-      const dateB = new Date(b.data.event_date_start);
-
-      // Handle invalid dates
-      if (isNaN(dateA.getTime())) return 1;
-      if (isNaN(dateB.getTime())) return -1;
-
-      return dateB.getTime() - dateA.getTime();
+      const order = compareByFirstDate(a, b);
+      return order === 0 ? 0 : -order;
     })
     .slice(0, 10);
 
