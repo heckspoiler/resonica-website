@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
-import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
 import DatesPageContent from './components/DatesPageContent';
 
 import styles from './page.module.css';

@@ -83,8 +83,6 @@ export default function NavigationContent({
     setHovered(null);
   };
 
-  const showDropdown = (section: string) => hovered === section;
-
   return (
     <>
       {settings && socialBarItems ? (
@@ -106,8 +104,6 @@ export default function NavigationContent({
               dates={dates}
               showDateDropdown={showDateDropdown}
               setShowDateDropdown={setShowDateDropdown}
-              hovered={hovered}
-              setHovered={setHovered}
             />
           </div>
           <div

@@ -11,14 +11,10 @@ export default function DateDropdown({
   dates,
   showDateDropdown,
   setShowDateDropdown,
-  hovered,
-  setHovered,
 }: {
   dates: any;
   showDateDropdown: boolean;
   setShowDateDropdown: any;
-  hovered: string | null;
-  setHovered: any;
 }) {
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);

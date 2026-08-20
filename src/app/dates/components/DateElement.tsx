@@ -20,7 +20,7 @@ export default function DateElement({ dates }: { dates: any }) {
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 840);
-  }, [window.innerWidth]);
+  }, []);
 
   return (
     <>

@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import styles from './EventPageContent.module.css';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage } from '@prismicio/next';
 import Arrow from '@/app/components/Arrow/Arrow';
 import Link from 'next/link';
 
