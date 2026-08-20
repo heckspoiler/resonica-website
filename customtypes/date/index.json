@@ -12,15 +12,6 @@
           "label": "UID"
         }
       },
-      "date_type": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Date/Event Type",
-          "placeholder": "Club, Festival, Release",
-          "allowTargetBlank": true,
-          "multi": "paragraph"
-        }
-      },
       "hero_image": {
         "type": "Image",
         "config": {
@@ -29,33 +20,13 @@
           "thumbnails": []
         }
       },
-      "date_acts": {
-        "type": "Group",
+      "date_type": {
+        "type": "StructuredText",
         "config": {
-          "label": "Event Acts",
-          "repeat": true,
-          "fields": {
-            "date_act": {
-              "type": "Link",
-              "config": {
-                "label": "Act",
-                "placeholder": "Name of Act & Link to SC in Linkfield",
-                "allowTargetBlank": true,
-                "select": null,
-                "allowText": true
-              }
-            }
-          }
-        }
-      },
-      "ticket_link": {
-        "type": "Link",
-        "config": {
-          "label": "Ticket Link",
-          "placeholder": "TICKET or GET TICKETS or whatever you want",
+          "label": "Date/Event Type",
+          "placeholder": "Club, Festival, Release",
           "allowTargetBlank": true,
-          "select": null,
-          "allowText": true
+          "multi": "paragraph"
         }
       },
       "date_title": {
@@ -97,6 +68,35 @@
           "placeholder": "Paragraphs, bold, italic, lists, links, H4/H5 – replaces the plain-text description",
           "allowTargetBlank": true,
           "multi": "paragraph,heading4,heading5,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
+      "ticket_link": {
+        "type": "Link",
+        "config": {
+          "label": "Ticket Link",
+          "placeholder": "TICKET or GET TICKETS or whatever you want",
+          "allowTargetBlank": true,
+          "select": null,
+          "allowText": true
+        }
+      },
+      "date_acts": {
+        "type": "Group",
+        "config": {
+          "label": "Event Acts",
+          "repeat": true,
+          "fields": {
+            "date_act": {
+              "type": "Link",
+              "config": {
+                "label": "Act",
+                "placeholder": "Name of Act & Link to SC in Linkfield",
+                "allowTargetBlank": true,
+                "select": null,
+                "allowText": true
+              }
+            }
+          }
         }
       }
     },

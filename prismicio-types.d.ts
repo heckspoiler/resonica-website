@@ -172,21 +172,6 @@ export type _2mDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<_2mDocumentData>, "2m", Lang>;
 
 /**
- * Item in *date → Event Acts*
- */
-export interface DateDocumentDataDateActsItem {
-  /**
-   * Act field in *date → Event Acts*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Name of Act & Link to SC in Linkfield
-   * - **API ID Path**: date.date_acts[].date_act
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  date_act: prismic.LinkField;
-}
-
-/**
  * Item in *date → Event Dates*
  */
 export interface DateDocumentDataEventDatesItem {
@@ -212,20 +197,24 @@ export interface DateDocumentDataEventDatesItem {
 }
 
 /**
+ * Item in *date → Event Acts*
+ */
+export interface DateDocumentDataDateActsItem {
+  /**
+   * Act field in *date → Event Acts*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Name of Act & Link to SC in Linkfield
+   * - **API ID Path**: date.date_acts[].date_act
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  date_act: prismic.LinkField;
+}
+
+/**
  * Content for date documents
  */
 interface DateDocumentData {
-  /**
-   * Date/Event Type field in *date*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Club, Festival, Release
-   * - **API ID Path**: date.date_type
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  date_type: prismic.RichTextField;
-
   /**
    * Event Hero Image field in *date*
    *
@@ -238,26 +227,15 @@ interface DateDocumentData {
   hero_image: prismic.ImageField<never>;
 
   /**
-   * Event Acts field in *date*
+   * Date/Event Type field in *date*
    *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: date.date_acts[]
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Club, Festival, Release
+   * - **API ID Path**: date.date_type
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  date_acts: prismic.GroupField<Simplify<DateDocumentDataDateActsItem>>;
-
-  /**
-   * Ticket Link field in *date*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: TICKET or GET TICKETS or whatever you want
-   * - **API ID Path**: date.ticket_link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  ticket_link: prismic.LinkField;
+  date_type: prismic.RichTextField;
 
   /**
    * Event Title field in *date*
@@ -293,6 +271,26 @@ interface DateDocumentData {
   event_description_rich: prismic.RichTextField;
 
   /**
+   * Ticket Link field in *date*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: TICKET or GET TICKETS or whatever you want
+   * - **API ID Path**: date.ticket_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  ticket_link: prismic.LinkField;
+
+  /**
+   * Event Acts field in *date*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: date.date_acts[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  date_acts: prismic.GroupField<Simplify<DateDocumentDataDateActsItem>> /**
    * Meta Title field in *date*
    *
    * - **Field Type**: Text
@@ -300,7 +298,7 @@ interface DateDocumentData {
    * - **API ID Path**: date.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_title: prismic.KeyTextField;
 
   /**
@@ -549,21 +547,6 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 /**
- * Item in *Release → Buylink Container*
- */
-export interface ReleaseDocumentDataBuylinkContainerItem {
-  /**
-   * Buylink Label field in *Release → Buylink Container*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Get on Bandcamp
-   * - **API ID Path**: release.buylink_container[].buylink_label
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  buylink_label: prismic.LinkField;
-}
-
-/**
  * Item in *Release → Release Titlelist*
  */
 export interface ReleaseDocumentDataReleaseTitlelistItem {
@@ -598,6 +581,21 @@ export interface ReleaseDocumentDataReleaseTitlelistItem {
   track_time: prismic.KeyTextField;
 }
 
+/**
+ * Item in *Release → Buylink Container*
+ */
+export interface ReleaseDocumentDataBuylinkContainerItem {
+  /**
+   * Buylink Label field in *Release → Buylink Container*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Get on Bandcamp
+   * - **API ID Path**: release.buylink_container[].buylink_label
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  buylink_label: prismic.LinkField;
+}
+
 type ReleaseDocumentDataSlicesSlice = never;
 
 /**
@@ -616,28 +614,26 @@ interface ReleaseDocumentData {
   release_image: prismic.ImageField<never>;
 
   /**
-   * Buylink Container field in *Release*
+   * Release Index field in *Release*
    *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: release.buylink_container[]
+   * - **Field Type**: Text
+   * - **Placeholder**: IMPORTANT FOR THE SORTING!
+   * - **API ID Path**: release.release_index
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  buylink_container: prismic.GroupField<
-    Simplify<ReleaseDocumentDataBuylinkContainerItem>
-  >;
+  release_index: prismic.KeyTextField;
 
   /**
-   * Release Date field in *Release*
+   * Release number field in *Release*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 14.04.2025 ("Release Date" is hardcoded)
-   * - **API ID Path**: release.release_date
+   * - **Field Type**: Text
+   * - **Placeholder**: 001
+   * - **API ID Path**: release.release_number
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  release_date: prismic.RichTextField;
+  release_number: prismic.KeyTextField;
 
   /**
    * Release Title field in *Release*
@@ -649,6 +645,17 @@ interface ReleaseDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   release_title: prismic.RichTextField;
+
+  /**
+   * Release Date field in *Release*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: 14.04.2025 ("Release Date" is hardcoded)
+   * - **API ID Path**: release.release_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  release_date: prismic.RichTextField;
 
   /**
    * Release Description field in *Release*
@@ -675,26 +682,17 @@ interface ReleaseDocumentData {
   >;
 
   /**
-   * Release number field in *Release*
+   * Buylink Container field in *Release*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: 001
-   * - **API ID Path**: release.release_number
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: release.buylink_container[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  release_number: prismic.KeyTextField;
-
-  /**
-   * Release Index field in *Release*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: IMPORTANT FOR THE SORTING!
-   * - **API ID Path**: release.release_index
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  release_index: prismic.KeyTextField;
+  buylink_container: prismic.GroupField<
+    Simplify<ReleaseDocumentDataBuylinkContainerItem>
+  >;
 
   /**
    * Slice Zone field in *Release*
@@ -1117,8 +1115,8 @@ declare module "@prismicio/client" {
       _2mDocumentDataSlicesSlice,
       DateDocument,
       DateDocumentData,
+      DateDocumentDataEventDatesItem,
       DateDocumentDataDateActsItem,
-      DateDocumentDataSlicesSlice,
       DatesDocument,
       DatesDocumentData,
       DatesDocumentDataSlicesSlice,
@@ -1129,8 +1127,8 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       ReleaseDocument,
       ReleaseDocumentData,
-      ReleaseDocumentDataBuylinkContainerItem,
       ReleaseDocumentDataReleaseTitlelistItem,
+      ReleaseDocumentDataBuylinkContainerItem,
       ReleaseDocumentDataSlicesSlice,
       ReleasesDocument,
       ReleasesDocumentData,
