@@ -58,14 +58,12 @@
 }
 
 .sep {
-    display: inline-block;
-    width: 0.3em;
-    height: 0.3em;
-    border-radius: 50%;
-    background-color: currentColor;
-    opacity: 0.6;
-    align-self: center;
+    font-family: var(--thin-font);
     flex: none;
+}
+
+.sep::before {
+    content: "|";
 }
 
 /* Kicker + title + meta */
