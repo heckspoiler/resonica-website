@@ -61,8 +61,13 @@ void main() {
   // Add very subtle noise to the UV offset
   uvOffset += vec2(smoothNoise(vUv * 10.0 + u_time), smoothNoise(vUv * 10.0 - u_time)) * 0.02; // Reduced noise contribution
 
-  // Sample the texture with the displaced UV coordinates
-  vec4 finalColor = texture2D(u_texture, vUv - uvOffset);
+  // Chromatic aberration: each channel samples a slightly different multiple
+  // of the same offset, giving a prismatic fringe that scales with the
+  // distortion strength (and so also with cursor speed); where the offset is
+  // zero all three samples coincide and the image is untouched
+  float r = texture2D(u_texture, vUv - uvOffset * 1.05).r;
+  vec4 base = texture2D(u_texture, vUv - uvOffset);
+  float b = texture2D(u_texture, vUv - uvOffset * 0.95).b;
 
-  gl_FragColor = finalColor;
+  gl_FragColor = vec4(r, base.g, b, base.a);
 }
