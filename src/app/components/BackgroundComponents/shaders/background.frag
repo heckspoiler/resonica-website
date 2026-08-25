@@ -6,6 +6,7 @@ uniform sampler2D u_texture;
 uniform vec2 u_mouse;
 uniform float u_aspect;
 uniform float u_gravityStrength; // Strength of the gravitational effect
+uniform float u_speed; // Smoothed cursor speed in screen units per second
 uniform float u_time;
 
 // Function to calculate brightness
@@ -50,8 +51,12 @@ void main() {
   float timeWobble = sin(u_time / 10.0 + dist * 0.1) * 0.005; // Reduced amplitude and slower frequency
   gravityEffect += timeWobble * 0.5; // Reduced influence of the wobble effect
 
+  // Velocity boost: fast cursor sweeps pull up to 2x harder; at rest the
+  // boost is 1.0 so the idle feel stays at the baseline
+  float speedBoost = 1.0 + min(u_speed * 0.5, 1.0);
+
   // Reduce the UV offset intensity for a more refined and subtle distortion
-  vec2 uvOffset = pixelToMouse * gravityEffect * -0.4 * u_gravityStrength / (dist + 0.1);
+  vec2 uvOffset = pixelToMouse * gravityEffect * -0.4 * u_gravityStrength * speedBoost / (dist + 0.1);
 
   // Add very subtle noise to the UV offset
   uvOffset += vec2(smoothNoise(vUv * 10.0 + u_time), smoothNoise(vUv * 10.0 - u_time)) * 0.02; // Reduced noise contribution

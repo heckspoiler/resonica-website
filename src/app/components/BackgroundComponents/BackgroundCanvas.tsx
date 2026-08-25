@@ -48,6 +48,7 @@ export default function BackgroundCanvas() {
       u_mouse: { value: new Vector2(0.5, 0.5) },
       u_aspect: { value: window.innerWidth / window.innerHeight },
       u_gravityStrength: { value: 1.8 },
+      u_speed: { value: 0.0 },
       u_time: { value: 0.0 },
     };
 
@@ -74,6 +75,8 @@ export default function BackgroundCanvas() {
     // the mount div itself never fire while the cursor is over content
     const mousePosition = new Vector2(0.5, 0.5);
     const targetMousePosition = new Vector2(0.5, 0.5);
+    const prevMousePosition = new Vector2(0.5, 0.5);
+    let smoothedSpeed = 0;
     const handleMouseMove = (event: MouseEvent) => {
       targetMousePosition.set(
         event.clientX / window.innerWidth,
@@ -91,6 +94,18 @@ export default function BackgroundCanvas() {
       // Frame-rate independent easing, equivalent to the 60fps EASE_FACTOR
       const ease = 1 - Math.pow(1 - EASE_FACTOR, delta * 60);
       mousePosition.lerp(targetMousePosition, ease);
+
+      // Cursor speed in screen units per second, measured on the eased
+      // position so it is already jitter-free. Asymmetric smoothing: quick
+      // to pick up a sweep, slow to settle back when the cursor stops.
+      const frameSpeed =
+        prevMousePosition.distanceTo(mousePosition) / Math.max(delta, 1e-4);
+      prevMousePosition.copy(mousePosition);
+      const attackOrRelease = frameSpeed > smoothedSpeed ? 0.15 : 0.05;
+      smoothedSpeed +=
+        (frameSpeed - smoothedSpeed) *
+        (1 - Math.pow(1 - attackOrRelease, delta * 60));
+      shaderUniforms.u_speed.value = smoothedSpeed;
 
       shaderUniforms.u_time.value += delta * 0.6; // 0.01 per frame at 60fps
       shaderUniforms.u_mouse.value.set(mousePosition.x, 1.0 - mousePosition.y);
