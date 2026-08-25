@@ -65,9 +65,9 @@ void main() {
   // mouse-driven offset only (the noise grain stays colorless), giving a
   // prismatic fringe that scales with the pull strength and cursor speed;
   // where the pull is zero the samples coincide and the image is untouched
-  float r = texture2D(u_texture, vUv - uvOffset - gravityOffset * 0.2).r;
+  float r = texture2D(u_texture, vUv - uvOffset - gravityOffset * 0.125).r;
   vec4 base = texture2D(u_texture, vUv - uvOffset);
-  float b = texture2D(u_texture, vUv - uvOffset + gravityOffset * 0.2).b;
+  float b = texture2D(u_texture, vUv - uvOffset + gravityOffset * 0.125).b;
 
   gl_FragColor = vec4(r, base.g, b, base.a);
 }
