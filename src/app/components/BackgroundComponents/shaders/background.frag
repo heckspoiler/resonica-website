@@ -4,8 +4,9 @@ varying vec2 vUv;
 // Uniforms
 uniform sampler2D u_texture;
 uniform vec2 u_mouse;
+uniform float u_aspect;
 uniform float u_gravityStrength; // Strength of the gravitational effect
-uniform float u_time; 
+uniform float u_time;
 
 // Function to calculate brightness
 float brightness(vec3 color) {
@@ -34,9 +35,10 @@ void main() {
   // Sample the base texture color
   vec4 baseColor = texture2D(u_texture, vUv);
 
-  // Calculate the distance from the mouse to the current fragment
+  // Vector from the mouse to the current fragment; the distance is
+  // aspect-corrected so the falloff is a circle on screen, not an ellipse
   vec2 pixelToMouse = vUv - u_mouse;
-  float distance = length(pixelToMouse);
+  float dist = length(pixelToMouse * vec2(u_aspect, 1.0));
 
   // Calculate the brightness of the base color
   float colorBrightness = brightness(baseColor.rgb);
@@ -45,11 +47,11 @@ void main() {
   float gravityEffect = smoothstep(0.8, 0.4, colorBrightness);
 
   // Create a more subtle and slower time-based wobble effect
-  float timeWobble = sin(u_time / 10.0 + distance * 0.1) * 0.005; // Reduced amplitude and slower frequency
+  float timeWobble = sin(u_time / 10.0 + dist * 0.1) * 0.005; // Reduced amplitude and slower frequency
   gravityEffect += timeWobble * 0.5; // Reduced influence of the wobble effect
 
   // Reduce the UV offset intensity for a more refined and subtle distortion
-  vec2 uvOffset = pixelToMouse * gravityEffect * -0.4 * u_gravityStrength / (distance + 0.1);
+  vec2 uvOffset = pixelToMouse * gravityEffect * -0.4 * u_gravityStrength / (dist + 0.1);
 
   // Add very subtle noise to the UV offset
   uvOffset += vec2(smoothNoise(vUv * 10.0 + u_time), smoothNoise(vUv * 10.0 - u_time)) * 0.02; // Reduced noise contribution

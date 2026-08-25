@@ -11,7 +11,7 @@ import {
   Vector2,
   Mesh,
   Texture,
-  Vector3,
+  Clock,
 } from 'three';
 
 import fragment from './shaders/background.frag';
@@ -21,27 +21,111 @@ import vertex from './shaders/background.vert';
 import backgroundDesktop from '../../../../public/blurry2.png';
 import backgroundMobile from '../../../../public/background-mobile.png';
 
+const MOBILE_BREAKPOINT = 1020;
+// Smoothing applied to the mouse position, expressed per 60fps-frame and
+// converted with delta time below so the feel is identical on any refresh rate
+const EASE_FACTOR = 0.1;
+
 export default function BackgroundCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
-  const [background, setBackground] = useState<string>(backgroundMobile.src);
+  const materialRef = useRef<ShaderMaterial | null>(null);
+  const [background, setBackground] = useState<string | null>(null);
 
-  // Mouse and position variables
-  const easeFactor = useRef<number>(0.1);
-  const mousePosition = useRef<{ x: number; y: number }>({ x: 0.5, y: 0.5 });
-  const targetMousePosition = useRef<{ x: number; y: number }>({
-    x: 0.5,
-    y: 0.5,
-  });
-  const prevPosition = useRef<{ x: number; y: number }>({ x: 0.5, y: 0.5 });
-
+  // Scene setup — runs once; texture swaps happen without rebuilding the context
   useEffect(() => {
-    // Update background based on screen size
+    const mount = mountRef.current;
+    if (!mount) return;
+
+    const scene = new Scene();
+
+    // Fullscreen quad: the camera frustum is fixed at -1..1 and aspect is
+    // handled in the shader, so resizing never leaves gaps around the plane
+    const camera = new OrthographicCamera(-1, 1, 1, -1, 0.1, 1000);
+    camera.position.z = 1;
+
+    const shaderUniforms = {
+      u_texture: { value: null as Texture | null },
+      u_mouse: { value: new Vector2(0.5, 0.5) },
+      u_aspect: { value: window.innerWidth / window.innerHeight },
+      u_gravityStrength: { value: 1.8 },
+      u_time: { value: 0.0 },
+    };
+
+    const planeGeometry = new PlaneGeometry(2, 2);
+    const planeMaterial = new ShaderMaterial({
+      vertexShader: vertex,
+      fragmentShader: fragment,
+      uniforms: shaderUniforms,
+    });
+    materialRef.current = planeMaterial;
+
+    const planeMesh = new Mesh(planeGeometry, planeMaterial);
+    scene.add(planeMesh);
+
+    // Antialiasing is off: a fullscreen textured quad has no geometry edges
+    // for MSAA to smooth, so it would only cost fill rate
+    const renderer = new WebGLRenderer({ antialias: false });
+    renderer.setClearColor(0xffffff, 1);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap device pixel ratio to improve performance
+    mount.appendChild(renderer.domElement);
+
+    // Listen on window: the canvas sits behind the page content, so events on
+    // the mount div itself never fire while the cursor is over content
+    const mousePosition = new Vector2(0.5, 0.5);
+    const targetMousePosition = new Vector2(0.5, 0.5);
+    const handleMouseMove = (event: MouseEvent) => {
+      targetMousePosition.set(
+        event.clientX / window.innerWidth,
+        event.clientY / window.innerHeight
+      );
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Animation loop
+    const clock = new Clock();
+    renderer.setAnimationLoop(() => {
+      // Clamp delta so a backgrounded tab doesn't jump on return
+      const delta = Math.min(clock.getDelta(), 0.1);
+
+      // Frame-rate independent easing, equivalent to the 60fps EASE_FACTOR
+      const ease = 1 - Math.pow(1 - EASE_FACTOR, delta * 60);
+      mousePosition.lerp(targetMousePosition, ease);
+
+      shaderUniforms.u_time.value += delta * 0.6; // 0.01 per frame at 60fps
+      shaderUniforms.u_mouse.value.set(mousePosition.x, 1.0 - mousePosition.y);
+
+      renderer.render(scene, camera);
+    });
+
+    const onWindowResize = () => {
+      shaderUniforms.u_aspect.value = window.innerWidth / window.innerHeight;
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', onWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', onWindowResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+
+      renderer.setAnimationLoop(null);
+      shaderUniforms.u_texture.value?.dispose();
+      planeGeometry.dispose();
+      planeMaterial.dispose();
+      renderer.dispose();
+      materialRef.current = null;
+      mount.removeChild(renderer.domElement);
+    };
+  }, []);
+
+  // Pick the image variant for the viewport
+  useEffect(() => {
     const updateBackground = () => {
-      if (window.innerWidth < 1020) {
-        setBackground(backgroundMobile.src);
-      } else {
-        setBackground(backgroundDesktop.src);
-      }
+      setBackground(
+        window.innerWidth < MOBILE_BREAKPOINT
+          ? backgroundMobile.src
+          : backgroundDesktop.src
+      );
     };
 
     updateBackground();
@@ -52,119 +136,26 @@ export default function BackgroundCanvas() {
     };
   }, []);
 
+  // Load the texture and swap it into the running material
   useEffect(() => {
-    // Scene setup
-    const scene = new Scene();
+    if (!background) return;
 
-    // Orthographic camera setup
-    const aspectRatio = window.innerWidth / window.innerHeight;
-    const camera = new OrthographicCamera(
-      -aspectRatio,
-      aspectRatio,
-      1,
-      -1,
-      0.1,
-      1000
-    );
-    camera.position.z = 1; // Position the camera close to the plane
-
-    // Texture and Shader Material setup
-    const loader = new TextureLoader();
-    const texture: Texture = loader.load(background);
-    const shaderUniforms = {
-      u_texture: { value: texture },
-      u_mouse: { value: new Vector2(0.5, 0.5) },
-      u_prevMouse: { value: new Vector2(0.5, 0.5) },
-      u_hoverColor: { value: new Vector3(1.0, 0.0, 0.0) },
-      u_gravityStrength: { value: 1.8 },
-      u_time: { value: 0.0 },
-    };
-
-    const planeGeometry = new PlaneGeometry(2 * aspectRatio, 2);
-    const planeMaterial = new ShaderMaterial({
-      vertexShader: vertex,
-      fragmentShader: fragment,
-      uniforms: shaderUniforms,
+    let cancelled = false;
+    new TextureLoader().load(background, (texture) => {
+      const material = materialRef.current;
+      if (cancelled || !material) {
+        texture.dispose();
+        return;
+      }
+      const previous = material.uniforms.u_texture.value as Texture | null;
+      material.uniforms.u_texture.value = texture;
+      previous?.dispose();
     });
 
-    // Plane mesh
-    const planeMesh = new Mesh(planeGeometry, planeMaterial);
-    scene.add(planeMesh);
-
-    // Renderer setup
-    const renderer = new WebGLRenderer({ antialias: true });
-    renderer.setClearColor(0xffffff, 1);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap device pixel ratio to improve performance
-
-    if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement);
-    }
-
-    // Mouse event listeners
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = mountRef.current?.getBoundingClientRect();
-      if (!rect) return;
-
-      prevPosition.current = { ...targetMousePosition.current };
-      targetMousePosition.current.x = (event.clientX - rect.left) / rect.width;
-      targetMousePosition.current.y = (event.clientY - rect.top) / rect.height;
-    };
-
-    mountRef.current?.addEventListener('mousemove', handleMouseMove);
-
-    // Animation loop
-    const animateScene = () => {
-      requestAnimationFrame(animateScene);
-
-      // Smooth animation updates
-      mousePosition.current.x +=
-        (targetMousePosition.current.x - mousePosition.current.x) *
-        easeFactor.current;
-      mousePosition.current.y +=
-        (targetMousePosition.current.y - mousePosition.current.y) *
-        easeFactor.current;
-
-      // Update uniforms
-      shaderUniforms.u_time.value += 0.01; // Control time increments for smoother animation
-      planeMaterial.uniforms.u_mouse.value.set(
-        mousePosition.current.x,
-        1.0 - mousePosition.current.y
-      );
-      planeMaterial.uniforms.u_prevMouse.value.set(
-        prevPosition.current.x,
-        1.0 - prevPosition.current.y
-      );
-
-      renderer.render(scene, camera);
-    };
-
-    // Resize handling for Three.js
-    const onWindowResize = () => {
-      const newAspectRatio = window.innerWidth / window.innerHeight;
-      camera.left = -newAspectRatio;
-      camera.right = newAspectRatio;
-      camera.top = 1;
-      camera.bottom = -1;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener('resize', onWindowResize);
-
-    animateScene();
-
     return () => {
-      window.removeEventListener('resize', onWindowResize);
-      mountRef.current?.removeEventListener('mousemove', handleMouseMove);
-
-      renderer.dispose();
-      if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
-      }
+      cancelled = true;
     };
-  }, [background]); // Re-run effect when background changes
+  }, [background]);
 
   return <div ref={mountRef} style={{ width: '100vw', height: '100vh' }} />;
 }
