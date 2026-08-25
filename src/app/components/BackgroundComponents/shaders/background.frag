@@ -56,18 +56,18 @@ void main() {
   float speedBoost = 1.0 + min(u_speed * 0.5, 1.0);
 
   // Reduce the UV offset intensity for a more refined and subtle distortion
-  vec2 uvOffset = pixelToMouse * gravityEffect * -0.4 * u_gravityStrength * speedBoost / (dist + 0.1);
+  vec2 gravityOffset = pixelToMouse * gravityEffect * -0.4 * u_gravityStrength * speedBoost / (dist + 0.1);
 
   // Add very subtle noise to the UV offset
-  uvOffset += vec2(smoothNoise(vUv * 10.0 + u_time), smoothNoise(vUv * 10.0 - u_time)) * 0.02; // Reduced noise contribution
+  vec2 uvOffset = gravityOffset + vec2(smoothNoise(vUv * 10.0 + u_time), smoothNoise(vUv * 10.0 - u_time)) * 0.02; // Reduced noise contribution
 
-  // Chromatic aberration: each channel samples a slightly different multiple
-  // of the same offset, giving a prismatic fringe that scales with the
-  // distortion strength (and so also with cursor speed); where the offset is
-  // zero all three samples coincide and the image is untouched
-  float r = texture2D(u_texture, vUv - uvOffset * 1.05).r;
+  // Chromatic aberration: R and B sample with a shifted multiple of the
+  // mouse-driven offset only (the noise grain stays colorless), giving a
+  // prismatic fringe that scales with the pull strength and cursor speed;
+  // where the pull is zero the samples coincide and the image is untouched
+  float r = texture2D(u_texture, vUv - uvOffset - gravityOffset * 0.2).r;
   vec4 base = texture2D(u_texture, vUv - uvOffset);
-  float b = texture2D(u_texture, vUv - uvOffset * 0.95).b;
+  float b = texture2D(u_texture, vUv - uvOffset + gravityOffset * 0.2).b;
 
   gl_FragColor = vec4(r, base.g, b, base.a);
 }
