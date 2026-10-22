@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Arrow from '@/app/components/Arrow/Arrow';
 import RichText from '@/app/components/RichText/RichText';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { isFilled } from '@prismicio/client';
 
 type OverlayPageContentProps = {
   title: any;
@@ -30,13 +31,26 @@ export default function OverlayPageContent({
 }: OverlayPageContentProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // Skip empty repeatable entries: no link or icon → nothing rendered.
+  const filledSocials = (socials ?? []).filter(
+    (item: any) =>
+      isFilled.link(item.social_link) &&
+      item.social_link.url &&
+      isFilled.image(item.social_icon)
+  );
+  const filledLinks = (links ?? []).filter(
+    (item: any) => isFilled.link(item.link) && item.link.url
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <div className={styles.infoContainer}>
           <div className={styles.titleContainer}>
             <PrismicRichText field={title} />
-            {subtitle && <PrismicRichText field={subtitle} />}
+            {isFilled.richText(subtitle) && (
+              <PrismicRichText field={subtitle} />
+            )}
           </div>
           <div className={styles.descriptionContainer}>
             {richDescription ? (
@@ -45,37 +59,43 @@ export default function OverlayPageContent({
               <PrismicRichText field={description} />
             )}
           </div>
-          <div className={styles.socialsContainer}>
-            {socials.map((item: any, index: number) => (
-              <div className={styles.socialContainer} key={index}>
-                <Link href={item.social_link.url} target="_blank">
-                  <PrismicNextImage field={item.social_icon} />
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className={styles.pressContainer}>
-            {links.map((item: any, index: number) => (
-              <div
-                className={styles.presslinkContainer}
-                key={index}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <PrismicNextLink field={item.link} />
-                <Link href={item.link.url}>
-                  <Arrow
-                    fill={hoveredIndex === index ? 'white' : 'var(--black)'}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
+          {filledSocials.length > 0 && (
+            <div className={styles.socialsContainer}>
+              {filledSocials.map((item: any, index: number) => (
+                <div className={styles.socialContainer} key={index}>
+                  <Link href={item.social_link.url} target="_blank">
+                    <PrismicNextImage field={item.social_icon} />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
+          {filledLinks.length > 0 && (
+            <div className={styles.pressContainer}>
+              {filledLinks.map((item: any, index: number) => (
+                <div
+                  className={styles.presslinkContainer}
+                  key={index}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <PrismicNextLink field={item.link} />
+                  <Link href={item.link.url}>
+                    <Arrow
+                      fill={hoveredIndex === index ? 'white' : 'var(--black)'}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className={styles.imageContainer}>
-          <PrismicNextImage field={image} />{' '}
-        </div>
+        {isFilled.image(image) && (
+          <div className={styles.imageContainer}>
+            <PrismicNextImage field={image} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './Navigation.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { isFilled } from '@prismicio/client';
 import SocialBar from './SocialBar/SocialBar';
 import DateDropdown from './DateDropdown/DateDropdown';
 import ReleaseDropdown from './ReleaseDropdown/ReleaseDropdown';
@@ -153,13 +154,15 @@ export default function NavigationContent({
           <div className={styles.linkContainer}>
             <SocialBar socialBarItems={socialBarItems} />
           </div>
-          <div
-            className={`${styles.linkContainer} ${styles.studioContainer} ${
-              activeLink === 'studio' ? styles.active : ''
-            }`}
-          >
-            <PrismicNextLink field={settings.data.navigation[6]?.link} />
-          </div>
+          {isFilled.link(settings.data.navigation[6]?.link) && (
+            <div
+              className={`${styles.linkContainer} ${styles.studioContainer} ${
+                activeLink === 'studio' ? styles.active : ''
+              }`}
+            >
+              <PrismicNextLink field={settings.data.navigation[6].link} />
+            </div>
+          )}
           <div
             className={`${styles.overlay} ${
               isAnyDropdownVisible() ? styles.overlayVisible : ''
