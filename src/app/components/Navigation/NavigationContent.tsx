@@ -158,7 +158,7 @@ export default function NavigationContent({
               activeLink === 'studio' ? styles.active : ''
             }`}
           >
-            <Link href="/studio">Studio</Link>
+            <PrismicNextLink field={settings.data.navigation[6]?.link} />
           </div>
           <div
             className={`${styles.overlay} ${

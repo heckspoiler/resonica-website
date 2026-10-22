@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { createClient } from '@/prismicio';
 
-import styles from '../2m/page.module.css';
+import styles from './page.module.css';
 
 import OverlayPageContent from '../components/OverlayPageContent/OverlayPageContent';
 import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
