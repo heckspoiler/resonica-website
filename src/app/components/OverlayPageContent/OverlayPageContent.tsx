@@ -5,11 +5,15 @@ import styles from './OverlayPageContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
 import Arrow from '@/app/components/Arrow/Arrow';
+import RichText from '@/app/components/RichText/RichText';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 type OverlayPageContentProps = {
   title: any;
+  subtitle?: any;
   description: any;
+  /** Render the description with the shared RichText styles (lists, h5/h6, links). */
+  richDescription?: boolean;
   socials: any[];
   links: any[];
   image: any;
@@ -17,7 +21,9 @@ type OverlayPageContentProps = {
 
 export default function OverlayPageContent({
   title,
+  subtitle,
   description,
+  richDescription = false,
   socials,
   links,
   image,
@@ -30,9 +36,14 @@ export default function OverlayPageContent({
         <div className={styles.infoContainer}>
           <div className={styles.titleContainer}>
             <PrismicRichText field={title} />
+            {subtitle && <PrismicRichText field={subtitle} />}
           </div>
           <div className={styles.descriptionContainer}>
-            <PrismicRichText field={description} />
+            {richDescription ? (
+              <RichText field={description} />
+            ) : (
+              <PrismicRichText field={description} />
+            )}
           </div>
           <div className={styles.socialsContainer}>
             {socials.map((item: any, index: number) => (

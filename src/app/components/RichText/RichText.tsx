@@ -26,7 +26,7 @@ const components: JSXMapSerializer = {
 
 /**
  * Renders a description with the shared rich-text styles. Supports
- * paragraphs, h4/h5, bold, italic, lists and links.
+ * paragraphs, h4/h5/h6, bold, italic, lists and links.
  */
 export default function RichText({
   field,

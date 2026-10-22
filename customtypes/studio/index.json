@@ -24,11 +24,19 @@
         },
         "type": "StructuredText"
       },
+      "subtitle": {
+        "config": {
+          "label": "Subtitle",
+          "placeholder": "Subtitle",
+          "single": "heading3"
+        },
+        "type": "StructuredText"
+      },
       "studio_description": {
         "config": {
           "allowTargetBlank": true,
           "label": "Studio Description",
-          "multi": "paragraph,strong,em,hyperlink"
+          "multi": "paragraph,strong,em,hyperlink,list-item,heading5,heading6"
         },
         "type": "StructuredText"
       },

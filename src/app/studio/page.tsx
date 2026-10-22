@@ -17,7 +17,9 @@ export default async function Page() {
     <section className={styles.main}>
       <OverlayPageContent
         title={data.page_title}
+        subtitle={data.subtitle}
         description={data.studio_description}
+        richDescription
         socials={data.studio_socials}
         links={data.studio_links}
         image={data.hero_image}

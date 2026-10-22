@@ -1114,6 +1114,17 @@ interface StudioDocumentData {
 	page_title: prismic.RichTextField;
 	
 	/**
+	 * Subtitle field in *Studio*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Subtitle
+	 * - **API ID Path**: studio.subtitle
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subtitle: prismic.RichTextField;
+	
+	/**
 	 * Studio Description field in *Studio*
 	 *
 	 * - **Field Type**: Rich Text
