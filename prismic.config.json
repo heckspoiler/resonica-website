@@ -1,0 +1,7 @@
+{
+  "repositoryName": "resonica-website",
+  "libraries": [
+    "./src/slices"
+  ],
+  "routes": []
+}

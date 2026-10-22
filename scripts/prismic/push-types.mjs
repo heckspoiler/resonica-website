@@ -9,7 +9,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import sm from '../../slicemachine.config.json' with { type: 'json' };
+import config from '../../prismic.config.json' with { type: 'json' };
 
 const TYPES = ['date', 'release'];
 const API = 'https://customtypes.prismic.io';
@@ -22,7 +22,7 @@ if (!token) {
 }
 
 const headers = {
-  repository: sm.repositoryName,
+  repository: config.repositoryName,
   Authorization: `Bearer ${token}`,
   'Content-Type': 'application/json',
 };
