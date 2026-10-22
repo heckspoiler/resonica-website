@@ -299,3 +299,9 @@
         transform: translateY(-50%);
     }
 }
+/* Studio: bottom middle, opposite the logo */
+.studioContainer {
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+}

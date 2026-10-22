@@ -1034,7 +1034,162 @@ interface SocialBarDocumentData {
  */
 export type SocialBarDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SocialBarDocumentData>, "social_bar", Lang>;
 
-export type AllDocumentTypes = _2mDocument | DateDocument | DatesDocument | MarqueeDocument | PageDocument | ReleaseDocument | ReleasesDocument | SettingsDocument | ShopElementDocument | SocialBarDocument;
+type StudioDocumentDataSlicesSlice = never
+
+/**
+ * Item in *Studio → Studio Socials*
+ */
+export interface StudioDocumentDataStudioSocialsItem {
+	/**
+	 * Social Icon field in *Studio → Studio Socials*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_socials[].social_icon
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	social_icon: prismic.ImageField<never>;
+	
+	/**
+	 * Social Link field in *Studio → Studio Socials*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_socials[].social_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	social_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Studio → Studio Links*
+ */
+export interface StudioDocumentDataStudioLinksItem {
+	/**
+	 * Link field in *Studio → Studio Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Studio documents
+ */
+interface StudioDocumentData {
+	/**
+	 * Slice Zone field in *Studio*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<StudioDocumentDataSlicesSlice>;
+	
+	/**
+	 * Hero Image field in *Studio*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.hero_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	hero_image: prismic.ImageField<never>;
+	
+	/**
+	 * Page Title field in *Studio*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Studio
+	 * - **API ID Path**: studio.page_title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	page_title: prismic.RichTextField;
+	
+	/**
+	 * Studio Description field in *Studio*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	studio_description: prismic.RichTextField;
+	
+	/**
+	 * Studio Socials field in *Studio*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_socials[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	studio_socials: prismic.GroupField<Simplify<StudioDocumentDataStudioSocialsItem>>;
+	
+	/**
+	 * Studio Links field in *Studio*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	studio_links: prismic.GroupField<Simplify<StudioDocumentDataStudioLinksItem>>;/**
+	 * Meta Title field in *Studio*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: studio.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Studio*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: studio.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Studio*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Studio document from Prismic
+ *
+ * - **API ID**: `studio`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StudioDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<StudioDocumentData>, "studio", Lang>;
+
+export type AllDocumentTypes = _2mDocument | DateDocument | DatesDocument | MarqueeDocument | PageDocument | ReleaseDocument | ReleasesDocument | SettingsDocument | ShopElementDocument | SocialBarDocument | StudioDocument;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -1122,6 +1277,11 @@ declare module "@prismicio/client" {
 			SocialBarDocument,
 			SocialBarDocumentData,
 			SocialBarDocumentDataSocialBarItem,
+			StudioDocument,
+			StudioDocumentData,
+			StudioDocumentDataSlicesSlice,
+			StudioDocumentDataStudioSocialsItem,
+			StudioDocumentDataStudioLinksItem,
 			AllDocumentTypes,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,

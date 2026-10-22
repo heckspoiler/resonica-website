@@ -42,6 +42,9 @@ export default function NavigationContent({
       case pathname.includes('2m'):
         setActiveLink('2m');
         break;
+      case pathname.includes('studio'):
+        setActiveLink('studio');
+        break;
       default:
         setActiveLink('');
     }
@@ -149,6 +152,13 @@ export default function NavigationContent({
           </div>
           <div className={styles.linkContainer}>
             <SocialBar socialBarItems={socialBarItems} />
+          </div>
+          <div
+            className={`${styles.linkContainer} ${styles.studioContainer} ${
+              activeLink === 'studio' ? styles.active : ''
+            }`}
+          >
+            <Link href="/studio">Studio</Link>
           </div>
           <div
             className={`${styles.overlay} ${

@@ -1,12 +1,10 @@
 import { Metadata } from 'next';
-import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
 
 import styles from './page.module.css';
 
-import PageContent from './2mPageContent/2mPageContent';
+import OverlayPageContent from '../components/OverlayPageContent/OverlayPageContent';
 import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
 
 export default async function Page() {
@@ -16,7 +14,13 @@ export default async function Page() {
 
   return (
     <section className={styles.main}>
-      <PageContent data={data} />
+      <OverlayPageContent
+        title={data.page_title}
+        description={data.zweim_description}
+        socials={data.zweim_socials}
+        links={data.zweim_links}
+        image={data.hero_image}
+      />
       <BackToHomeOverlay />
     </section>
   );

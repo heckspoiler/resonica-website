@@ -18,6 +18,7 @@ const routes: prismic.ClientConfig['routes'] = [
   { type: 'releases', path: '/releases', uid: 'releases' },
   { type: 'release', path: '/releases/:uid' },
   { type: '2m', path: '/2m' },
+  { type: 'studio', path: '/studio' },
 ];
 
 /**

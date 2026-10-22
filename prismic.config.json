@@ -3,5 +3,10 @@
   "libraries": [
     "./src/slices"
   ],
-  "routes": []
+  "routes": [
+    {
+      "type": "studio",
+      "path": "/studio"
+    }
+  ]
 }

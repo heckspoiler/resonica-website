@@ -1,13 +1,27 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './2mPageContent.module.css';
+import styles from './OverlayPageContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
 import Arrow from '@/app/components/Arrow/Arrow';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
-export default function PageContent({ data }: { data: any }) {
+type OverlayPageContentProps = {
+  title: any;
+  description: any;
+  socials: any[];
+  links: any[];
+  image: any;
+};
+
+export default function OverlayPageContent({
+  title,
+  description,
+  socials,
+  links,
+  image,
+}: OverlayPageContentProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -15,13 +29,13 @@ export default function PageContent({ data }: { data: any }) {
       <div className={styles.contentContainer}>
         <div className={styles.infoContainer}>
           <div className={styles.titleContainer}>
-            <PrismicRichText field={data.page_title} />
+            <PrismicRichText field={title} />
           </div>
           <div className={styles.descriptionContainer}>
-            <PrismicRichText field={data.zweim_description} />
+            <PrismicRichText field={description} />
           </div>
           <div className={styles.socialsContainer}>
-            {data.zweim_socials.map((item: any, index: number) => (
+            {socials.map((item: any, index: number) => (
               <div className={styles.socialContainer} key={index}>
                 <Link href={item.social_link.url} target="_blank">
                   <PrismicNextImage field={item.social_icon} />
@@ -30,7 +44,7 @@ export default function PageContent({ data }: { data: any }) {
             ))}
           </div>
           <div className={styles.pressContainer}>
-            {data.zweim_links.map((item: any, index: number) => (
+            {links.map((item: any, index: number) => (
               <div
                 className={styles.presslinkContainer}
                 key={index}
@@ -49,7 +63,7 @@ export default function PageContent({ data }: { data: any }) {
         </div>
 
         <div className={styles.imageContainer}>
-          <PrismicNextImage field={data.hero_image} />{' '}
+          <PrismicNextImage field={image} />{' '}
         </div>
       </div>
     </div>
