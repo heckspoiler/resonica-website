@@ -3,12 +3,6 @@
     overflow: hidden;
 }
 
-/* Extra content below the card (e.g. a gallery) → scroll inside the card. */
-.scrollable {
-    max-height: 90svh;
-    overflow-y: auto;
-}
-
 .contentContainer {
     display: flex;
     width: calc(30rem + 40vw);
@@ -370,5 +364,39 @@
         background-color: var(--red);
         color: white;
         width: fit-content
+    }
+}
+
+
+/* Desktop with extra content: info + extra share the left column, image spans
+   the right one, so the card keeps its usual size. */
+@media (min-width: 1121px) {
+    .withExtra {
+        display: grid;
+        grid-template-columns: 55% 45%;
+        grid-template-rows: minmax(0, 1fr) auto;
+    }
+
+    .withExtra .infoContainer {
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+        min-height: 0;
+        align-self: stretch;
+        justify-content: flex-start;
+        overflow-y: auto;
+        padding-bottom: 1.5rem;
+    }
+
+    .withExtra .imageContainer {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        width: 100%;
+    }
+
+    .withExtra .extraContainer {
+        grid-column: 1;
+        grid-row: 2;
+        min-width: 0;
     }
 }

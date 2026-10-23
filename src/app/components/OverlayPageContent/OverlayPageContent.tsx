@@ -20,7 +20,10 @@ type OverlayPageContentProps = {
   image: any;
   /** Link to Media field; when filled it replaces the image, which becomes the poster. */
   video?: any;
-  /** Extra content below the main card content (e.g. the video gallery). */
+  /**
+   * Extra content (e.g. the video gallery) inside the card's usual size:
+   * under the info column on desktop, at the very bottom on mobile/tablet.
+   */
   children?: React.ReactNode;
 };
 
@@ -49,10 +52,10 @@ export default function OverlayPageContent({
   );
 
   return (
-    <div
-      className={`${styles.container} ${children ? styles.scrollable : ''}`}
-    >
-      <div className={styles.contentContainer}>
+    <div className={styles.container}>
+      <div
+        className={`${styles.contentContainer} ${children ? styles.withExtra : ''}`}
+      >
         <div className={styles.infoContainer}>
           <div className={styles.titleContainer}>
             <PrismicRichText field={title} />
@@ -119,8 +122,8 @@ export default function OverlayPageContent({
             </div>
           )
         )}
+        {children && <div className={styles.extraContainer}>{children}</div>}
       </div>
-      {children}
     </div>
   );
 }
