@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import { Content, isFilled } from '@prismicio/client';
-import { PrismicNextImage } from '@prismicio/next';
-import styles from './VideoGallery.module.css';
+import React, { useEffect, useRef, useState } from "react";
+import { Content, isFilled } from "@prismicio/client";
+import { PrismicNextImage } from "@prismicio/next";
+import styles from "./VideoGallery.module.css";
 
 type VideoGalleryProps = {
   items: Content.StudioDocumentDataStudioVideosItem[];
@@ -14,12 +14,34 @@ const SWIPE_THRESHOLD = 60;
 export default function VideoGallery({ items }: VideoGalleryProps) {
   // Skip entries without an uploaded video.
   const videos = (items ?? []).filter((item) =>
-    isFilled.linkToMedia(item.video)
+    isFilled.linkToMedia(item.video),
   );
 
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const trackRef = useRef<HTMLUListElement>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [canScroll, setCanScroll] = useState({ prev: false, next: false });
+
+  // Show the carousel arrows only when there is more to scroll that way.
+  const updateCanScroll = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    setCanScroll({
+      prev: track.scrollLeft > 1,
+      next: track.scrollLeft < maxScroll - 1,
+    });
+  };
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    updateCanScroll();
+    const observer = new ResizeObserver(updateCanScroll);
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, [videos.length]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -34,14 +56,23 @@ export default function VideoGallery({ items }: VideoGalleryProps) {
     setOpenIndex((index) =>
       index === null
         ? index
-        : (index + direction + videos.length) % videos.length
+        : (index + direction + videos.length) % videos.length,
     );
+
+  const scrollTrack = (direction: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollBy({
+      left: direction * track.clientWidth * 0.75,
+      behavior: "smooth",
+    });
+  };
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     // A focused player uses the arrow keys to seek.
     if (event.target instanceof HTMLVideoElement) return;
-    if (event.key === 'ArrowRight') step(1);
-    if (event.key === 'ArrowLeft') step(-1);
+    if (event.key === "ArrowRight") step(1);
+    if (event.key === "ArrowLeft") step(-1);
   };
 
   const onTouchStart = (event: React.TouchEvent) => {
@@ -63,42 +94,60 @@ export default function VideoGallery({ items }: VideoGalleryProps) {
 
   const current = openIndex === null ? null : videos[openIndex];
   const currentUrl =
-    current && isFilled.linkToMedia(current.video) ? current.video.url : '';
+    current && isFilled.linkToMedia(current.video) ? current.video.url : "";
 
   return (
     <div className={styles.gallery}>
-      <ul className={styles.grid}>
-        {videos.map((item, index) => (
-          <li key={index}>
-            <button
-              type="button"
-              className={styles.thumb}
-              onClick={() => setOpenIndex(index)}
-              aria-label={`Play ${item.title || `video ${index + 1}`}`}
-            >
-              <span className={styles.preview}>
-                {isFilled.image(item.preview) ? (
-                  <PrismicNextImage field={item.preview} alt="" />
-                ) : (
-                  // No preview image: show a frame of the video itself.
-                  <video
-                    src={`${isFilled.linkToMedia(item.video) ? item.video.url : ''}#t=0.1`}
-                    preload="metadata"
-                    muted
-                    playsInline
-                    tabIndex={-1}
-                    aria-hidden="true"
-                  />
+      <div className={styles.carousel}>
+        {canScroll.prev && (
+          <button
+            type="button"
+            className={`${styles.carouselArrow} ${styles.carouselPrev}`}
+            onClick={() => scrollTrack(-1)}
+            aria-label="Previous videos"
+          />
+        )}
+        <ul className={styles.track} ref={trackRef} onScroll={updateCanScroll}>
+          {videos.map((item, index) => (
+            <li key={index}>
+              <button
+                type="button"
+                className={styles.thumb}
+                onClick={() => setOpenIndex(index)}
+                aria-label={`Play ${item.title || `video ${index + 1}`}`}
+              >
+                <span className={styles.preview}>
+                  {isFilled.image(item.preview) ? (
+                    <PrismicNextImage field={item.preview} alt="" />
+                  ) : (
+                    // No preview image: show a frame of the video itself.
+                    <video
+                      src={`${isFilled.linkToMedia(item.video) ? item.video.url : ""}#t=0.1`}
+                      preload="metadata"
+                      muted
+                      playsInline
+                      tabIndex={-1}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className={styles.playIcon} aria-hidden="true" />
+                </span>
+                {item.title && (
+                  <span className={styles.thumbTitle}>{item.title}</span>
                 )}
-                <span className={styles.playIcon} aria-hidden="true" />
-              </span>
-              {item.title && (
-                <span className={styles.thumbTitle}>{item.title}</span>
-              )}
-            </button>
-          </li>
-        ))}
-      </ul>
+              </button>
+            </li>
+          ))}
+        </ul>
+        {canScroll.next && (
+          <button
+            type="button"
+            className={`${styles.carouselArrow} ${styles.carouselNext}`}
+            onClick={() => scrollTrack(1)}
+            aria-label="More videos"
+          />
+        )}
+      </div>
 
       <dialog
         ref={dialogRef}
