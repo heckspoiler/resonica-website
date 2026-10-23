@@ -1,4 +1,7 @@
 .container {
+    /* body size shared with the date / release cards (see RichText.module.css) */
+    --t-body: 0.8rem;
+
     background-color: var(--background-grey);
     overflow: hidden;
 }
@@ -22,7 +25,7 @@
 .imageContainer img,
 .imageContainer video {
     height: 100%;
-    width: auto;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -63,9 +66,7 @@
 }
 
 
-.descriptionContainer p {
-    font-size: calc(0.5vh + 7px);
-    hyphens: auto;
+.descriptionContainer {
     width: 90%;
 }
 
@@ -120,6 +121,8 @@
 @media (max-width: 768px) {
 
     .container {
+        --t-body: 0.75rem;
+
         background-color: var(--background-grey);
         overflow-y: scroll;
         width: 75svw;
@@ -195,9 +198,7 @@
         font-size: 0.5rem;
     }
 
-    .descriptionContainer p {
-        font-size: 0.5rem;
-        hyphens: auto;
+    .descriptionContainer {
         width: 100%;
     }
 
@@ -317,9 +318,7 @@
     }
 
 
-    .descriptionContainer p {
-        font-size: 0.7rem;
-        hyphens: auto;
+    .descriptionContainer {
         width: 90%;
     }
 

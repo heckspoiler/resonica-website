@@ -13,8 +13,6 @@ type OverlayPageContentProps = {
   title: any;
   subtitle?: any;
   description: any;
-  /** Render the description with the shared RichText styles (lists, h5/h6, links). */
-  richDescription?: boolean;
   socials: any[];
   links: any[];
   image: any;
@@ -31,7 +29,6 @@ export default function OverlayPageContent({
   title,
   subtitle,
   description,
-  richDescription = false,
   socials,
   links,
   image,
@@ -64,11 +61,7 @@ export default function OverlayPageContent({
             )}
           </div>
           <div className={styles.descriptionContainer}>
-            {richDescription ? (
-              <RichText field={description} />
-            ) : (
-              <PrismicRichText field={description} />
-            )}
+            <RichText field={description} />
           </div>
           {filledSocials.length > 0 && (
             <div className={styles.socialsContainer}>
