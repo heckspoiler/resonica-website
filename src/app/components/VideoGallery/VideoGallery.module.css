@@ -1,5 +1,5 @@
 .gallery {
-    padding: 0 2.5rem 2.5rem;
+    padding: 0 1.25rem 2.5rem 2.5rem;
     container-type: inline-size;
     /* Thumbnails per view; the .5 leaves the next one half visible. */
     --visible: 4.5;
