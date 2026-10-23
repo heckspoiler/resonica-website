@@ -2,10 +2,9 @@
     display: none;
     pointer-events: none;
     flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 0.5rem;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
     align-items: flex-end;
-
 }
 
 .isHovered {
@@ -15,7 +14,6 @@
 
 .item {
     width: 100%;
-
 }
 
 .item a {
@@ -23,157 +21,83 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    font-size: var(--fs-small);
 }
 
 .item:hover a {
-    background-color: var(--red);
+    background-color: var(--color-accent);
 }
 
 .item span {
-    color: white;
+    color: var(--color-white);
 }
 
-
 .typeContainer {
-    padding-right: 1rem;
+    padding-right: var(--space-4);
 }
 
 .typeContainer p {
-    color: var(--red);
-    font-size: 0.8rem;
+    color: var(--color-accent);
+    font-size: var(--fs-small);
 }
 
 .item:hover .typeContainer p {
-    color: white;
+    color: var(--color-white);
 }
-
-.dateContainer {}
 
 .leftContainer {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-2);
     min-width: fit-content;
 }
 
 .dateContainer h3 {
-    color: white;
+    color: var(--color-white);
+    font-size: var(--fs-small);
 }
 
 .titleContainer h2 {
-    font-size: 12px;
-    color: white;
+    font-size: var(--fs-small);
+    color: var(--color-white);
 }
 
 .seeMore {
-    padding-top: 0.5rem;
+    padding-top: var(--space-2);
     align-self: flex-end;
-    padding-left: 3rem;
+    padding-left: var(--space-9);
 }
 
 .seeMore a {
-    font-size: 0.7rem;
-    font-family: var(--regular-font);
-    color: white;
+    font-size: var(--fs-small);
+    font-family: var(--font-ui);
+    color: var(--color-white);
     display: flex;
     width: fit-content;
-    gap: 1rem;
+    gap: var(--space-4);
     align-items: center;
 }
 
 .seeMore:hover a {
-    background-color: var(--red);
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-white);
 }
-
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {}
-
-
 
 /* Mobile */
 @media (max-width: 768px) {
-
     .itemsContainer {
-        flex-direction: column;
-        gap: 0.5rem;
-        padding-top: 1rem;
-    }
-
-
-    .item {
-        width: 100%;
-
-
+        padding-top: var(--space-4);
     }
 
     .item a {
-        display: flex;
-        flex-direction: row;
-        align-items: left;
-        gap: 3rem;
-        font-size: 12px;
-        width: 100%;
-        justify-content: space-between;
-
+        gap: var(--space-9);
     }
 
     .item:hover {
-        background-color: var(--red);
+        background-color: var(--color-accent);
     }
-
-    .item span {
-        color: white;
-    }
-
 
     .typeContainer {
         width: 2.5rem;
     }
-
-    .typeContainer p {
-        color: var(--red);
-    }
-
-    .item:hover .typeContainer p {
-        color: white;
-    }
-
-    .dateContainer {}
-
-    .leftContainer {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .dateContainer h3 {
-        color: white;
-    }
-
-    .titleContainer h2 {
-        font-size: 10px;
-        color: white;
-    }
-
-    .seeMore {
-        margin-left: 0rem;
-        padding-top: 0.5rem;
-    }
-
-    .seeMore a {
-        font-size: 0.7rem;
-        font-family: var(--regular-font);
-        color: white;
-    }
-
-    .seeMore:hover a {
-        background-color: var(--red);
-        color: white;
-    }
-
 }
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {}

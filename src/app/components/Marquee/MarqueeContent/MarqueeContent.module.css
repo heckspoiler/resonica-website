@@ -1,6 +1,6 @@
 .marquee {
     position: fixed;
-    top: calc(7vh + 2rem);
+    top: calc(7vh + var(--space-7));
     width: 100svw;
     opacity: 1;
     transition: opacity 0.4s linear;
@@ -8,13 +8,12 @@
 }
 
 .marqueeContent {
-    background-color: var(--red);
-    padding: 0.25rem 0;
+    background-color: var(--color-accent);
+    padding: var(--space-1) 0;
     height: fit-content;
     transform: translateY(110%);
-    transition: transform 0.3s linear;
+    transition: transform var(--duration-base) linear;
 }
-
 
 .marqueeVisible .marqueeContent {
     opacity: 1;
@@ -23,12 +22,10 @@
 
 .marqueeElement {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--space-6);
     align-items: center;
-    padding: 0 calc(2rem + 4vw);
+    padding: 0 calc(var(--space-7) + 4vw);
 }
-
-
 
 .imageContainer img {
     height: 0.8rem;
@@ -36,7 +33,7 @@
 }
 
 .marqueeElement p {
-    font-size: 0.7rem;
-    color: white;
-    font-family: var(--title-font)
+    font-size: var(--fs-small);
+    color: var(--color-white);
+    font-family: var(--font-display);
 }

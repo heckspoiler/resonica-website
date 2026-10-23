@@ -5,6 +5,7 @@ import Navigation from './components/Navigation/Navigation';
 
 import Script from 'next/script';
 
+import './styles/tokens.css';
 import './globals.css';
 
 import Background from './components/Background';

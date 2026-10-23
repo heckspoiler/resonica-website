@@ -1,20 +1,14 @@
 /* Shared typographic roles for the date / release cards – both the list
    previews and the detail (uid) pages – so the hierarchy is identical
-   everywhere and only the scale changes.
-
-   Each card root sets the size tokens:
-     --t-title   headline
-     --t-meta    date / time / release date row
-     --t-body    description (see RichText.module.css)
-     --t-label   kicker, section labels, meta labels
-     --t-link    ticket / buy / act links
-*/
+   everywhere. Sizes come from the global scale in styles/tokens.css; a
+   card can set --t-title to pick a different headline step (the list
+   cards use --fs-heading). */
 
 /* 1. Headline */
 .title {
-    font-family: var(--title-font);
-    font-size: var(--t-title, 1.5rem);
-    line-height: 1.05;
+    font-family: var(--font-display);
+    font-size: var(--t-title, var(--fs-title));
+    line-height: var(--lh-tight);
     text-transform: uppercase;
     text-wrap: balance;
     margin: 0;
@@ -24,10 +18,10 @@
       "Listen & buy") and meta labels ("Release date"). Same face as the
       title, same size as the text it labels. */
 .label {
-    font-family: var(--title-font);
-    font-size: var(--t-label, 0.75rem);
+    font-family: var(--font-display);
+    font-size: var(--fs-small);
     letter-spacing: 0.02em;
-    line-height: 1.2;
+    line-height: var(--lh-snug);
     text-transform: uppercase;
     margin: 0;
 }
@@ -38,9 +32,9 @@
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.3em 0.75em;
-    font-family: var(--regular-font);
-    font-size: var(--t-meta, 0.75rem);
-    line-height: 1.3;
+    font-family: var(--font-ui);
+    font-size: var(--fs-small);
+    line-height: var(--lh-snug);
     text-transform: uppercase;
     margin: 0;
 }
@@ -50,15 +44,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.2rem;
+    gap: var(--space-1);
 }
 
 .muted {
-    font-family: var(--thin-font);
+    font-family: var(--font-thin);
 }
 
 .sep {
-    font-family: var(--thin-font);
+    font-family: var(--font-thin);
     flex: none;
 }
 
@@ -71,7 +65,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.45rem;
+    gap: var(--space-2);
 }
 
 /* Label + content */
@@ -79,7 +73,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.55rem;
+    gap: var(--space-2);
 }
 
 /* 4. Link with trailing arrow – ticket link, buy links, act links.
@@ -90,14 +84,14 @@
     align-items: center;
     gap: 0.6em;
     width: fit-content;
-    font-family: var(--regular-font);
-    font-size: var(--t-link, 0.75rem);
-    line-height: 1.2;
+    font-family: var(--font-ui);
+    font-size: var(--fs-small);
+    line-height: var(--lh-snug);
     text-transform: uppercase;
-    color: var(--black);
+    color: var(--color-ink);
     padding: 0.15em 0.4em;
     margin: -0.15em -0.4em;
-    transition: background-color 0.12s linear, color 0.12s linear;
+    transition: background-color var(--duration-fast) linear, color var(--duration-fast) linear;
 }
 
 .link svg {
@@ -109,8 +103,8 @@
 
 a.link:hover,
 a.link:focus-visible {
-    background-color: var(--red);
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-white);
     outline: none;
 }
 
@@ -118,7 +112,7 @@ a.link:focus-visible {
 .linkRow {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1.75rem;
+    gap: var(--space-2) var(--space-7);
 }
 
 /* Vertical list of links (line-up) */
@@ -126,7 +120,7 @@ a.link:focus-visible {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.4rem;
+    gap: var(--space-2);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -136,7 +130,7 @@ a.link:focus-visible {
 .tracklist {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: var(--space-1);
     width: 100%;
     max-width: 34rem;
     margin: 0;
@@ -149,14 +143,14 @@ a.link:focus-visible {
     grid-template-columns: 2.2em minmax(0, 1fr) auto;
     column-gap: 0.75em;
     align-items: baseline;
-    font-size: var(--t-meta, 0.75rem);
-    line-height: 1.35;
+    font-size: var(--fs-small);
+    line-height: var(--lh-snug);
     text-transform: uppercase;
 }
 
 .trackNo,
 .trackTime {
-    font-family: var(--thin-font);
+    font-family: var(--font-thin);
     font-variant-numeric: tabular-nums;
 }
 
@@ -165,17 +159,17 @@ a.link:focus-visible {
 }
 
 .trackArtist {
-    font-family: var(--regular-font);
+    font-family: var(--font-ui);
 }
 
 .trackName {
-    font-family: var(--regular-font);
-    color: var(--red);
+    font-family: var(--font-ui);
+    color: var(--color-accent);
 }
 
 /* "[MORE]" inline link in truncated previews */
 .more {
-    color: var(--red);
-    font-family: var(--regular-font);
+    color: var(--color-accent);
+    font-family: var(--font-ui);
     white-space: nowrap;
 }

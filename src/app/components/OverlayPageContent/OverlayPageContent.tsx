@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './OverlayPageContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
@@ -35,8 +33,6 @@ export default function OverlayPageContent({
   video,
   children,
 }: OverlayPageContentProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   // Skip empty repeatable entries: no link or icon → nothing rendered.
   const filledSocials = (socials ?? []).filter(
     (item: any) =>
@@ -77,17 +73,10 @@ export default function OverlayPageContent({
           {filledLinks.length > 0 && (
             <div className={styles.pressContainer}>
               {filledLinks.map((item: any, index: number) => (
-                <div
-                  className={styles.presslinkContainer}
-                  key={index}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                >
+                <div className={styles.presslinkContainer} key={index}>
                   <PrismicNextLink field={item.link} />
                   <Link href={item.link.url} target={item.link.target}>
-                    <Arrow
-                      fill={hoveredIndex === index ? 'white' : 'var(--black)'}
-                    />
+                    <Arrow />
                   </Link>
                 </div>
               ))}

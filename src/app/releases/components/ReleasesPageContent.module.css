@@ -6,8 +6,8 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 8rem 0 4rem 0;
+    gap: var(--space-7);
+    padding: var(--space-12) 0 var(--space-10) 0;
     scrollbar-width: none;
     pointer-events: none;
     max-width: 80vw;
@@ -17,40 +17,10 @@
     display: none;
 }
 
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {}
-
-
-
-/* Mobile */
-@media (max-width: 768px) {
-
+/* Mobile and tablet */
+@media (max-width: 1120px) {
     .container {
-        height: 100vh;
-        width: auto;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 2rem;
-        padding: 6rem 0 4rem 0;
-    }
-
-}
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {
-    .container {
-        height: 100vh;
-        width: auto;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding: 6rem 0 4rem 0;
+        padding: var(--space-11) 0 var(--space-10) 0;
     }
 }

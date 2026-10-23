@@ -1,42 +1,29 @@
 @font-face {
     font-family: "GT America Black";
-    src: url("../../public/fonts/GT-America-Expanded-Black.woff2");
-    fallback: url("../../public/fonts/GT-America-Expanded-Black.woff");
+    src: url("../../public/fonts/GT-America-Expanded-Black.woff2") format("woff2"),
+        url("../../public/fonts/GT-America-Expanded-Black.woff") format("woff");
 }
 
 @font-face {
     font-family: "GT America Regular";
-    src: url("../../public/fonts/GT-America-Expanded-Regular.woff2");
-    fallback: url("../../public/fonts/GT-America-Expanded-Regular.woff");
+    src: url("../../public/fonts/GT-America-Expanded-Regular.woff2") format("woff2"),
+        url("../../public/fonts/GT-America-Expanded-Regular.woff") format("woff");
 }
 
 @font-face {
     font-family: "GT America Text";
-    src: url("../../public/fonts/GT-America-Extended-Regular.otf");
-    fallback: url("../../public/fonts/GT-America-Expanded-Thin.woff");
+    src: url("../../public/fonts/GT-America-Extended-Regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: "GT America Thin";
-    src: url("../../public/fonts/GT-America-Expanded-Thin.woff");
-    fallback: url("../../public/fonts/GT-America-Expanded-Thin.woff2");
+    src: url("../../public/fonts/GT-America-Expanded-Thin.woff2") format("woff2"),
+        url("../../public/fonts/GT-America-Expanded-Thin.woff") format("woff");
 }
 
 :root {
-
-    --black: #2c2c2c;
-    --red: rgb(175, 203, 92);
-    --red-lowopa: rgba(175, 203, 92, 0.4);
-    --title-font: "GT America Black";
-    --regular-font: "GT America Regular";
-    --text-font: "GT America Text";
-    --thin-font: "GT America Thin";
-    --text-shadow-small: 0px 0px 15px rgba(238, 238, 238, 0.5);
-    --text-shadow-small-hover: 0px 0px 15px rgba(238, 238, 238, 0.4);
-    --background-grey: #ECECEC;
     font-size: 16px;
 }
-
 
 *,
 *::before,
@@ -45,11 +32,9 @@
 }
 
 *::selection {
-    color: white;
-    background-color: var(--red);
+    color: var(--color-white);
+    background-color: var(--color-accent);
 }
-
-
 
 * {
     margin: 0;
@@ -69,7 +54,7 @@ section * {
 }
 
 p {
-    font-family: var(--text-font);
+    font-family: var(--font-body);
 }
 
 a {
@@ -78,20 +63,19 @@ a {
 
 nav p,
 nav a {
-    font-family: var(--title-font);
+    font-family: var(--font-display);
     text-transform: uppercase;
-    color: white;
+    color: var(--color-white);
     pointer-events: all;
     cursor: pointer;
-    text-shadow: var(--text-shadow-small);
+    text-shadow: var(--shadow-text);
 }
 
 nav p:hover,
 nav a:hover {
-    color: var(--red);
-    text-shadow: var(--text-shadow-small-hover);
+    color: var(--color-accent);
+    text-shadow: var(--shadow-text-hover);
     cursor: pointer;
-
 }
 
 img,
@@ -121,12 +105,12 @@ h6 {
 
 h1,
 h2 {
-    font-family: var(--title-font);
+    font-family: var(--font-display);
 }
 
 h3 {
-    font-family: var(--text-font);
-    font-size: 0.8rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
 }
 
 p,
@@ -138,7 +122,7 @@ h5,
 h6,
 a {
     overflow-wrap: break-word;
-    color: var(--black);
+    color: var(--color-ink);
 }
 
 p {
@@ -154,21 +138,9 @@ h6 {
     text-wrap: balance;
 }
 
-
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {}
-
-
-
 /* Mobile */
 @media (max-width: 768px) {
-
     :root {
         font-size: 14px;
     }
-
 }
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {}

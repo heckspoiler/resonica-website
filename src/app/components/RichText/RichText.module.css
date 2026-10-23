@@ -1,14 +1,14 @@
-/* Shared rich-text body styles for the date / release cards.
-   Sizes derive from --t-body, set on the card root. */
+/* Shared rich-text body styles for every description on the site.
+   Sizes derive from --fs-body (styles/tokens.css). */
 
 .rich {
-    font-family: var(--text-font);
+    font-family: var(--font-body);
     max-width: 64ch;
 }
 
 .rich p {
-    font-size: var(--t-body, 0.8rem);
-    line-height: 1.6;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     margin: 0 0 0.75em 0;
     hyphens: auto;
 }
@@ -24,27 +24,27 @@
 .rich h4,
 .rich h5,
 .rich h6 {
-    font-family: var(--regular-font);
+    font-family: var(--font-ui);
     margin: 1.4em 0 0.4em 0;
-    line-height: 1.3;
+    line-height: var(--lh-snug);
 }
 
 .rich h4 {
-    font-size: calc(var(--t-body, 0.8rem) * 1.1);
+    font-size: calc(var(--fs-body) * 1.1);
 }
 
 .rich h5 {
-    font-size: calc(var(--t-body, 0.8rem) * 0.9);
+    font-size: calc(var(--fs-body) * 0.9);
     letter-spacing: 0.08em;
 }
 
 .rich h6 {
-    font-size: calc(var(--t-body, 0.8rem) * 0.8);
+    font-size: calc(var(--fs-body) * 0.8);
     letter-spacing: 0.08em;
 }
 
 .rich strong {
-    font-family: var(--regular-font);
+    font-family: var(--font-ui);
     font-weight: normal;
 }
 
@@ -59,31 +59,31 @@
 }
 
 .rich li {
-    font-size: var(--t-body, 0.8rem);
-    line-height: 1.55;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     margin: 0.2em 0;
 }
 
 .rich li::marker {
-    color: var(--red);
+    color: var(--color-accent);
 }
 
 .rich ol li::marker {
-    font-family: var(--regular-font);
+    font-family: var(--font-ui);
     font-size: 0.85em;
 }
 
 .rich a {
-    color: var(--black);
-    font-family: var(--regular-font);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
     text-decoration: underline;
-    text-decoration-color: var(--red);
+    text-decoration-color: var(--color-accent);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
 }
 
 .rich a:hover {
-    background-color: var(--red);
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-white);
     text-decoration: none;
 }

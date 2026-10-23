@@ -1,0 +1,109 @@
+/* Design tokens – the single source for colour, type, spacing, radius,
+   layering and motion. Components only use these variables; raw values
+   belong here.
+
+   Breakpoints (media queries can't read variables, so they're written out
+   in every module – keep them identical):
+     mobile   (max-width: 768px)
+     tablet   (min-width: 769px) and (max-width: 1120px)
+     desktop  (min-width: 1121px) – the unprefixed default
+
+   Sizes are in rem; the root size drops from 16px to 14px on mobile, so
+   every rem value shrinks with it. The type roles below additionally step
+   down per breakpoint. */
+
+:root {
+    /* Colour */
+    --color-ink: #2c2c2c;
+    --color-ink-60: rgba(44, 44, 44, 0.6);
+    --color-ink-25: rgba(44, 44, 44, 0.25);
+    --color-accent: rgb(175, 203, 92);
+    --color-accent-soft: rgba(175, 203, 92, 0.4);
+    --color-surface: #ececec;
+    --color-white: #fff;
+    --color-black: #000;
+    --color-scrim: rgba(35, 35, 35, 0.4);
+    --color-backdrop: rgba(20, 20, 20, 0.94);
+    --color-glow: rgba(238, 238, 238, 0.5);
+    --color-glow-hover: rgba(238, 238, 238, 0.4);
+
+    /* Font families */
+    --font-display: "GT America Black";
+    --font-ui: "GT America Regular";
+    --font-body: "GT America Text";
+    --font-thin: "GT America Thin";
+
+    /* Font sizes – by role */
+    --fs-caption: 0.6rem;   /* thumbnail titles */
+    --fs-small: 0.75rem;    /* meta, labels, links, buttons, menu items */
+    --fs-body: 0.8rem;      /* running text */
+    --fs-nav: 1rem;         /* main navigation */
+    --fs-heading: 1.25rem;  /* card titles in lists */
+    --fs-title: 1.5rem;     /* page / detail titles */
+
+    /* Line heights */
+    --lh-tight: 1.05;
+    --lh-snug: 1.25;
+    --lh-body: 1.6;
+
+    /* Letter spacing */
+    --ls-wide: 0.05em;
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 2rem;
+    --space-8: 2.5rem;
+    --space-9: 3rem;
+    --space-10: 4rem;
+    --space-11: 6rem;
+    --space-12: 8rem;
+
+    /* Radius */
+    --radius-s: 10px;
+    --radius-l: 40px;
+    --radius-round: 50%;
+
+    /* Shadows */
+    --shadow-text: 0 0 15px var(--color-glow);
+    --shadow-text-hover: 0 0 15px var(--color-glow-hover);
+    --shadow-float: 0 0 10px var(--color-ink-25);
+
+    /* Layers */
+    --z-background: -2;
+    --z-home-link: -1;
+    --z-page: 1;
+    --z-nav: 10;
+    --z-nav-link: 11;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --duration-fast: 0.15s;
+    --duration-base: 0.3s;
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1120px) {
+    :root {
+        --fs-nav: 0.8rem;
+        --fs-heading: 1.1rem;
+        --fs-title: 1.4rem;
+        --radius-l: 24px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    :root {
+        --fs-small: 0.7rem;
+        --fs-body: 0.75rem;
+        --fs-nav: 0.8rem;
+        --fs-heading: 0.95rem;
+        --fs-title: 1.15rem;
+        --radius-l: 20px;
+    }
+}

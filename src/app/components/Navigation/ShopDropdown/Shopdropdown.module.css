@@ -2,5 +2,5 @@
     height: fit-content;
     width: fit-content;
     position: relative;
-    padding-bottom: 0.5rem;
+    padding-bottom: var(--space-2);
 }

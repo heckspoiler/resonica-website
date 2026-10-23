@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2rem;
+    gap: var(--space-7);
 }
 
 .socialsItem {
@@ -10,50 +10,35 @@
 }
 
 .socialsItem:hover img {
-    scale: 1.05
+    scale: 1.05;
 }
 
 .socialsItem a {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 .socialsItem a p {
-    font-family: var(--regular-font);
-    font-size: 0.8rem;
+    font-family: var(--font-ui);
+    font-size: var(--fs-small);
     visibility: visible;
     transform: translateY(200%);
-
 }
 
 .socialsItem:hover a p {
     transform: translateY(0%);
-
 }
 
 .socialsItem a p:hover {
-    background-color: var(--red);
-    color: white;
-
+    background-color: var(--color-accent);
+    color: var(--color-white);
 }
-
-
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {}
-
-
 
 /* Mobile */
 @media (max-width: 768px) {
-
     .socialsItem a p {
         display: none;
     }
-
 }
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {}

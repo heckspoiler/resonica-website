@@ -1,8 +1,5 @@
 .container {
-    /* body size shared with the date / release cards (see RichText.module.css) */
-    --t-body: 0.8rem;
-
-    background-color: var(--background-grey);
+    background-color: var(--color-surface);
     overflow: hidden;
 }
 
@@ -34,11 +31,10 @@
     align-self: flex-start;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 2.5rem;
-    padding-top: 2.5rem;
-    gap: 2rem;
+    padding-left: var(--space-8);
+    padding-top: var(--space-8);
+    gap: var(--space-7);
     width: 55%;
-
 }
 
 .titleContainer {
@@ -47,103 +43,108 @@
 }
 
 .titleContainer h2 {
-    font-size: 1.8rem;
+    font-size: var(--fs-title);
 }
 
 .titleContainer h3 {
-    font-family: var(--regular-font);
-    font-size: 0.9rem;
+    font-family: var(--font-ui);
+    font-size: var(--fs-body);
 }
-
-.timeContainer h3 {
-    font-size: 0.8rem;
-    font-family: var(--regular-font)
-}
-
-.timeContainer h4 {
-    font-family: var(--regular-font);
-    font-size: 0.7rem;
-}
-
 
 .descriptionContainer {
     width: 90%;
 }
 
-
 .socialsContainer {
     display: flex;
     align-items: center;
-    gap: 2rem;
-}
-
-
-
-
-
-.pressContainer a {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: fit-content;
+    gap: var(--space-7);
 }
 
 .pressContainer {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
-    font-family: var(--regular-font);
+    gap: var(--space-7);
+    font-family: var(--font-ui);
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
 }
-
-
 
 .presslinkContainer {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-4);
+}
+
+.pressContainer a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: fit-content;
 }
 
 .presslinkContainer:hover,
 .presslinkContainer:hover a {
-    background-color: var(--red);
-    color: white;
-    width: fit-content
+    background-color: var(--color-accent);
+    color: var(--color-white);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {}
+/* Mobile and tablet: one scrolling column */
+@media (max-width: 1120px) {
+    .container {
+        overflow-y: scroll;
+        width: 75svw;
+    }
 
+    .contentContainer {
+        flex-direction: column;
+        width: 100%;
+    }
 
+    .imageContainer {
+        width: 100%;
+        flex: 1;
+    }
+
+    .infoContainer {
+        width: 100%;
+        height: fit-content;
+        flex: 1;
+    }
+
+    .socialsContainer {
+        width: fit-content;
+    }
+
+    .socialContainer {
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+
+    .pressContainer {
+        padding-top: var(--space-4);
+    }
+
+    .presslinkContainer {
+        gap: var(--space-2);
+    }
+}
 
 /* Mobile */
 @media (max-width: 768px) {
-
     .container {
-        --t-body: 0.75rem;
-
-        background-color: var(--background-grey);
-        overflow-y: scroll;
-        width: 75svw;
         max-height: 85svh;
         height: fit-content;
     }
 
     .contentContainer {
-        display: flex;
-        flex-direction: column;
         height: 100%;
-        width: 100%;
-        position: relative;
         justify-content: space-between;
         overflow: scroll;
     }
 
     .imageContainer {
         height: fit-content;
-        width: 100%;
-        flex: 1;
     }
 
     .imageContainer img,
@@ -154,218 +155,42 @@
     }
 
     .infoContainer {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+        gap: var(--space-4);
         justify-content: space-between;
-        padding: 1rem;
-        width: 100%;
-        height: auto;
-        flex: 1;
-        height: fit-content;
-    }
-
-    .titleContainer {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .titleContainer h2 {
-        font-size: 1rem;
-
-    }
-
-    .titleContainer h3 {
-        font-family: var(--regular-font);
-        font-size: 0.6rem;
-    }
-
-
-    .timeContainer {
-        display: flex;
-        align-items: left;
-        flex-direction: column;
-        gap: 0rem;
-    }
-
-    .timeContainer h3 {
-        font-size: 0.5rem;
-        font-family: var(--regular-font)
-    }
-
-    .timeContainer h4 {
-        font-family: var(--thin-font);
-        font-size: 0.5rem;
+        padding: var(--space-4);
     }
 
     .descriptionContainer {
         width: 100%;
     }
-
-
-    .socialsContainer {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        width: fit-content
-    }
-
-    .socialContainer {
-        height: 1.2rem;
-        width: 1.2rem;
-    }
-
-    .pressContainer {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        font-family: var(--regular-font);
-        text-transform: uppercase;
-        font-size: 0.6rem;
-        padding-top: 1rem;
-    }
-
-    .presslinkContainer {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .pressContainer a {
-        display: flex;
-        align-items: center;
-        width: fit-content;
-    }
-
-
-    .presslinkContainer:hover,
-    .presslinkContainer:hover a {
-        background-color: var(--red);
-        color: white;
-        width: fit-content
-    }
 }
 
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 768px) and (max-width: 1120px) {
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1120px) {
     .container {
-        background-color: var(--background-grey);
-        overflow-y: scroll;
-        width: 75svw;
         height: 85svh;
     }
 
     .contentContainer {
-        display: flex;
-        flex-direction: column;
         height: fit-content;
-        width: 100%;
-        position: relative;
-        gap: 2rem;
+        gap: var(--space-7);
     }
 
     .imageContainer {
-        overflow: hidden;
-        flex: 1;
-        position: relative;
-        width: 100%;
-        display: flex;
         align-items: flex-end;
         justify-content: center;
-
     }
 
     .imageContainer img,
     .imageContainer video {
-        height: 100%;
         width: auto;
         object-fit: contain;
     }
 
     .infoContainer {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 1.5rem;
-        width: 100%;
-        height: fit-content;
-        flex: 1;
-
-    }
-
-    .titleContainer {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .titleContainer h2 {
-        font-size: 1.5rem;
-
-    }
-
-    .titleContainer h3 {
-        font-family: var(--regular-font);
-        font-size: 0.8rem;
-    }
-
-
-    .timeContainer {
-        display: flex;
-        align-items: left;
-        flex-direction: column;
-        gap: 0rem;
-    }
-
-
-    .descriptionContainer {
-        width: 90%;
-    }
-
-
-    .socialsContainer {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        width: fit-content
-    }
-
-    .socialContainer {
-        height: 1.2rem;
-        width: 1.2rem;
-    }
-
-    .pressContainer {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        font-family: var(--regular-font);
-        text-transform: uppercase;
-        font-size: 0.6rem;
-        padding-top: 1rem;
-    }
-
-    .presslinkContainer {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .pressContainer a {
-        display: flex;
-        align-items: center;
-        width: fit-content;
-    }
-
-
-    .presslinkContainer:hover,
-    .presslinkContainer:hover a {
-        background-color: var(--red);
-        color: white;
-        width: fit-content
+        padding: var(--space-6);
     }
 }
-
 
 /* Desktop with extra content: info + extra share the left column, image spans
    the right one, so the card keeps its usual size. */
@@ -384,7 +209,7 @@
         align-self: stretch;
         justify-content: flex-start;
         overflow-y: auto;
-        padding-bottom: 1.5rem;
+        padding-bottom: var(--space-6);
     }
 
     .withExtra .imageContainer {
