@@ -400,3 +400,14 @@
         min-width: 0;
     }
 }
+
+/* Mobile with extra content: gallery between the info and the hero media. */
+@media (max-width: 768px) {
+    .withExtra .extraContainer {
+        order: 1;
+    }
+
+    .withExtra .imageContainer {
+        order: 2;
+    }
+}
