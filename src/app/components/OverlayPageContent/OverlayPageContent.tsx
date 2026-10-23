@@ -91,7 +91,7 @@ export default function OverlayPageContent({
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <PrismicNextLink field={item.link} />
-                  <Link href={item.link.url}>
+                  <Link href={item.link.url} target={item.link.target}>
                     <Arrow
                       fill={hoveredIndex === index ? 'white' : 'var(--black)'}
                     />
