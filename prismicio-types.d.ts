@@ -1077,6 +1077,41 @@ export interface StudioDocumentDataStudioLinksItem {
 }
 
 /**
+ * Item in *Studio → Studio Videos*
+ */
+export interface StudioDocumentDataStudioVideosItem {
+	/**
+	 * Video field in *Studio → Studio Videos*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_videos[].video
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video: prismic.LinkToMediaField<prismic.FieldState, never>;
+	
+	/**
+	 * Preview Image field in *Studio → Studio Videos*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_videos[].preview
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	preview: prismic.ImageField<never>;
+	
+	/**
+	 * Title field in *Studio → Studio Videos*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_videos[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+}
+
+/**
  * Content for Studio documents
  */
 interface StudioDocumentData {
@@ -1166,7 +1201,18 @@ interface StudioDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	studio_links: prismic.GroupField<Simplify<StudioDocumentDataStudioLinksItem>>;/**
+	studio_links: prismic.GroupField<Simplify<StudioDocumentDataStudioLinksItem>>;
+	
+	/**
+	 * Studio Videos field in *Studio*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.studio_videos[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	studio_videos: prismic.GroupField<Simplify<StudioDocumentDataStudioVideosItem>>;/**
 	 * Meta Title field in *Studio*
 	 *
 	 * - **Field Type**: Text
@@ -1304,6 +1350,7 @@ declare module "@prismicio/client" {
 			StudioDocumentDataSlicesSlice,
 			StudioDocumentDataStudioSocialsItem,
 			StudioDocumentDataStudioLinksItem,
+			StudioDocumentDataStudioVideosItem,
 			AllDocumentTypes,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,

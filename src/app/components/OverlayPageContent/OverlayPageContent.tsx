@@ -20,6 +20,8 @@ type OverlayPageContentProps = {
   image: any;
   /** Link to Media field; when filled it replaces the image, which becomes the poster. */
   video?: any;
+  /** Extra content below the main card content (e.g. the video gallery). */
+  children?: React.ReactNode;
 };
 
 export default function OverlayPageContent({
@@ -31,6 +33,7 @@ export default function OverlayPageContent({
   links,
   image,
   video,
+  children,
 }: OverlayPageContentProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -46,7 +49,9 @@ export default function OverlayPageContent({
   );
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${children ? styles.scrollable : ''}`}
+    >
       <div className={styles.contentContainer}>
         <div className={styles.infoContainer}>
           <div className={styles.titleContainer}>
@@ -115,6 +120,7 @@ export default function OverlayPageContent({
           )
         )}
       </div>
+      {children}
     </div>
   );
 }

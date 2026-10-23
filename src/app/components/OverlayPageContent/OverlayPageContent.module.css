@@ -3,6 +3,12 @@
     overflow: hidden;
 }
 
+/* Extra content below the card (e.g. a gallery) → scroll inside the card. */
+.scrollable {
+    max-height: 90svh;
+    overflow-y: auto;
+}
+
 .contentContainer {
     display: flex;
     width: calc(30rem + 40vw);

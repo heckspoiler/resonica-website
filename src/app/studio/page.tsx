@@ -7,6 +7,7 @@ import styles from './page.module.css';
 
 import OverlayPageContent from '../components/OverlayPageContent/OverlayPageContent';
 import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay';
+import VideoGallery from '../components/VideoGallery/VideoGallery';
 
 export default async function Page() {
   const client = createClient();
@@ -24,7 +25,9 @@ export default async function Page() {
         links={data.studio_links}
         image={data.hero_image}
         video={data.hero_video}
-      />
+      >
+        <VideoGallery items={data.studio_videos} />
+      </OverlayPageContent>
       <BackToHomeOverlay />
     </section>
   );

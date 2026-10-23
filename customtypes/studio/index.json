@@ -84,6 +84,33 @@
           "label": "Studio Links"
         },
         "type": "Group"
+      },
+      "studio_videos": {
+        "config": {
+          "fields": {
+            "video": {
+              "config": {
+                "label": "Video",
+                "select": "media"
+              },
+              "type": "Link"
+            },
+            "preview": {
+              "config": {
+                "label": "Preview Image"
+              },
+              "type": "Image"
+            },
+            "title": {
+              "config": {
+                "label": "Title"
+              },
+              "type": "Text"
+            }
+          },
+          "label": "Studio Videos"
+        },
+        "type": "Group"
       }
     },
     "SEO & Metadata": {
