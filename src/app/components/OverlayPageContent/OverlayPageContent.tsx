@@ -18,6 +18,8 @@ type OverlayPageContentProps = {
   socials: any[];
   links: any[];
   image: any;
+  /** Link to Media field; when filled it replaces the image, which becomes the poster. */
+  video?: any;
 };
 
 export default function OverlayPageContent({
@@ -28,6 +30,7 @@ export default function OverlayPageContent({
   socials,
   links,
   image,
+  video,
 }: OverlayPageContentProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -91,10 +94,25 @@ export default function OverlayPageContent({
           )}
         </div>
 
-        {isFilled.image(image) && (
+        {isFilled.linkToMedia(video) ? (
           <div className={styles.imageContainer}>
-            <PrismicNextImage field={image} />
+            {/* GIF-like: muted + playsInline are required for autoplay on iOS. */}
+            <video
+              src={video.url}
+              poster={isFilled.image(image) ? image.url : undefined}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            />
           </div>
+        ) : (
+          isFilled.image(image) && (
+            <div className={styles.imageContainer}>
+              <PrismicNextImage field={image} />
+            </div>
+          )
         )}
       </div>
     </div>

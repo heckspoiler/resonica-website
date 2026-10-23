@@ -19,7 +19,8 @@
     justify-content: flex-end;
 }
 
-.imageContainer img {
+.imageContainer img,
+.imageContainer video {
     height: 100%;
     width: auto;
     object-fit: cover;
@@ -142,7 +143,8 @@
         flex: 1;
     }
 
-    .imageContainer img {
+    .imageContainer img,
+    .imageContainer video {
         height: auto;
         object-fit: contain;
         width: 75svw;
@@ -273,7 +275,8 @@
 
     }
 
-    .imageContainer img {
+    .imageContainer img,
+    .imageContainer video {
         height: 100%;
         width: auto;
         object-fit: contain;

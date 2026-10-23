@@ -16,6 +16,13 @@
         },
         "type": "Image"
       },
+      "hero_video": {
+        "config": {
+          "label": "Hero Video",
+          "select": "media"
+        },
+        "type": "Link"
+      },
       "page_title": {
         "config": {
           "label": "Page Title",

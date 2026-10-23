@@ -1103,6 +1103,17 @@ interface StudioDocumentData {
 	hero_image: prismic.ImageField<never>;
 	
 	/**
+	 * Hero Video field in *Studio*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: studio.hero_video
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	hero_video: prismic.LinkToMediaField<prismic.FieldState, never>;
+	
+	/**
 	 * Page Title field in *Studio*
 	 *
 	 * - **Field Type**: Rich Text

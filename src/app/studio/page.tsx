@@ -23,6 +23,7 @@ export default async function Page() {
         socials={data.studio_socials}
         links={data.studio_links}
         image={data.hero_image}
+        video={data.hero_video}
       />
       <BackToHomeOverlay />
     </section>
