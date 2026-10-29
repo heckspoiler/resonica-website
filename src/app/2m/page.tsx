@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import { createClient } from '@/prismicio';
 
@@ -9,7 +10,7 @@ import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay
 
 export default async function Page() {
   const client = createClient();
-  const page = await client.getSingle('2m');
+  const page = await client.getSingle('2m').catch(() => notFound());
   const data = page.data;
 
   return (
@@ -28,7 +29,7 @@ export default async function Page() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle('2m');
+  const page = await client.getSingle('2m').catch(() => notFound());
 
   return {
     title: page.data.meta_title,

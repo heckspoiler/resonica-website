@@ -3,27 +3,23 @@
 import React from 'react';
 import styles from './Shopdropdown.module.css';
 import ShopItem from './components/ShopItem';
+import type { NavShopItem } from '@/app/lib/navigation';
 
 export default function Shopdropdown({
   shopItems,
-  showShopDropdown,
-  setShowShopDropdown,
+  isOpen,
+  onNavigate,
 }: {
-  shopItems: any;
-  showShopDropdown: boolean;
-  setShowShopDropdown: (value: boolean) => void;
+  shopItems: NavShopItem[];
+  isOpen: boolean;
+  onNavigate: () => void;
 }) {
-  // Function to close the dropdown
-  const handleLinkClick = () => {
-    setShowShopDropdown(false);
-  };
-
   return (
     <div
-      className={`${styles.container} ${showShopDropdown ? styles.containerVisible : ''}`}
-      onClick={handleLinkClick} // Close dropdown when clicking inside
+      className={`${styles.container} ${isOpen ? styles.containerVisible : ''}`}
+      onClick={onNavigate} // Close dropdown when clicking inside
     >
-      <ShopItem shopItems={shopItems} showShopDropdown={showShopDropdown} />
+      <ShopItem shopItems={shopItems} isOpen={isOpen} />
     </div>
   );
 }

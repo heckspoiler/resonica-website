@@ -3,6 +3,7 @@ import { PrismicNextLink } from '@prismicio/next';
 import { asText, isFilled, type RichTextField } from '@prismicio/client';
 
 import styles from './RichText.module.css';
+import ui from '@/app/components/CardText/CardText.module.css';
 
 export type DescriptionField = RichTextField | null | undefined;
 
@@ -16,6 +17,20 @@ export function truncateText(text: string, maxLength: number) {
     return text.substring(0, maxLength).trimEnd() + '... ';
   }
   return text;
+}
+
+/**
+ * Truncated plain-text preview for list cards: 90 characters on phones,
+ * 260 on larger screens.
+ */
+export function Excerpt({ field }: { field: DescriptionField }) {
+  const text = descriptionToText(field);
+  return (
+    <>
+      <span className={ui.excerptLong}>{truncateText(text, 260)}</span>
+      <span className={ui.excerptShort}>{truncateText(text, 90)}</span>
+    </>
+  );
 }
 
 const components: JSXMapSerializer = {

@@ -3,31 +3,30 @@
 import { PrismicNextImage } from '@prismicio/next';
 import React from 'react';
 import styles from './ShopItem.module.css';
-import Link from 'next/link';
+import type { NavShopItem } from '@/app/lib/navigation';
 
 export default function ShopItem({
   shopItems,
-  showShopDropdown,
+  isOpen,
 }: {
-  shopItems: any;
-  showShopDropdown: boolean;
+  shopItems: NavShopItem[];
+  isOpen: boolean;
 }) {
   return (
-    <div
-      className={`${styles.container} ${showShopDropdown ? styles.containerVisible : ''}`}
-    >
-      {shopItems &&
-        shopItems.map((item: any, index: any) => (
-          <Link href={item.data.product_link.url} target="_blank" key={index}>
+    <div className={`${styles.container} ${isOpen ? styles.containerVisible : ''}`}>
+      {shopItems
+        .filter((item) => item.url)
+        .map((item) => (
+          <a href={item.url} target="_blank" rel="noopener noreferrer" key={item.id}>
             <div className={styles.item}>
               <div className={styles.imageContainer}>
-                <PrismicNextImage field={item.data.product_image} />
+                <PrismicNextImage field={item.image} fallbackAlt="" />
               </div>
               <div className={styles.paraContainer}>
-                <p>{item.data.product_description}</p>
+                <p>{item.description}</p>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
     </div>
   );

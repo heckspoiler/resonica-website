@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import { createClient } from '@/prismicio';
 import DatesPageContent from './components/DatesPageContent';
@@ -9,13 +10,12 @@ import { compareByFirstDate } from '@/app/lib/eventDates';
 
 export default async function Page() {
   const client = createClient();
-  const page = await client.getSingle('dates');
   const dates = await client.getAllByType('date');
 
   // Newest first; events without a date go last.
   const sortedDates = [...dates]
-    .sort((a: any, b: any) => {
-      const order = compareByFirstDate(a, b);
+    .sort((a, b) => {
+      const order = compareByFirstDate(a.data, b.data);
       return order === 0 ? 0 : -order;
     })
     .slice(0, 10);
@@ -30,7 +30,7 @@ export default async function Page() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle('dates');
+  const page = await client.getSingle('dates').catch(() => notFound());
 
   return {
     title: page.data.meta_title,

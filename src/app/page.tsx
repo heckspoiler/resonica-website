@@ -1,39 +1,29 @@
 import { Metadata } from 'next';
 
-import { PrismicRichText, SliceZone } from '@prismicio/react';
 import * as prismic from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
-import Marquee from './components/Marquee/Marquee';
-
-// This component renders your homepage.
-//
-// Use Next's generateMetadata function to render page metadata.
-//
-// Use the SliceZone to render the content of the page.
+import MarqueeContent from './components/Marquee/MarqueeContent/MarqueeContent';
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const home = await client.getByUID('page', 'home');
+  const home = await client.getByUID('page', 'home').catch(() => null);
+  if (!home) return {};
 
   return {
     title: prismic.asText(home.data.title),
     description: home.data.meta_description,
     openGraph: {
       title: home.data.meta_title ?? undefined,
-      images: [{ url: home.data.meta_image.url ?? '' }],
+      images: home.data.meta_image.url ? [{ url: home.data.meta_image.url }] : [],
     },
   };
 }
 
 export default async function Index() {
-  // The client queries content from the Prismic API
   const client = createClient();
-  const home = await client.getByUID('page', 'home');
-  const marqueeFetch = await client.getByType('marquee');
+  // The home page is the background and navigation; the marquee is optional.
+  const marquee = await client.getSingle('marquee').catch(() => null);
 
-  const showMarquee = marqueeFetch.results[0].data.show_marquee;
-
-  return <>{showMarquee && <Marquee />}</>;
+  return marquee?.data.show_marquee ? <MarqueeContent marquee={marquee.data} /> : null;
 }

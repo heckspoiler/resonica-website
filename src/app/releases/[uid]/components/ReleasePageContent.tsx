@@ -1,21 +1,24 @@
-'use client';
-
-import { asText } from '@prismicio/client';
+import { asText, type Content } from '@prismicio/client';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 import styles from './ReleasePageContent.module.css';
 import ui from '@/app/components/CardText/CardText.module.css';
 import RichText from '@/app/components/RichText/RichText';
 import Arrow from '@/app/components/Arrow/Arrow';
+import { linkUrl } from '@/app/lib/links';
 
-export default function ReleasePageContent({ data }: { data: any }) {
+export default function ReleasePageContent({
+  data,
+}: {
+  data: Content.ReleaseDocument['data'];
+}) {
   const releaseDate = asText(data.release_date);
 
-  const tracks = (data.release_titlelist ?? []).filter(
-    (track: any) => track.track_name || track.artist_name
+  const tracks = data.release_titlelist.filter(
+    (track) => track.track_name || track.artist_name
   );
-  const links = (data.buylink_container ?? []).filter(
-    (item: any) => item.buylink_label?.url
+  const links = data.buylink_container.filter((item) =>
+    linkUrl(item.buylink_label)
   );
 
   return (
@@ -38,7 +41,7 @@ export default function ReleasePageContent({ data }: { data: any }) {
             <section className={ui.section}>
               <p className={ui.label}>Tracklist</p>
               <ol className={ui.tracklist}>
-                {tracks.map((track: any, index: number) => (
+                {tracks.map((track, index) => (
                   <li key={index} className={ui.track}>
                     <span className={ui.trackNo}>
                       {String(index + 1).padStart(2, '0')}
@@ -65,7 +68,7 @@ export default function ReleasePageContent({ data }: { data: any }) {
             <section className={ui.section}>
               <p className={ui.label}>Listen &amp; buy</p>
               <div className={ui.linkRow}>
-                {links.map((item: any, index: number) => (
+                {links.map((item, index) => (
                   <PrismicNextLink
                     key={index}
                     field={item.buylink_label}

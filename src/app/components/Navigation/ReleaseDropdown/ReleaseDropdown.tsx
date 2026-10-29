@@ -1,60 +1,43 @@
 'use client';
 
 import React from 'react';
-import { PrismicNextLink } from '@prismicio/next';
-import { PrismicRichText } from '@prismicio/react';
-import styles from './ReleaseDropdown.module.css';
 import Link from 'next/link';
+import styles from './ReleaseDropdown.module.css';
 import Arrow from '../../Arrow/Arrow';
+import type { NavRelease } from '@/app/lib/navigation';
 
 export default function ReleaseDropdown({
   releases,
-  showReleasesDropdown,
-  setShowReleasesDropdown,
+  isOpen,
+  onNavigate,
 }: {
-  releases: any;
-  showReleasesDropdown: boolean;
-  setShowReleasesDropdown: (value: boolean) => void;
+  /** Already sorted newest first and capped by the server. */
+  releases: NavRelease[];
+  isOpen: boolean;
+  onNavigate: () => void;
 }) {
-  const sortedReleases = releases
-    .sort((a: any, b: any) => {
-      return b.data.release_index - a.data.release_index;
-    })
-    .slice(0, 10);
-
-  // Function to close the dropdown
-  const handleLinkClick = () => {
-    setShowReleasesDropdown(false);
-  };
-
   return (
-    <div
-      className={`${styles.itemsContainer} ${showReleasesDropdown ? styles.isHovered : ''}`}
-    >
-      {releases &&
-        sortedReleases.length > 0 &&
-        sortedReleases.map((item: any, index: number) => (
-          <div key={index} className={styles.item}>
-            <PrismicNextLink href={item.url} onClick={handleLinkClick}>
-              {/* Added onClick handler to close dropdown */}
-              <div className={styles.typeContainer}>
-                <p>{item.data.release_number}</p>
+    <div className={`${styles.itemsContainer} ${isOpen ? styles.isHovered : ''}`}>
+      {releases.map((item) => (
+        <div key={item.id} className={styles.item}>
+          <Link href={item.url} onClick={onNavigate}>
+            <div className={styles.typeContainer}>
+              <p>{item.number}</p>
+            </div>
+            <div className={styles.leftContainer}>
+              <div className={styles.dateContainer}>
+                <h3>{item.date}</h3>
               </div>
-              <div className={styles.leftContainer}>
-                <div className={styles.dateContainer}>
-                  <PrismicRichText field={item.data.release_date} />
-                </div>
-                <span>-</span>{' '}
-                <div className={styles.titleContainer}>
-                  <PrismicRichText field={item.data.release_title} />
-                </div>
+              <span>-</span>{' '}
+              <div className={styles.titleContainer}>
+                <h2>{item.title}</h2>
               </div>
-            </PrismicNextLink>
-          </div>
-        ))}
+            </div>
+          </Link>
+        </div>
+      ))}
       <div className={styles.seeMore}>
-        <Link href="/releases" onClick={handleLinkClick}>
-          {/* Added onClick handler to close dropdown */}
+        <Link href="/releases" onClick={onNavigate}>
           More Releases
           <span>
             <Arrow />

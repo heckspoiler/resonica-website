@@ -173,3 +173,19 @@ a.link:focus-visible {
     font-family: var(--font-ui);
     white-space: nowrap;
 }
+
+/* Truncated previews: a shorter excerpt on phones, switched in CSS so it
+   follows resizes and needs no client JS. */
+.excerptShort {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .excerptShort {
+        display: inline;
+    }
+
+    .excerptLong {
+        display: none;
+    }
+}

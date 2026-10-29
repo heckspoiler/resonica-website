@@ -1,17 +1,13 @@
 import React from 'react';
-import { createClient } from '@/prismicio';
 
 import styles from './BackToHomeOverlay.module.css';
 import Link from 'next/link';
 
-export default async function BackToHomeOverlay() {
-  const client = createClient();
-  const settings = await client.getSingle('settings');
-
-  const homeLink = settings.data.navigation[0];
+/** Full-screen click target behind the card: clicking outside it goes home. */
+export default function BackToHomeOverlay() {
   return (
     <section className={styles.main}>
-      <Link href="/">
+      <Link href="/" aria-label="Back to home">
         <div className={styles.linkContainer}></div>
       </Link>
     </section>

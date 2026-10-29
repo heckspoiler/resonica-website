@@ -1,6 +1,4 @@
-'use client';
-
-import { asText } from '@prismicio/client';
+import { asText, type Content } from '@prismicio/client';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 import styles from './EventPageContent.module.css';
@@ -8,12 +6,17 @@ import ui from '@/app/components/CardText/CardText.module.css';
 import RichText from '@/app/components/RichText/RichText';
 import Arrow from '@/app/components/Arrow/Arrow';
 import { formatEventDate, getEventDates } from '@/app/lib/eventDates';
+import { linkUrl } from '@/app/lib/links';
 
-export default function EventPageContent({ data }: { data: any }) {
+export default function EventPageContent({
+  data,
+}: {
+  data: Content.DateDocument['data'];
+}) {
   const eventDates = getEventDates(data);
 
-  const acts = (data.date_acts ?? []).filter(
-    (item: any) => item.date_act?.text || item.date_act?.url
+  const acts = data.date_acts.filter(
+    (item) => item.date_act.text || linkUrl(item.date_act)
   );
 
   return (
@@ -39,7 +42,7 @@ export default function EventPageContent({ data }: { data: any }) {
 
           <RichText field={data.event_description_rich} />
 
-          {data.ticket_link?.url && (
+          {linkUrl(data.ticket_link) && (
             <PrismicNextLink field={data.ticket_link} className={ui.link}>
               {data.ticket_link.text || 'Tickets'}
               <Arrow />
@@ -52,9 +55,9 @@ export default function EventPageContent({ data }: { data: any }) {
               <p className={styles.tba}>Acts tba</p>
             ) : (
               <ul className={ui.linkList}>
-                {acts.map((item: any, index: number) => (
+                {acts.map((item, index) => (
                   <li key={index}>
-                    {item.date_act.url ? (
+                    {linkUrl(item.date_act) ? (
                       <PrismicNextLink
                         field={item.date_act}
                         className={ui.link}

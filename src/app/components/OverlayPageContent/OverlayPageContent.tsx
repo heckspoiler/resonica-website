@@ -1,21 +1,27 @@
 import React from 'react';
 import styles from './OverlayPageContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
-import Link from 'next/link';
 import Arrow from '@/app/components/Arrow/Arrow';
 import RichText from '@/app/components/RichText/RichText';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
-import { isFilled } from '@prismicio/client';
+import {
+  isFilled,
+  type ImageField,
+  type LinkField,
+  type LinkToMediaField,
+  type RichTextField,
+} from '@prismicio/client';
+import { linkUrl } from '@/app/lib/links';
 
 type OverlayPageContentProps = {
-  title: any;
-  subtitle?: any;
-  description: any;
-  socials: any[];
-  links: any[];
-  image: any;
-  /** Link to Media field; when filled it replaces the image, which becomes the poster. */
-  video?: any;
+  title: RichTextField;
+  subtitle?: RichTextField;
+  description: RichTextField;
+  socials: { social_link: LinkField; social_icon: ImageField }[];
+  links: { link: LinkField }[];
+  image: ImageField;
+  /** When filled it replaces the image, which becomes the poster. */
+  video?: LinkToMediaField;
   /**
    * Extra content (e.g. the video gallery) inside the card's usual size:
    * under the info column on desktop, at the very bottom on mobile/tablet.
@@ -34,15 +40,10 @@ export default function OverlayPageContent({
   children,
 }: OverlayPageContentProps) {
   // Skip empty repeatable entries: no link or icon → nothing rendered.
-  const filledSocials = (socials ?? []).filter(
-    (item: any) =>
-      isFilled.link(item.social_link) &&
-      item.social_link.url &&
-      isFilled.image(item.social_icon)
+  const filledSocials = socials.filter(
+    (item) => linkUrl(item.social_link) && isFilled.image(item.social_icon)
   );
-  const filledLinks = (links ?? []).filter(
-    (item: any) => isFilled.link(item.link) && item.link.url
-  );
+  const filledLinks = links.filter((item) => linkUrl(item.link));
 
   return (
     <div className={styles.container}>
@@ -61,23 +62,27 @@ export default function OverlayPageContent({
           </div>
           {filledSocials.length > 0 && (
             <div className={styles.socialsContainer}>
-              {filledSocials.map((item: any, index: number) => (
+              {filledSocials.map((item, index) => (
                 <div className={styles.socialContainer} key={index}>
-                  <Link href={item.social_link.url} target="_blank">
+                  <a
+                    href={linkUrl(item.social_link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <PrismicNextImage field={item.social_icon} />
-                  </Link>
+                  </a>
                 </div>
               ))}
             </div>
           )}
           {filledLinks.length > 0 && (
             <div className={styles.pressContainer}>
-              {filledLinks.map((item: any, index: number) => (
+              {filledLinks.map((item, index) => (
                 <div className={styles.presslinkContainer} key={index}>
                   <PrismicNextLink field={item.link} />
-                  <Link href={item.link.url} target={item.link.target}>
+                  <PrismicNextLink field={item.link} aria-hidden tabIndex={-1}>
                     <Arrow />
-                  </Link>
+                  </PrismicNextLink>
                 </div>
               ))}
             </div>

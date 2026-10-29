@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { SliceZone } from '@prismicio/react';
+import { notFound } from 'next/navigation';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
+import { compareReleases } from '@/app/lib/navigation';
 import ReleasesPageContent from './components/ReleasesPageContent';
 
 import styles from './page.module.css';
@@ -10,16 +10,11 @@ import BackToHomeOverlay from '../components/backToHomeOverlay/BackToHomeOverlay
 
 export default async function Page() {
   const client = createClient();
-  const page = await client.getSingle('releases');
   const releases = await client.getAllByType('release');
-
-  const sortedReleases = releases.sort((a: any, b: any) => {
-    return b.data.release_index - a.data.release_index;
-  });
 
   return (
     <section className={styles.main}>
-      <ReleasesPageContent releases={sortedReleases} />
+      <ReleasesPageContent releases={[...releases].sort(compareReleases)} />
       <BackToHomeOverlay />
     </section>
   );
@@ -27,7 +22,7 @@ export default async function Page() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle('releases');
+  const page = await client.getSingle('releases').catch(() => notFound());
 
   return {
     title: page.data.meta_title,
