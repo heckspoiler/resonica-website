@@ -17,9 +17,9 @@ import {
 import fragment from './shaders/background.frag';
 import vertex from './shaders/background.vert';
 
-// Import the image as a texture
-import backgroundDesktop from '../../../../public/blurry2.png';
-import backgroundMobile from '../../../../public/background-mobile.png';
+// Imported (not referenced by URL) so the files get hashed, long-cached URLs
+import backgroundDesktop from '../../../../public/background-desktop.webp';
+import backgroundMobile from '../../../../public/background-mobile.webp';
 
 const MOBILE_BREAKPOINT = 1020;
 // Smoothing applied to the mouse position, expressed per 60fps-frame and
@@ -172,5 +172,5 @@ export default function BackgroundCanvas() {
     };
   }, [background]);
 
-  return <div ref={mountRef} style={{ width: '100vw', height: '100vh' }} />;
+  return <div ref={mountRef} style={{ width: '100%', height: '100%' }} />;
 }

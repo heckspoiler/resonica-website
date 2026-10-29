@@ -28,10 +28,10 @@
     --color-glow-hover: rgba(238, 238, 238, 0.4);
 
     /* Font families */
-    --font-display: "GT America Black";
-    --font-ui: "GT America Regular";
-    --font-body: "GT America Text";
-    --font-thin: "GT America Thin";
+    --font-display: var(--font-gt-black);
+    --font-ui: var(--font-gt-regular);
+    --font-body: var(--font-gt-text);
+    --font-thin: var(--font-gt-thin);
 
     /* Font sizes – by role */
     --fs-caption: 0.6rem;   /* thumbnail titles */
