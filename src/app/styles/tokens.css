@@ -35,8 +35,8 @@
 
     /* Font sizes – by role */
     --fs-caption: 0.6rem;   /* thumbnail titles */
-    --fs-small: 0.75rem;    /* meta, labels, links, buttons, menu items */
-    --fs-body: 0.8rem;      /* running text */
+    --fs-small: 0.8125rem;  /* meta, labels, links, buttons, menu items */
+    --fs-body: 0.875rem;    /* running text */
     --fs-nav: 1rem;         /* main navigation */
     --fs-heading: 1.25rem;  /* card titles in lists */
     --fs-title: 1.5rem;     /* page / detail titles */
@@ -99,8 +99,8 @@
 /* Mobile */
 @media (max-width: 768px) {
     :root {
-        --fs-small: 0.7rem;
-        --fs-body: 0.75rem;
+        --fs-small: 0.75rem;
+        --fs-body: 0.8rem;
         --fs-nav: 0.8rem;
         --fs-heading: 0.95rem;
         --fs-title: 1.15rem;
